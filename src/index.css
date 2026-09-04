@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-divider: var(--divider);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+:root {
+  /* GreenFleet Professional Light Theme Palette */
+  --background: #FEFAEF;
+  --foreground: #182350;
+  --card: #FFFFFF;
+  --card-foreground: #3F4654;
+  --primary: #182350;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EAF4FE;
+  --secondary-foreground: #182350;
+  --muted: #F3EBDD;
+  --muted-foreground: #737985;
+  --accent: #AFD2FA;
+  --accent-foreground: #182350;
+  --border: #E6E2D8;
+  --divider: #ECE8DF;
+  --ring: #AFD2FA;
+  --radius: 8px;
+  
+  --brand-blue: #182350;
+  --accent-blue: #AFD2FA;
+  --accent-blue-light: #EAF4FE;
+  --accent-brown: #B9915E;
+  --accent-brown-light: #F3EBDD;
+  --text-primary: #182350;
+  --text-body: #3F4654;
+  --text-muted: #737985;
+  
+  --success: #2E9B68;
+  --warning: #B9915E;
+  --danger: #C94B4B;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #FEFAEF;
+  color: #182350;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E6E2D8 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(24, 35, 80, 0.04);
+}
+
+.stat-value {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.tag {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
