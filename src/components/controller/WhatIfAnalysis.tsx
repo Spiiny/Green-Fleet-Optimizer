@@ -1216,19 +1216,36 @@ export default function WhatIfAnalysis({ vessel }: Props) {
       {/* ------------------------------------------------ */}
       {/* 1. TOP HEADER */}
       {/* ------------------------------------------------ */}
-      <div className="panel border border-[#182350]/20 p-5" style={{ background: "#FFFFFF", borderColor: "rgba(24, 35, 80, 0.2)" }}>
+      <div className="panel p-5" style={{ background: "#12233B", borderColor: "#30445F" }}>
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <h2 className="text-xl font-extrabold text-[#182350] tracking-wider">
-            WHAT-IF & RESILIENCE CENTER
-          </h2>
+          <div className="space-y-1">
+            <div className="flex items-center gap-2.5">
+              <span className="text-xl font-extrabold text-white tracking-wider">
+                WHAT-IF & RESILIENCE CENTER
+              </span>
+              <span
+                className="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider"
+                style={{
+                  background: "rgba(24, 166, 166, 0.15)",
+                  color: "#18A6A6",
+                  border: "1px solid #18A6A6",
+                }}
+              >
+                Decision & Resilience Intelligence
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground font-sans">
+              Simulate operational changes and evaluate their impact on the fleet plan.
+            </p>
+          </div>
 
           {/* Vessel Meta Context & Primary CTA */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <div className="px-3 py-2 rounded bg-[#FAFAF5] border border-[#182350]/20 flex items-center gap-2">
-              <span className="text-[11px] text-[#737985] uppercase font-sans tracking-wider">
+            <div className="px-3 py-2 rounded bg-[#0B1628] border border-border/70 flex items-center gap-2">
+              <span className="text-[11px] text-muted-foreground uppercase font-sans tracking-wider">
                 Vessel:
               </span>
-              <span className="text-xs font-semibold text-[#182350] flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-white flex items-center gap-1.5">
                 <span
                   className="w-2 h-2 rounded-full"
                   style={{ background: vessel.color || "#18A6A6" }}
@@ -1237,14 +1254,30 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </span>
             </div>
 
-            <div className="px-3 py-2 rounded bg-[#FAFAF5] border border-[#182350]/20 flex items-center gap-2">
-              <span className="text-[11px] text-[#737985] uppercase font-sans tracking-wider">
+            <div className="px-3 py-2 rounded bg-[#0B1628] border border-border/70 flex items-center gap-2">
+              <span className="text-[11px] text-muted-foreground uppercase font-sans tracking-wider">
                 Voyage:
               </span>
-              <span className="text-xs font-semibold text-[#182350] flex items-center gap-1">
+              <span className="text-xs font-semibold text-white flex items-center gap-1">
                 <span>{originName}</span>
                 <span className="text-[#18A6A6]">→</span>
                 <span>{destinationName}</span>
+              </span>
+            </div>
+
+            <div className="px-3 py-2 rounded bg-[#0B1628] border border-border/70 flex items-center gap-2">
+              <span className="text-[11px] text-muted-foreground uppercase font-sans tracking-wider">
+                Status:
+              </span>
+              <span
+                className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider"
+                style={{ color: activePlanApplied ? "#18A6A6" : "#2E9B68" }}
+              >
+                <span
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ background: activePlanApplied ? "#18A6A6" : "#2E9B68" }}
+                />
+                {activePlanApplied ? "RE-OPTIMIZED ACTIVE" : "OPTIMIZED"}
               </span>
             </div>
 
@@ -1254,7 +1287,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               className="px-4 py-2.5 rounded font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-lg flex items-center gap-2 cursor-pointer hover:opacity-95 active:scale-95"
               style={{
                 background: "#18A6A6",
-                color: "#FFFFFF",
+                color: "#0B1628",
                 boxShadow: "0 0 15px rgba(24, 166, 166, 0.35)",
               }}
             >
@@ -1276,14 +1309,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           }}
         >
           <div className="flex items-center gap-2.5">
-            <span className="w-5 h-5 rounded-full bg-[#18A6A6] text-[#FAFAF5] flex items-center justify-center font-bold text-xs">
+            <span className="w-5 h-5 rounded-full bg-[#18A6A6] text-[#0B1628] flex items-center justify-center font-bold text-xs">
               ✓
             </span>
             <span className="font-sans font-medium">{actionNotice}</span>
           </div>
           <button
             onClick={() => setActionNotice(null)}
-            className="text-[#737985] hover:text-[#182350] px-2"
+            className="text-muted-foreground hover:text-white px-2"
           >
             ✕
           </button>
@@ -1296,14 +1329,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
       {activeSimulation && (
         <div
           id="simulation-result-panel"
-          className="panel border border-[#182350]/20 p-5 relative overflow-hidden transition-all duration-300"
+          className="panel p-5 relative overflow-hidden transition-all duration-300"
           style={{
-            background: "#FFFFFF",
+            background: "linear-gradient(180deg, #172B46 0%, #101F33 100%)",
             border: "1px solid #D99A2B",
             boxShadow: "0 0 20px rgba(217, 154, 43, 0.15)",
           }}
         >
-          <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-[#182350]/20 gap-3">
+          <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-border/60 gap-3">
             <div className="flex items-center gap-3">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-base"
@@ -1317,7 +1350,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-extrabold text-[#182350] tracking-wide uppercase">
+                  <h3 className="text-sm font-extrabold text-white tracking-wide uppercase">
                     CURRENT PLAN AFFECTED
                   </h3>
                   <span
@@ -1331,7 +1364,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     Resilience Alert
                   </span>
                 </div>
-                <div className="text-xs text-[#B9915E] font-medium mt-0.5">
+                <div className="text-xs text-amber-200/90 font-medium mt-0.5">
                   {activeSimulation.title} — {activeSimulation.description}
                 </div>
               </div>
@@ -1340,8 +1373,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             <div className="flex items-center gap-2.5">
               <button
                 onClick={() => setShowBuilder(true)}
-                className="px-3 py-1.5 rounded text-xs font-sans text-secondary-foreground hover:text-[#182350] border border-[#182350]/20 hover:border-[#182350]/20 transition-colors cursor-pointer"
-                style={{ background: "#FAFAF5" }}
+                className="px-3 py-1.5 rounded text-xs font-sans text-secondary-foreground hover:text-white border border-border/70 hover:border-border transition-colors cursor-pointer"
+                style={{ background: "#0B1628" }}
               >
                 ✎ Adjust Parameters
               </button>
@@ -1351,7 +1384,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 disabled={isOptimizing}
                 className="px-4 py-1.5 rounded text-xs font-bold font-sans uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-md flex items-center gap-2 hover:opacity-95"
                 style={{
-                  background: isOptimizing ? "rgba(24, 35, 80, 0.2)" : "#2E9B68",
+                  background: isOptimizing ? "#30445F" : "#2E9B68",
                   color: "#FFFFFF",
                 }}
               >
@@ -1372,7 +1405,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   setActiveSimulation(null);
                   setHasOptimized(false);
                 }}
-                className="px-2.5 py-1.5 rounded text-xs text-[#737985] hover:text-[#182350] border border-[#182350]/20/40 cursor-pointer"
+                className="px-2.5 py-1.5 rounded text-xs text-muted-foreground hover:text-white border border-border/40 cursor-pointer"
                 title="Dismiss simulation result"
               >
                 ✕
@@ -1393,10 +1426,10 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               return (
                 <div
                   key={m.label}
-                  className="p-3 rounded bg-[#FAFAF5] border border-[#182350]/20 flex flex-col justify-between"
+                  className="p-3 rounded bg-[#0B1628] border border-border/60 flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-sans text-[#737985] uppercase tracking-wider">
+                    <span className="text-[11px] font-sans text-muted-foreground uppercase tracking-wider">
                       {m.label}
                     </span>
                     <span
@@ -1406,7 +1439,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       {m.status}
                     </span>
                   </div>
-                  <div className="text-sm font-bold text-[#182350] mb-0.5 truncate">{m.value}</div>
+                  <div className="text-sm font-bold text-white mb-0.5 truncate">{m.value}</div>
                   <div className="text-[10px] font-sans truncate" style={{ color: b.text }} title={m.delta}>
                     {m.delta}
                   </div>
@@ -1420,18 +1453,18 @@ export default function WhatIfAnalysis({ vessel }: Props) {
       {/* OPTIMIZER PROGRESSION STATE */}
       {isOptimizing && (
         <div
-          className="panel border border-[#182350]/20 p-6 border border-[#18A6A6] bg-[#FFFFFF] shadow-xl text-center space-y-4 animate-in fade-in"
+          className="panel p-6 border border-[#18A6A6] bg-[#12233B] shadow-xl text-center space-y-4 animate-in fade-in"
           style={{ boxShadow: "0 0 25px rgba(24, 166, 166, 0.2)" }}
         >
           <div className="flex items-center justify-center gap-3">
             <div className="w-5 h-5 border-2 border-[#18A6A6] border-t-transparent rounded-full animate-spin" />
-            <span className="text-sm font-bold text-[#182350] uppercase tracking-wider">
+            <span className="text-sm font-bold text-white uppercase tracking-wider">
               {optimizingStep === 0 && "Analyzing operational constraints & berth windows..."}
               {optimizingStep === 1 && "Evaluating multi-objective speed & route alternatives..."}
               {optimizingStep === 2 && "Generating feasible recovery plans & Pareto frontier..."}
             </span>
           </div>
-          <div className="max-w-md mx-auto h-1.5 bg-[#FAFAF5] rounded-full overflow-hidden">
+          <div className="max-w-md mx-auto h-1.5 bg-[#0B1628] rounded-full overflow-hidden">
             <div
               className="h-full bg-[#18A6A6] transition-all duration-500"
               style={{ width: `${(optimizingStep + 1) * 33}%` }}
@@ -1445,19 +1478,19 @@ export default function WhatIfAnalysis({ vessel }: Props) {
       {/* ------------------------------------------------ */}
       {hasOptimized && (
         <div id="reoptimized-results-centerpiece" className="space-y-6 animate-in fade-in duration-300">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg bg-[#FFFFFF] border border-[#18A6A6]/60 gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg bg-[#12233B] border border-[#18A6A6]/60 gap-3">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded bg-[#18A6A6]/20 border border-[#18A6A6] flex items-center justify-center font-bold text-[#18A6A6] text-sm">
                 ✓
               </div>
               <div>
-                <div className="text-sm font-extrabold text-[#182350] tracking-wider uppercase flex items-center gap-2">
+                <div className="text-sm font-extrabold text-white tracking-wider uppercase flex items-center gap-2">
                   <span>NEW OPTIMIZED PLAN GENERATED</span>
                   <span className="px-2 py-0.5 rounded text-[10px] bg-[#2E9B68]/20 text-[#2E9B68] border border-[#2E9B68]">
                     Feasibility Solved
                   </span>
                 </div>
-                <div className="text-xs text-[#737985] font-sans">
+                <div className="text-xs text-muted-foreground font-sans">
                   Active Strategy:{" "}
                   <span className="text-[#18A6A6] font-semibold">{currentSelectedOption.title}</span> —{" "}
                   {currentSelectedOption.tactic}
@@ -1466,16 +1499,16 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-[#737985] font-sans">Switch Strategy:</span>
-              <div className="flex bg-[#FAFAF5] p-1 rounded border border-[#182350]/20">
+              <span className="text-xs text-muted-foreground font-sans">Switch Strategy:</span>
+              <div className="flex bg-[#0B1628] p-1 rounded border border-border">
                 {(["A", "B", "C"] as const).map((optId) => (
                   <button
                     key={optId}
                     onClick={() => setSelectedOptionId(optId)}
                     className={`px-3 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
                       selectedOptionId === optId
-                        ? "bg-[#18A6A6] text-[#FAFAF5]"
-                        : "text-[#737985] hover:text-[#182350]"
+                        ? "bg-[#18A6A6] text-[#0B1628]"
+                        : "text-muted-foreground hover:text-white"
                     }`}
                   >
                     Opt {optId}
@@ -1488,13 +1521,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           {/* CURRENT PLAN VS RE-OPTIMIZED PLAN */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <div
-              className="panel border border-[#182350]/20 p-5 relative overflow-hidden"
-              style={{ background: "#FFFFFF", borderColor: "#C94B4B" }}
+              className="panel p-5 relative overflow-hidden"
+              style={{ background: "#172B46", borderColor: "#C94B4B" }}
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#182350]/20">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-border/60">
                 <div className="flex items-center gap-2.5">
                   <div className="w-3 h-3 rounded-full bg-[#C94B4B]" />
-                  <h4 className="text-sm font-extrabold text-[#182350] uppercase tracking-wider">
+                  <h4 className="text-sm font-extrabold text-white uppercase tracking-wider">
                     CURRENT PLAN (DISRUPTED)
                   </h4>
                 </div>
@@ -1504,50 +1537,50 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Vessel</span>
-                  <span className="font-semibold text-[#182350]">{recoveryData.currentPlan.vesselName}</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Vessel</span>
+                  <span className="font-semibold text-white">{recoveryData.currentPlan.vesselName}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Route</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Route</span>
                   <span className="font-sans text-secondary-foreground font-medium text-right">
                     {recoveryData.currentPlan.route}
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Speed</span>
-                  <span className="font-sans text-[#182350] font-bold">
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Speed</span>
+                  <span className="font-sans text-white font-bold">
                     {recoveryData.currentPlan.speed} kn
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Fuel Type</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Fuel Type</span>
                   <span className="font-sans text-secondary-foreground">{recoveryData.currentPlan.fuelType}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Cargo</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Cargo</span>
                   <span className="font-sans text-secondary-foreground">{recoveryData.currentPlan.cargo}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">ETA</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">ETA</span>
                   <span className="font-sans font-bold text-amber-400">
                     {recoveryData.currentPlan.eta} (Delayed +6h queue)
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Fuel Consumption</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Fuel Consumption</span>
                   <span className="font-sans font-bold text-red-400">
                     {recoveryData.currentPlan.fuel} t (Aux surge)
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Operating Cost</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Operating Cost</span>
                   <span className="font-sans font-bold text-red-400">
                     ${(recoveryData.currentPlan.cost / 1000).toFixed(1)}k
                   </span>
                 </div>
                 <div className="flex justify-between py-1.5">
-                  <span className="text-[#737985] font-sans">Lifecycle GHG</span>
+                  <span className="text-muted-foreground font-sans">Lifecycle GHG</span>
                   <span className="font-sans text-secondary-foreground font-medium">
                     {recoveryData.currentPlan.ghg} t CO₂e
                   </span>
@@ -1556,17 +1589,17 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             </div>
 
             <div
-              className="panel border border-[#182350]/20 p-5 relative overflow-hidden"
+              className="panel p-5 relative overflow-hidden"
               style={{
-                background: "#FFFFFF",
+                background: "linear-gradient(180deg, #172B46 0%, #0F233B 100%)",
                 borderColor: "#18A6A6",
                 boxShadow: "0 0 25px rgba(24, 166, 166, 0.2)",
               }}
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#182350]/20">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-border/60">
                 <div className="flex items-center gap-2.5">
                   <div className="w-3 h-3 rounded-full bg-[#18A6A6] animate-pulse" />
-                  <h4 className="text-sm font-extrabold text-[#182350] uppercase tracking-wider">
+                  <h4 className="text-sm font-extrabold text-white uppercase tracking-wider">
                     RE-OPTIMIZED PLAN ({currentSelectedOption.title})
                   </h4>
                 </div>
@@ -1576,31 +1609,31 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Vessel</span>
-                  <span className="font-semibold text-[#182350]">{vessel.name}</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Vessel</span>
+                  <span className="font-semibold text-white">{vessel.name}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Route</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Route</span>
                   <span className="font-sans text-[#18A6A6] font-bold text-right">
                     {currentSelectedOption.route}
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Speed</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Speed</span>
                   <div className="flex items-center gap-2 font-sans font-bold">
-                    <span className="text-[#737985] line-through">
+                    <span className="text-muted-foreground line-through">
                       {recoveryData.currentPlan.speed} kn
                     </span>
                     <span className="text-[#18A6A6]">→ {currentSelectedOption.speed} kn</span>
                   </div>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Fuel Type</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Fuel Type</span>
                   <div className="flex items-center gap-2 font-sans">
                     {currentSelectedOption.fuelType !== recoveryData.currentPlan.fuelType ? (
                       <>
-                        <span className="text-[#737985] line-through">
+                        <span className="text-muted-foreground line-through">
                           {recoveryData.currentPlan.fuelType}
                         </span>
                         <span className="text-[#18A6A6] font-bold">
@@ -1608,30 +1641,30 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         </span>
                       </>
                     ) : (
-                      <span className="text-[#182350]">{currentSelectedOption.fuelType}</span>
+                      <span className="text-white">{currentSelectedOption.fuelType}</span>
                     )}
                   </div>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Cargo</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Cargo</span>
                   <span className="font-sans text-secondary-foreground">
                     {recoveryData.currentPlan.cargo}
                   </span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">ETA</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">ETA</span>
                   <div className="flex items-center gap-2 font-sans font-bold">
-                    <span className="text-[#737985] line-through">18:30</span>
-                    <span className="text-[#182350]">→ {currentSelectedOption.eta}</span>
+                    <span className="text-muted-foreground line-through">18:30</span>
+                    <span className="text-white">→ {currentSelectedOption.eta}</span>
                     <span className="text-xs text-[#2E9B68] font-normal">
                       ({currentSelectedOption.etaDelta})
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Fuel Consumption</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Fuel Consumption</span>
                   <div className="flex items-center gap-2 font-sans font-bold">
-                    <span className="text-[#737985] line-through">
+                    <span className="text-muted-foreground line-through">
                       {recoveryData.currentPlan.fuel} t
                     </span>
                     <span className="text-[#18A6A6]">→ {currentSelectedOption.fuel} t</span>
@@ -1640,10 +1673,10 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#182350]/20/30">
-                  <span className="text-[#737985] font-sans">Operating Cost</span>
+                <div className="flex justify-between py-1.5 border-b border-border/30">
+                  <span className="text-muted-foreground font-sans">Operating Cost</span>
                   <div className="flex items-center gap-2 font-sans font-bold">
-                    <span className="text-[#737985] line-through">
+                    <span className="text-muted-foreground line-through">
                       ${(recoveryData.currentPlan.cost / 1000).toFixed(1)}k
                     </span>
                     <span className="text-[#18A6A6]">
@@ -1655,9 +1688,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
                 </div>
                 <div className="flex justify-between py-1.5">
-                  <span className="text-[#737985] font-sans">Lifecycle GHG</span>
+                  <span className="text-muted-foreground font-sans">Lifecycle GHG</span>
                   <div className="flex items-center gap-2 font-sans font-bold">
-                    <span className="text-[#737985] line-through">
+                    <span className="text-muted-foreground line-through">
                       {recoveryData.currentPlan.ghg} t
                     </span>
                     <span className="text-[#18A6A6]">→ {currentSelectedOption.ghg} t</span>
@@ -1671,13 +1704,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           </div>
 
           {/* IMPACT ANALYSIS */}
-          <div className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#182350]/20">
+          <div className="panel p-5 bg-[#172B46] border border-border">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                   IMPACT ANALYSIS
                 </h4>
-                <div className="text-[11px] font-sans text-[#737985]">
+                <div className="text-[11px] font-sans text-muted-foreground">
                   Quantitative performance deltas between baseline disrupted plan and re-optimized strategy
                 </div>
               </div>
@@ -1687,9 +1720,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-              <div className="p-3.5 rounded bg-[#FAFAF5] border border-[#182350]/20">
-                <div className="text-[11px] font-sans text-[#737985] uppercase mb-1">Fuel</div>
-                <div className="text-xs font-sans text-[#737985] mb-1">
+              <div className="p-3.5 rounded bg-[#0B1628] border border-border/60">
+                <div className="text-[11px] font-sans text-muted-foreground uppercase mb-1">Fuel</div>
+                <div className="text-xs font-sans text-muted-foreground mb-1">
                   {recoveryData.currentPlan.fuel} t → {currentSelectedOption.fuel} t
                 </div>
                 <div className="text-base font-bold text-[#18A6A6] font-sans">
@@ -1704,9 +1737,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded bg-[#FAFAF5] border border-[#182350]/20">
-                <div className="text-[11px] font-sans text-[#737985] uppercase mb-1">Cost</div>
-                <div className="text-xs font-sans text-[#737985] mb-1">
+              <div className="p-3.5 rounded bg-[#0B1628] border border-border/60">
+                <div className="text-[11px] font-sans text-muted-foreground uppercase mb-1">Cost</div>
+                <div className="text-xs font-sans text-muted-foreground mb-1">
                   ${(recoveryData.currentPlan.cost / 1000).toFixed(0)}k → $
                   {(currentSelectedOption.cost / 1000).toFixed(0)}k
                 </div>
@@ -1718,24 +1751,24 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded bg-[#FAFAF5] border border-[#182350]/20">
-                <div className="text-[11px] font-sans text-[#737985] uppercase mb-1">ETA</div>
-                <div className="text-xs font-sans text-[#737985] mb-1">
+              <div className="p-3.5 rounded bg-[#0B1628] border border-border/60">
+                <div className="text-[11px] font-sans text-muted-foreground uppercase mb-1">ETA</div>
+                <div className="text-xs font-sans text-muted-foreground mb-1">
                   18:30 → {currentSelectedOption.eta}
                 </div>
                 <div className="text-base font-bold text-amber-400 font-sans">
                   {currentSelectedOption.etaDelta}
                 </div>
-                <div className="text-[10px] text-[#737985] font-sans mt-0.5">
+                <div className="text-[10px] text-muted-foreground font-sans mt-0.5">
                   Absorbs +6.0h harbor queue
                 </div>
               </div>
 
-              <div className="p-3.5 rounded bg-[#FAFAF5] border border-[#182350]/20">
-                <div className="text-[11px] font-sans text-[#737985] uppercase mb-1">
+              <div className="p-3.5 rounded bg-[#0B1628] border border-border/60">
+                <div className="text-[11px] font-sans text-muted-foreground uppercase mb-1">
                   Lifecycle GHG
                 </div>
-                <div className="text-xs font-sans text-[#737985] mb-1">
+                <div className="text-xs font-sans text-muted-foreground mb-1">
                   {recoveryData.currentPlan.ghg} t → {currentSelectedOption.ghg} t
                 </div>
                 <div className="text-base font-bold text-[#18A6A6] font-sans">
@@ -1746,9 +1779,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded bg-[#FAFAF5] border border-[#182350]/20 col-span-2 lg:col-span-1">
-                <div className="text-[11px] font-sans text-[#737985] uppercase mb-1">Risk Profile</div>
-                <div className="text-xs font-sans text-[#737985] mb-1">
+              <div className="p-3.5 rounded bg-[#0B1628] border border-border/60 col-span-2 lg:col-span-1">
+                <div className="text-[11px] font-sans text-muted-foreground uppercase mb-1">Risk Profile</div>
+                <div className="text-xs font-sans text-muted-foreground mb-1">
                   78% (Critical) → 12% (Safe)
                 </div>
                 <div className="text-base font-bold text-[#2E9B68] font-sans">-66% Risk</div>
@@ -1760,43 +1793,43 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           </div>
 
           {/* WHAT CHANGED? TIMELINE */}
-          <div className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#182350]/20 space-y-4">
+          <div className="panel p-5 bg-[#172B46] border border-border space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                   WHAT CHANGED? — VOYAGE TIMELINE COMPARISON
                 </h4>
-                <div className="text-[11px] font-sans text-[#737985]">
+                <div className="text-[11px] font-sans text-muted-foreground">
                   Original disrupted sequence vs new synchronized tactical execution
                 </div>
               </div>
-              <span className="text-[11px] font-sans px-2.5 py-1 rounded bg-[#FAFAF5] text-secondary-foreground border border-[#182350]/20">
+              <span className="text-[11px] font-sans px-2.5 py-1 rounded bg-[#0B1628] text-secondary-foreground border border-border">
                 Virtual Arrival Synchronization
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded bg-[#FAFAF5] border border-red-500/40 space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20/40">
+              <div className="p-4 rounded bg-[#0B1628] border border-red-500/40 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-border/40">
                   <span className="text-xs font-bold text-red-400 uppercase tracking-wider">
                     ORIGINAL TIMELINE (DISRUPTED)
                   </span>
-                  <span className="text-[10px] text-[#737985] font-sans">Anchorage Idling</span>
+                  <span className="text-[10px] text-muted-foreground font-sans">Anchorage Idling</span>
                 </div>
                 <div className="space-y-2.5 text-xs">
                   {recoveryData.baselineTimeline.map((step, idx) => (
                     <div
                       key={idx}
                       className={`flex items-start gap-3 p-2 rounded ${
-                        step.isDelay ? "bg-red-500/10 border border-red-500/30" : "bg-[#FFFFFF]/60"
+                        step.isDelay ? "bg-red-500/10 border border-red-500/30" : "bg-[#172B46]/60"
                       }`}
                     >
-                      <span className="font-mono font-bold text-[#737985] w-12 flex-shrink-0">
+                      <span className="font-mono font-bold text-muted-foreground w-12 flex-shrink-0">
                         {step.time}
                       </span>
                       <div className="flex-1">
-                        <div className="font-semibold text-[#182350]">{step.location}</div>
-                        <div className="text-[11px] text-[#737985] font-sans">{step.action}</div>
+                        <div className="font-semibold text-white">{step.location}</div>
+                        <div className="text-[11px] text-muted-foreground font-sans">{step.action}</div>
                       </div>
                       {step.isDelay && (
                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-bold uppercase">
@@ -1808,8 +1841,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 </div>
               </div>
 
-              <div className="p-4 rounded bg-[#FAFAF5] border border-[#18A6A6]/60 space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20/40">
+              <div className="p-4 rounded bg-[#0B1628] border border-[#18A6A6]/60 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-border/40">
                   <span className="text-xs font-bold text-[#18A6A6] uppercase tracking-wider">
                     RE-OPTIMIZED TIMELINE ({currentSelectedOption.title})
                   </span>
@@ -1822,15 +1855,15 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       className={`flex items-start gap-3 p-2 rounded transition-all ${
                         step.isChanged
                           ? "bg-[#18A6A6]/10 border border-[#18A6A6]/40"
-                          : "bg-[#FFFFFF]/60"
+                          : "bg-[#172B46]/60"
                       }`}
                     >
                       <span className="font-mono font-bold text-[#18A6A6] w-12 flex-shrink-0">
                         {step.time}
                       </span>
                       <div className="flex-1">
-                        <div className="font-semibold text-[#182350]">{step.location}</div>
-                        <div className="text-[11px] text-[#737985] font-sans">{step.action}</div>
+                        <div className="font-semibold text-white">{step.location}</div>
+                        <div className="text-[11px] text-muted-foreground font-sans">{step.action}</div>
                       </div>
                       {step.isChanged && (
                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#18A6A6]/20 text-[#18A6A6] font-bold uppercase">
@@ -1845,13 +1878,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           </div>
 
           {/* CONSTRAINT IMPACT MATRIX */}
-          <div className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#182350]/20 space-y-4">
+          <div className="panel p-5 bg-[#172B46] border border-border space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                   CONSTRAINT IMPACT EVALUATION
                 </h4>
-                <div className="text-[11px] font-sans text-[#737985]">
+                <div className="text-[11px] font-sans text-muted-foreground">
                   Real-time status across 11 key maritime boundary conditions. Click any constraint for full diagnostic.
                 </div>
               </div>
@@ -1869,16 +1902,16 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   <div
                     key={c.id}
                     onClick={() => setSelectedConstraint(c)}
-                    className="p-3 rounded bg-[#FAFAF5] border transition-all cursor-pointer hover:border-primary/70 group"
+                    className="p-3 rounded bg-[#0B1628] border transition-all cursor-pointer hover:border-primary/70 group"
                     style={{ borderColor: `${b.border}60` }}
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-[#182350] group-hover:text-[#18A6A6] transition-colors">
+                      <span className="text-xs font-bold text-white group-hover:text-[#18A6A6] transition-colors">
                         {c.name}
                       </span>
                       <span className="text-xs">{b.icon}</span>
                     </div>
-                    <div className="text-[10px] text-[#737985] font-sans truncate mb-1">
+                    <div className="text-[10px] text-muted-foreground font-sans truncate mb-1">
                       {c.simulated}
                     </div>
                     <div
@@ -1894,27 +1927,27 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           </div>
 
           {/* OPTIMIZER DECISION TRACE */}
-          <div className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#182350]/20 space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20/40">
+          <div className="panel p-5 bg-[#172B46] border border-border space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-border/40">
               <div className="flex items-center gap-2.5">
                 <div className="w-6 h-6 rounded bg-[#18A6A6]/20 text-[#18A6A6] flex items-center justify-center font-bold text-xs">
                   ⚡
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                     WHY DID THE OPTIMIZER CHANGE THE PLAN?
                   </h4>
-                  <div className="text-[11px] font-sans text-[#737985]">
+                  <div className="text-[11px] font-sans text-muted-foreground">
                     Deterministic Multi-Objective Solver Trace · Mathematical Decision Logic
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#FAFAF5] text-[#18A6A6] border border-[#182350]/20">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#0B1628] text-[#18A6A6] border border-border">
                 LOG: SOLVER_RES_v2.4
               </span>
             </div>
 
-            <div className="p-4 rounded bg-[#FAFAF5] border border-[#182350]/20 space-y-2.5">
+            <div className="p-4 rounded bg-[#0B1628] border border-border/60 space-y-2.5">
               {currentSelectedOption.decisionTrace.map((line, idx) => (
                 <div key={idx} className="flex items-start gap-3 text-xs">
                   <span className="font-mono font-bold text-[#18A6A6] w-5 text-right flex-shrink-0">
@@ -1932,14 +1965,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                   FEASIBLE RECOVERY OPTIONS
                 </h4>
-                <div className="text-[11px] font-sans text-[#737985]">
+                <div className="text-[11px] font-sans text-muted-foreground">
                   Select an alternative optimization profile to balance speed, emissions, and cost
                 </div>
               </div>
-              <span className="text-xs font-sans text-[#737985]">
+              <span className="text-xs font-sans text-muted-foreground">
                 3 Feasible Paths Solved
               </span>
             </div>
@@ -1952,8 +1985,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     key={opt.id}
                     className={`panel p-4 rounded-lg flex flex-col justify-between transition-all duration-200 ${
                       isSelected
-                        ? "border-2 border-[#18A6A6] bg-[#FFFFFF] shadow-lg"
-                        : "border border-[#182350]/20 bg-[#FFFFFF] hover:border-primary/50"
+                        ? "border-2 border-[#18A6A6] bg-[#12233B] shadow-lg"
+                        : "border border-border/70 bg-[#172B46] hover:border-primary/50"
                     }`}
                     style={
                       isSelected ? { boxShadow: "0 0 18px rgba(24, 166, 166, 0.25)" } : {}
@@ -1965,52 +1998,52 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                           <span
                             className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
                             style={{
-                              background: isSelected ? "#18A6A6" : "rgba(24, 35, 80, 0.2)",
-                              color: isSelected ? "#FAFAF5" : "#FFFFFF",
+                              background: isSelected ? "#18A6A6" : "#30445F",
+                              color: isSelected ? "#0B1628" : "#FFFFFF",
                             }}
                           >
                             {opt.id}
                           </span>
-                          <span className="text-xs font-bold text-[#182350] tracking-wide">
+                          <span className="text-xs font-bold text-white tracking-wide">
                             {opt.title.replace(/^Option\s[A-C]:\s*/, "")}
                           </span>
                         </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-sans font-bold bg-[#FAFAF5] text-[#18A6A6] border border-[#182350]/20">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-sans font-bold bg-[#0B1628] text-[#18A6A6] border border-border">
                           {opt.feasibility}
                         </span>
                       </div>
 
-                      <div className="text-[11px] text-[#737985] font-sans mb-3 line-clamp-2">
+                      <div className="text-[11px] text-muted-foreground font-sans mb-3 line-clamp-2">
                         {opt.tactic}
                       </div>
 
-                      <div className="space-y-1.5 text-xs bg-[#FAFAF5] p-3 rounded border border-[#182350]/20 mb-4">
+                      <div className="space-y-1.5 text-xs bg-[#0B1628] p-3 rounded border border-border/60 mb-4">
                         <div className="flex justify-between">
-                          <span className="text-[#737985]">ETA</span>
-                          <span className="font-sans font-semibold text-[#182350]">
+                          <span className="text-muted-foreground">ETA</span>
+                          <span className="font-sans font-semibold text-white">
                             {opt.eta} ({opt.etaDelta})
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#737985]">Fuel</span>
+                          <span className="text-muted-foreground">Fuel</span>
                           <span className="font-sans font-bold text-[#18A6A6]">
                             {opt.fuel} t ({opt.fuelDelta} t)
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#737985]">Operating Cost</span>
-                          <span className="font-sans font-semibold text-[#182350]">
+                          <span className="text-muted-foreground">Operating Cost</span>
+                          <span className="font-sans font-semibold text-white">
                             ${(opt.cost / 1000).toFixed(1)}k
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#737985]">Lifecycle GHG</span>
+                          <span className="text-muted-foreground">Lifecycle GHG</span>
                           <span className="font-sans text-secondary-foreground font-medium">
                             {opt.ghg} t CO₂e
                           </span>
                         </div>
-                        <div className="flex justify-between pt-1 border-t border-[#182350]/20/30">
-                          <span className="text-[#737985]">Risk Level</span>
+                        <div className="flex justify-between pt-1 border-t border-border/30">
+                          <span className="text-muted-foreground">Risk Level</span>
                           <span className="font-sans font-bold text-[#2E9B68]">{opt.riskLabel}</span>
                         </div>
                       </div>
@@ -2020,8 +2053,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onClick={() => setSelectedOptionId(opt.id)}
                       className={`w-full py-2 rounded text-xs font-bold tracking-wider uppercase transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-[#18A6A6] text-[#FAFAF5]"
-                          : "bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 hover:border-primary/60"
+                          ? "bg-[#18A6A6] text-[#0B1628]"
+                          : "bg-[#0B1628] text-white border border-border hover:border-primary/60"
                       }`}
                     >
                       {isSelected ? "✓ SELECTED PLAN" : "SELECT PLAN"}
@@ -2037,23 +2070,23 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           {/* ------------------------------------------------ */}
           <div
             id="plan-resilience-test-section"
-            className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#18A6A6]/60 space-y-5 shadow-xl"
+            className="panel p-5 bg-[#172B46] border border-[#18A6A6]/60 space-y-5 shadow-xl"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#182350]/20 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-border/60 gap-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-white uppercase tracking-wider">
                     PLAN RESILIENCE TEST & STRESS TESTING
                   </span>
                   <span className="px-2 py-0.5 rounded text-[10px] font-sans font-bold bg-[#18A6A6]/20 text-[#18A6A6] border border-[#18A6A6]/40 uppercase">
                     Boundary Stress Engine
                   </span>
                 </div>
-                <div className="text-[11px] font-sans text-[#737985] mt-0.5">
+                <div className="text-[11px] font-sans text-muted-foreground mt-0.5">
                   Stress-test the currently selected recovery plan ({currentSelectedOption.title}) across adverse operational scenarios.
                 </div>
               </div>
-              <div className="text-[10px] text-[#737985] font-sans bg-[#FAFAF5] px-2.5 py-1 rounded border border-[#182350]/20">
+              <div className="text-[10px] text-muted-foreground font-sans bg-[#0B1628] px-2.5 py-1 rounded border border-border">
                 Deterministic Rule-Based Stress Model
               </div>
             </div>
@@ -2073,8 +2106,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   onClick={() => setActiveStressScenario(s.id as StressTestScenario)}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded text-xs font-bold tracking-wider whitespace-nowrap transition-all cursor-pointer ${
                     activeStressScenario === s.id
-                      ? "bg-[#18A6A6] text-[#FAFAF5] shadow-md"
-                      : "bg-[#FAFAF5] text-[#737985] hover:text-[#182350] border border-[#182350]/20 hover:border-primary/50"
+                      ? "bg-[#18A6A6] text-[#0B1628] shadow-md"
+                      : "bg-[#0B1628] text-muted-foreground hover:text-white border border-border/60 hover:border-primary/50"
                   }`}
                 >
                   <span>{s.icon}</span>
@@ -2086,15 +2119,15 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             {/* Stress Test Output & Resilience Score Card Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               {/* Stress Test Diagnostics (8 Cols) */}
-              <div className="lg:col-span-8 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 space-y-4">
-                <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20/40">
+              <div className="lg:col-span-8 p-4 rounded-lg bg-[#0B1628] border border-border/70 space-y-4">
+                <div className="flex items-center justify-between pb-2 border-b border-border/40">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{activeStressData.icon}</span>
                     <div>
-                      <div className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                      <div className="text-xs font-bold text-white uppercase tracking-wider">
                         Scenario: {activeStressData.label}
                       </div>
-                      <div className="text-[10px] text-[#737985] font-sans">
+                      <div className="text-[10px] text-muted-foreground font-sans">
                         Boundary evaluation against {currentSelectedOption.title}
                       </div>
                     </div>
@@ -2113,25 +2146,25 @@ export default function WhatIfAnalysis({ vessel }: Props) {
 
                 {/* 4 Quantitative Deltas */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-                  <div className="p-2.5 rounded bg-[#FFFFFF] border border-[#182350]/20/50">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">ETA Impact</div>
-                    <div className="font-bold text-[#182350] font-sans">{activeStressData.etaImpact}</div>
+                  <div className="p-2.5 rounded bg-[#172B46] border border-border/50">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">ETA Impact</div>
+                    <div className="font-bold text-white font-sans">{activeStressData.etaImpact}</div>
                   </div>
-                  <div className="p-2.5 rounded bg-[#FFFFFF] border border-[#182350]/20/50">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Fuel Impact</div>
+                  <div className="p-2.5 rounded bg-[#172B46] border border-border/50">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Fuel Impact</div>
                     <div className="font-bold text-[#18A6A6] font-sans">
                       {activeStressData.fuelImpact}
                     </div>
                   </div>
-                  <div className="p-2.5 rounded bg-[#FFFFFF] border border-[#182350]/20/50">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Cost Impact</div>
+                  <div className="p-2.5 rounded bg-[#172B46] border border-border/50">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Cost Impact</div>
                     <div className="font-bold text-amber-400 font-sans">
                       {activeStressData.costImpactRupees}{" "}
-                      <span className="text-[10px] text-[#737985]">({activeStressData.costImpact})</span>
+                      <span className="text-[10px] text-muted-foreground">({activeStressData.costImpact})</span>
                     </div>
                   </div>
-                  <div className="p-2.5 rounded bg-[#FFFFFF] border border-[#182350]/20/50">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">GHG Impact</div>
+                  <div className="p-2.5 rounded bg-[#172B46] border border-border/50">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">GHG Impact</div>
                     <div className="font-bold text-secondary-foreground font-sans">
                       {activeStressData.ghgImpact}
                     </div>
@@ -2140,13 +2173,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
 
                 {/* Constraint Status and Recommended Recovery Plan */}
                 <div className="space-y-2 text-xs">
-                  <div className="p-2.5 rounded bg-[#FFFFFF]/60 border border-[#182350]/20/40">
-                    <span className="text-[#737985] font-sans">Constraint Status: </span>
-                    <span className="text-[#182350] font-medium">{activeStressData.constraintSummary}</span>
+                  <div className="p-2.5 rounded bg-[#172B46]/60 border border-border/40">
+                    <span className="text-muted-foreground font-sans">Constraint Status: </span>
+                    <span className="text-white font-medium">{activeStressData.constraintSummary}</span>
                   </div>
-                  <div className="p-2.5 rounded bg-[#FFFFFF]/60 border border-[#182350]/20/40 flex items-center justify-between">
+                  <div className="p-2.5 rounded bg-[#172B46]/60 border border-border/40 flex items-center justify-between">
                     <div>
-                      <span className="text-[#737985] font-sans">Available Recovery Plan: </span>
+                      <span className="text-muted-foreground font-sans">Available Recovery Plan: </span>
                       <span className="text-[#18A6A6] font-bold">
                         {activeStressData.availableRecoveryPlan}
                       </span>
@@ -2157,10 +2190,10 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
 
               {/* 2. Resilience Score Card (4 Cols) */}
-              <div className="lg:col-span-4 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex flex-col justify-between space-y-3">
+              <div className="lg:col-span-4 p-4 rounded-lg bg-[#0B1628] border border-border/70 flex flex-col justify-between space-y-3">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">
                       PLAN RESILIENCE SCORE
                     </span>
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#2E9B68]/20 text-[#2E9B68] border border-[#2E9B68]">
@@ -2172,8 +2205,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     <span className="text-3xl font-extrabold text-[#18A6A6] font-mono">
                       {currentSelectedOption.resilienceScore}
                     </span>
-                    <span className="text-sm font-sans text-[#737985]">/ 100</span>
-                    <span className="text-xs font-bold text-[#182350] ml-2 tracking-wide uppercase">
+                    <span className="text-sm font-sans text-muted-foreground">/ 100</span>
+                    <span className="text-xs font-bold text-white ml-2 tracking-wide uppercase">
                       {currentSelectedOption.resilienceGrade} RESILIENCE
                     </span>
                   </div>
@@ -2188,11 +2221,11 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       { label: "Route Flexibility", val: currentSelectedOption.resilienceBreakdown.route },
                     ].map((item) => (
                       <div key={item.label} className="space-y-1">
-                        <div className="flex justify-between text-[#737985]">
+                        <div className="flex justify-between text-muted-foreground">
                           <span>{item.label}</span>
-                          <span className="font-mono text-[#182350] font-semibold">{item.val}%</span>
+                          <span className="font-mono text-white font-semibold">{item.val}%</span>
                         </div>
-                        <div className="h-1.5 rounded-full bg-[#FFFFFF]">
+                        <div className="h-1.5 rounded-full bg-[#172B46]">
                           <div
                             className="h-full rounded-full bg-[#18A6A6] transition-all duration-300"
                             style={{ width: `${item.val}%` }}
@@ -2203,7 +2236,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
                 </div>
 
-                <div className="text-[9px] text-[#737985]/70 font-sans italic border-t border-[#182350]/20/30 pt-2">
+                <div className="text-[9px] text-muted-foreground/70 font-sans italic border-t border-border/30 pt-2">
                   * Prototype metric based on deterministic operational constraints.
                 </div>
               </div>
@@ -2215,18 +2248,18 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           {/* ------------------------------------------------ */}
           <div
             id="operational-sensitivity-section"
-            className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#182350]/20 space-y-5"
+            className="panel p-5 bg-[#172B46] border border-border space-y-5"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#182350]/20 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-border/60 gap-3">
               <div>
-                <h4 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">
                   OPERATIONAL SENSITIVITY ANALYSIS
                 </h4>
-                <div className="text-[11px] font-sans text-[#737985]">
+                <div className="text-[11px] font-sans text-muted-foreground">
                   Simulate sensitivity gradients across speed, sea state, cargo payload, draft, and trim dynamics.
                 </div>
               </div>
-              <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#FAFAF5] text-[#18A6A6] border border-[#182350]/20">
+              <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#0B1628] text-[#18A6A6] border border-border">
                 Cubic Resistance Model
               </span>
             </div>
@@ -2234,15 +2267,15 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             {/* Top Interactive Controls & Live Metrics Bar */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
               {/* Sliders & Variables Controls (7 Cols) */}
-              <div className="lg:col-span-7 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 space-y-4 text-xs">
-                <div className="text-xs font-bold text-[#182350] uppercase tracking-wider mb-2">
+              <div className="lg:col-span-7 p-4 rounded-lg bg-[#0B1628] border border-border/70 space-y-4 text-xs">
+                <div className="text-xs font-bold text-white uppercase tracking-wider mb-2">
                   Interactive Voyage Controls
                 </div>
 
                 {/* Speed Slider */}
                 <div>
                   <div className="flex justify-between mb-1">
-                    <span className="text-[#737985] font-sans">Propulsion Speed (Knots)</span>
+                    <span className="text-muted-foreground font-sans">Propulsion Speed (Knots)</span>
                     <span className="font-mono font-bold text-[#18A6A6]">{sensSpeed.toFixed(1)} kn</span>
                   </div>
                   <input
@@ -2254,7 +2287,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     onChange={(e) => setSensSpeed(Number(e.target.value))}
                     className="w-full accent-[#18A6A6] cursor-pointer"
                   />
-                  <div className="flex justify-between text-[10px] text-[#737985] font-mono mt-0.5">
+                  <div className="flex justify-between text-[10px] text-muted-foreground font-mono mt-0.5">
                     <span>10.0 kn (Eco)</span>
                     <span>14.0 kn</span>
                     <span>18.0 kn (Max)</span>
@@ -2264,8 +2297,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 {/* Cargo Load Slider */}
                 <div>
                   <div className="flex justify-between mb-1">
-                    <span className="text-[#737985] font-sans">Cargo Payload (Tonnes)</span>
-                    <span className="font-mono font-bold text-[#182350]">
+                    <span className="text-muted-foreground font-sans">Cargo Payload (Tonnes)</span>
+                    <span className="font-mono font-bold text-white">
                       {sensCargo.toLocaleString()} t ({((sensCargo / 74000) * 100).toFixed(0)}% DWT)
                     </span>
                   </div>
@@ -2283,13 +2316,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 {/* Weather, Draft, Trim Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                   <div>
-                    <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                    <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                       Weather State
                     </label>
                     <select
                       value={sensWeather}
                       onChange={(e) => setSensWeather(e.target.value as any)}
-                      className="w-full px-2.5 py-1.5 rounded bg-[#FFFFFF] text-[#182350] border border-[#182350]/20 outline-none text-xs"
+                      className="w-full px-2.5 py-1.5 rounded bg-[#172B46] text-white border border-border outline-none text-xs"
                     >
                       <option value="Calm">Calm (Beaufort 0-2)</option>
                       <option value="Moderate">Moderate (Beaufort 3-5)</option>
@@ -2299,22 +2332,22 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                    <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                       Calculated Draft
                     </label>
-                    <div className="px-2.5 py-1.5 rounded bg-[#FFFFFF] text-[#182350] border border-[#182350]/20 font-mono text-xs">
+                    <div className="px-2.5 py-1.5 rounded bg-[#172B46] text-white border border-border font-mono text-xs">
                       {sensitivityOutputs.draft} m
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                    <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                       Dynamic Trim
                     </label>
                     <select
                       value={sensTrim}
                       onChange={(e) => setSensTrim(e.target.value as any)}
-                      className="w-full px-2.5 py-1.5 rounded bg-[#FFFFFF] text-[#182350] border border-[#182350]/20 outline-none text-xs"
+                      className="w-full px-2.5 py-1.5 rounded bg-[#172B46] text-white border border-border outline-none text-xs"
                     >
                       <option value="Even Keel">Even Keel (Standard)</option>
                       <option value="0.5m Aft">0.5m Aft (-2% Fuel)</option>
@@ -2325,43 +2358,43 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
 
               {/* Live Output Metrics for Sensitivity (5 Cols) */}
-              <div className="lg:col-span-5 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex flex-col justify-between space-y-3">
-                <div className="text-xs font-bold text-[#182350] uppercase tracking-wider pb-1 border-b border-[#182350]/20/40">
+              <div className="lg:col-span-5 p-4 rounded-lg bg-[#0B1628] border border-border/70 flex flex-col justify-between space-y-3">
+                <div className="text-xs font-bold text-white uppercase tracking-wider pb-1 border-b border-border/40">
                   Instantaneous Sensitivity Outputs
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded bg-[#FFFFFF] border border-[#182350]/20">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Projected Fuel</div>
+                  <div className="p-3 rounded bg-[#172B46] border border-border/60">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Projected Fuel</div>
                     <div className="text-lg font-bold text-[#18A6A6] font-mono">
                       {sensitivityOutputs.fuel} t/d
                     </div>
-                    <div className="text-[10px] text-[#737985] font-sans mt-0.5">
+                    <div className="text-[10px] text-muted-foreground font-sans mt-0.5">
                       Specific Fuel Oil Index
                     </div>
                   </div>
 
-                  <div className="p-3 rounded bg-[#FFFFFF] border border-[#182350]/20">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Transit Duration</div>
-                    <div className="text-lg font-bold text-[#182350] font-mono">
+                  <div className="p-3 rounded bg-[#172B46] border border-border/60">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Transit Duration</div>
+                    <div className="text-lg font-bold text-white font-mono">
                       {sensitivityOutputs.etaDays} days
                     </div>
-                    <div className="text-[10px] text-[#737985] font-sans mt-0.5">
+                    <div className="text-[10px] text-muted-foreground font-sans mt-0.5">
                       Voyage time to quay
                     </div>
                   </div>
 
-                  <div className="p-3 rounded bg-[#FFFFFF] border border-[#182350]/20">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Daily Emissions</div>
+                  <div className="p-3 rounded bg-[#172B46] border border-border/60">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Daily Emissions</div>
                     <div className="text-lg font-bold text-amber-400 font-mono">
                       {sensitivityOutputs.emissions} t
                     </div>
                     <div className="text-[10px] text-emerald-400 font-sans mt-0.5">CII Class Compliant</div>
                   </div>
 
-                  <div className="p-3 rounded bg-[#FFFFFF] border border-[#182350]/20">
-                    <div className="text-[10px] text-[#737985] uppercase mb-0.5">Hull Draft Depth</div>
-                    <div className="text-lg font-bold text-[#182350] font-mono">
+                  <div className="p-3 rounded bg-[#172B46] border border-border/60">
+                    <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Hull Draft Depth</div>
+                    <div className="text-lg font-bold text-white font-mono">
                       {sensitivityOutputs.draft} m
                     </div>
                     <div className="text-[10px] text-emerald-400 font-sans mt-0.5">Safe Channel Clearance</div>
@@ -2373,12 +2406,12 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             {/* Bottom Row: Sensitivity Curves Chart (7 Cols) & 4. Impact Ranking (5 Cols) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-2">
               {/* Sensitivity Chart */}
-              <div className="lg:col-span-7 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
+              <div className="lg:col-span-7 p-4 rounded-lg bg-[#0B1628] border border-border/70">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="text-xs font-sans font-bold text-[#182350] uppercase tracking-wider">
+                  <div className="text-xs font-sans font-bold text-white uppercase tracking-wider">
                     Fuel Consumption Sensitivity Curves
                   </div>
-                  <span className="text-[10px] text-[#737985] font-sans">
+                  <span className="text-[10px] text-muted-foreground font-sans">
                     Fuel (t/d) vs Speed (knots)
                   </span>
                 </div>
@@ -2388,14 +2421,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     <YAxis tick={{ fill: "#5a7fa8", fontSize: 11 }} axisLine={false} tickLine={false} />
                     <Tooltip
                       contentStyle={{
-                        background: "#FAFAF5",
-                        border: "1px solid rgba(24, 35, 80, 0.2)",
+                        background: "#0B1628",
+                        border: "1px solid #30445F",
                         borderRadius: 6,
                         fontSize: 12,
                         color: "#FFFFFF",
                       }}
                     />
-                    <Legend wrapperStyle={{ fontSize: 11, color: "#182350", paddingTop: 8 }} />
+                    <Legend wrapperStyle={{ fontSize: 11, color: "#A8B5C7", paddingTop: 8 }} />
                     <Line
                       type="monotone"
                       dataKey="Calm Sea"
@@ -2423,15 +2456,15 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
 
               {/* 4. Impact Ranking Section */}
-              <div className="lg:col-span-5 p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex flex-col justify-between space-y-3">
+              <div className="lg:col-span-5 p-4 rounded-lg bg-[#0B1628] border border-border/70 flex flex-col justify-between space-y-3">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h5 className="text-xs font-bold text-[#182350] uppercase tracking-wider">
+                    <h5 className="text-xs font-bold text-white uppercase tracking-wider">
                       WHAT AFFECTS THIS VOYAGE MOST?
                     </h5>
                     <span className="text-[10px] font-mono text-[#18A6A6]">Ranked Drivers</span>
                   </div>
-                  <div className="text-[11px] text-[#737985] font-sans mb-3">
+                  <div className="text-[11px] text-muted-foreground font-sans mb-3">
                     Normalized sensitivity gradient of fuel consumption across voyage variables.
                   </div>
 
@@ -2441,19 +2474,19 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       { name: "Speed", pct: 38, color: "#18A6A6", desc: "Cubic power law" },
                       { name: "Weather", pct: 26, color: "#D99A2B", desc: "Wave resistance" },
                       { name: "Cargo Load", pct: 18, color: "#5a7fa8", desc: "Displacement weight" },
-                      { name: "Draft", pct: 11, color: "#737985", desc: "Wetted surface area" },
+                      { name: "Draft", pct: 11, color: "#718198", desc: "Wetted surface area" },
                       { name: "Trim", pct: 7, color: "#2E9B68", desc: "Hydrodynamic angle" },
                     ].map((item, idx) => (
                       <div key={item.name} className="space-y-1">
                         <div className="flex justify-between items-center text-[11px]">
-                          <span className="font-semibold text-[#182350]">
+                          <span className="font-semibold text-white">
                             {idx + 1}. {item.name}
                           </span>
                           <span className="font-mono text-secondary-foreground">
                             {item.pct}% contribution
                           </span>
                         </div>
-                        <div className="h-2 rounded-full bg-[#FFFFFF] overflow-hidden">
+                        <div className="h-2 rounded-full bg-[#172B46] overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all duration-500"
                             style={{ width: `${item.pct * 2.4}%`, background: item.color }}
@@ -2464,7 +2497,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
                 </div>
 
-                <div className="text-[9px] text-[#737985]/70 font-sans italic border-t border-[#182350]/20/30 pt-2">
+                <div className="text-[9px] text-muted-foreground/70 font-sans italic border-t border-border/30 pt-2">
                   * Deterministic sensitivity index derived from naval architecture empirical models.
                 </div>
               </div>
@@ -2475,7 +2508,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           {/* FINAL ACTION: RECOMMENDED RECOVERY PLAN FOOTER */}
           {/* ------------------------------------------------ */}
           <div
-            className="panel border border-[#182350]/20 p-5 bg-[#FFFFFF] border border-[#18A6A6]/80 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl"
+            className="panel p-5 bg-[#12233B] border border-[#18A6A6]/80 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl"
             style={{ boxShadow: "0 0 20px rgba(24, 166, 166, 0.2)" }}
           >
             <div>
@@ -2483,15 +2516,15 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 <span className="text-xs font-bold text-[#18A6A6] uppercase tracking-wider">
                   RECOMMENDED RECOVERY PLAN:
                 </span>
-                <span className="text-sm font-extrabold text-[#182350]">
+                <span className="text-sm font-extrabold text-white">
                   {currentSelectedOption.title}
                 </span>
               </div>
-              <div className="text-xs text-[#737985] font-sans mt-0.5">
-                Speed: <span className="text-[#182350] font-semibold">{currentSelectedOption.speed} kn</span> ·
-                Fuel: <span className="text-[#182350] font-semibold">{currentSelectedOption.fuel} t</span> ({currentSelectedOption.fuelDelta} t) ·
-                ETA: <span className="text-[#182350] font-semibold">{currentSelectedOption.eta}</span> ·
-                Cost: <span className="text-[#182350] font-semibold">${(currentSelectedOption.cost / 1000).toFixed(1)}k</span>
+              <div className="text-xs text-muted-foreground font-sans mt-0.5">
+                Speed: <span className="text-white font-semibold">{currentSelectedOption.speed} kn</span> ·
+                Fuel: <span className="text-white font-semibold">{currentSelectedOption.fuel} t</span> ({currentSelectedOption.fuelDelta} t) ·
+                ETA: <span className="text-white font-semibold">{currentSelectedOption.eta}</span> ·
+                Cost: <span className="text-white font-semibold">${(currentSelectedOption.cost / 1000).toFixed(1)}k</span>
               </div>
             </div>
 
@@ -2499,7 +2532,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               <button
                 id="save-scenario-btn"
                 onClick={handleSaveAsScenario}
-                className="px-4 py-2 rounded text-xs font-bold font-sans uppercase tracking-wider text-secondary-foreground hover:text-[#182350] bg-[#FAFAF5] border border-[#182350]/20 hover:border-primary/60 transition-all cursor-pointer"
+                className="px-4 py-2 rounded text-xs font-bold font-sans uppercase tracking-wider text-secondary-foreground hover:text-white bg-[#0B1628] border border-border hover:border-primary/60 transition-all cursor-pointer"
               >
                 💾 SAVE SCENARIO
               </button>
@@ -2526,14 +2559,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
       <div className="space-y-4 pt-2">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-bold text-[#182350] tracking-wider uppercase">
+            <h4 className="text-sm font-bold text-white tracking-wider uppercase">
               SAVED SCENARIOS
             </h4>
-            <div className="text-xs font-sans text-[#737985]">
+            <div className="text-xs font-sans text-muted-foreground">
               Baseline vs alternative operational configurations and fuel profiles
             </div>
           </div>
-          <span className="text-xs font-sans text-[#737985]">
+          <span className="text-xs font-sans text-muted-foreground">
             {scenarios.length} Scenarios Configured
           </span>
         </div>
@@ -2543,10 +2576,10 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           {results.map((r) => (
             <div
               key={r.id}
-              className="panel border border-[#182350]/20 p-4 flex flex-col justify-between transition-all duration-200 hover:border-primary/50 group"
+              className="panel p-4 flex flex-col justify-between transition-all duration-200 hover:border-primary/50 group"
               style={{
                 borderColor: `${r.color}55`,
-                background: "#FFFFFF",
+                background: "#172B46",
               }}
             >
               <div>
@@ -2560,54 +2593,54 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   <button
                     id={`edit-scenario-${r.id.toLowerCase()}-btn`}
                     onClick={() => openScenarioEdit(r)}
-                    className="px-2 py-0.5 rounded text-[11px] font-sans text-secondary-foreground hover:text-[#182350] bg-[#FAFAF5] border border-[#182350]/20 hover:border-primary/60 transition-all cursor-pointer"
+                    className="px-2 py-0.5 rounded text-[11px] font-sans text-secondary-foreground hover:text-white bg-[#0B1628] border border-border/60 hover:border-primary/60 transition-all cursor-pointer"
                   >
                     Edit ✎
                   </button>
                 </div>
 
-                <div className="text-sm font-bold text-[#182350] mb-3">{r.label}</div>
+                <div className="text-sm font-bold text-white mb-3">{r.label}</div>
 
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Fuel Type</span>
+                    <span className="text-muted-foreground">Fuel Type</span>
                     <span className="font-sans text-secondary-foreground font-medium">{r.fuelType}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Speed</span>
+                    <span className="text-muted-foreground">Speed</span>
                     <span className="font-sans text-secondary-foreground font-medium">{r.speed} kn</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Weather</span>
+                    <span className="text-muted-foreground">Weather</span>
                     <span className="font-sans text-secondary-foreground font-medium">{r.weather}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Route</span>
+                    <span className="text-muted-foreground">Route</span>
                     <span className="font-sans text-secondary-foreground font-medium">{r.route}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Shore Power</span>
+                    <span className="text-muted-foreground">Shore Power</span>
                     <span className="font-sans text-secondary-foreground font-medium">
                       {r.shorePower ? "✓ Enabled" : "Disabled"}
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-3 pt-3 border-t border-[#182350]/20/40 space-y-1.5 text-xs">
+                <div className="mt-3 pt-3 border-t border-border/40 space-y-1.5 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Fuel Consumption</span>
+                    <span className="text-muted-foreground">Fuel Consumption</span>
                     <span className="font-sans font-bold" style={{ color: r.color }}>
                       {r.result.fuel} t/d
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">CO₂ Emissions</span>
+                    <span className="text-muted-foreground">CO₂ Emissions</span>
                     <span className="font-sans font-medium" style={{ color: r.color }}>
                       {r.result.emissions} t
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#737985]">Op. Cost</span>
+                    <span className="text-muted-foreground">Op. Cost</span>
                     <span className="font-sans text-secondary-foreground font-medium">
                       ${(r.result.cost / 1000).toFixed(0)}k
                     </span>
@@ -2615,14 +2648,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 </div>
               </div>
 
-              <div className="mt-3.5 pt-2 border-t border-[#182350]/20/30">
+              <div className="mt-3.5 pt-2 border-t border-border/30">
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-[#737985] font-sans">Efficiency</span>
+                  <span className="text-muted-foreground font-sans">Efficiency</span>
                   <span className="font-sans font-bold" style={{ color: r.color }}>
                     {r.result.efficiency}/100
                   </span>
                 </div>
-                <div className="h-1.5 rounded-full bg-[#FAFAF5]">
+                <div className="h-1.5 rounded-full bg-[#0B1628]">
                   <div
                     className="h-full rounded-full transition-all duration-300"
                     style={{ width: `${r.result.efficiency}%`, background: r.color }}
@@ -2636,12 +2669,12 @@ export default function WhatIfAnalysis({ vessel }: Props) {
         {/* Charts & Delta Comparison Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
           {/* Fuel & Emissions Comparison */}
-          <div className="panel border border-[#182350]/20 p-4" style={{ background: "#FFFFFF" }}>
+          <div className="panel p-4" style={{ background: "#172B46" }}>
             <div className="flex items-center justify-between mb-3">
-              <div className="text-xs font-sans font-bold text-[#737985] uppercase tracking-wider">
+              <div className="text-xs font-sans font-bold text-muted-foreground uppercase tracking-wider">
                 Fuel & Emissions Comparison
               </div>
-              <span className="text-[10px] text-[#737985] font-sans">Per Scenario Breakdown</span>
+              <span className="text-[10px] text-muted-foreground font-sans">Per Scenario Breakdown</span>
             </div>
             <ResponsiveContainer width="100%" height={210}>
               <BarChart
@@ -2656,14 +2689,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 <YAxis tick={{ fill: "#5a7fa8", fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{
-                    background: "#FAFAF5",
-                    border: "1px solid rgba(24, 35, 80, 0.2)",
+                    background: "#0B1628",
+                    border: "1px solid #30445F",
                     borderRadius: 6,
                     fontSize: 12,
                     color: "#FFFFFF",
                   }}
                 />
-                <Legend wrapperStyle={{ fontSize: 11, color: "#182350", paddingTop: 8 }} />
+                <Legend wrapperStyle={{ fontSize: 11, color: "#A8B5C7", paddingTop: 8 }} />
                 <Bar dataKey="fuel" fill="#18A6A6" name="Fuel (t/d)" radius={[3, 3, 0, 0]} barSize={22} />
                 <Bar dataKey="emissions" fill="#D99A2B" name="Emissions (t)" radius={[3, 3, 0, 0]} barSize={22} />
               </BarChart>
@@ -2671,12 +2704,12 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           </div>
 
           {/* Vs Current Plan — Delta Comparison */}
-          <div className="panel border border-[#182350]/20 p-4" style={{ background: "#FFFFFF" }}>
+          <div className="panel p-4" style={{ background: "#172B46" }}>
             <div className="flex items-center justify-between mb-3">
-              <div className="text-xs font-sans font-bold text-[#737985] uppercase tracking-wider">
+              <div className="text-xs font-sans font-bold text-muted-foreground uppercase tracking-wider">
                 Vs Current Plan — Delta Comparison
               </div>
-              <span className="text-[10px] text-[#737985] font-sans">Baseline: Scenario A</span>
+              <span className="text-[10px] text-muted-foreground font-sans">Baseline: Scenario A</span>
             </div>
             <div className="space-y-2.5">
               {results.slice(1).map((r) => {
@@ -2688,16 +2721,16 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   <div
                     key={r.id}
                     className="p-3 rounded transition-all"
-                    style={{ background: "#FAFAF5", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+                    style={{ background: "#0B1628", border: "1px solid #30445F" }}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
-                        <span className="text-xs font-sans font-bold text-[#182350] truncate max-w-[280px]">
+                        <span className="text-xs font-sans font-bold text-white truncate max-w-[280px]">
                           Scenario {r.id} ({r.label})
                         </span>
                       </div>
-                      <span className="text-[10px] font-sans text-[#737985]">
+                      <span className="text-[10px] font-sans text-muted-foreground">
                         Eff: {r.result.efficiency}/100
                       </span>
                     </div>
@@ -2707,8 +2740,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         { label: "Cost", delta: costDelta / 1000, unit: "k" },
                         { label: "CO₂", delta: emDelta, unit: "t" },
                       ].map((m) => (
-                        <div key={m.label} className="text-center p-1.5 rounded" style={{ background: "#FFFFFF" }}>
-                          <div className="text-[10px] text-[#737985] mb-0.5">{m.label}</div>
+                        <div key={m.label} className="text-center p-1.5 rounded" style={{ background: "#172B46" }}>
+                          <div className="text-[10px] text-muted-foreground mb-0.5">{m.label}</div>
                           <div
                             className="font-sans font-bold text-xs"
                             style={{ color: m.delta <= 0 ? "#18A6A6" : "#C94B4B" }}
@@ -2735,12 +2768,12 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           style={{ background: "rgba(6, 15, 30, 0.85)", backdropFilter: "blur(4px)" }}
         >
           <div
-            className="panel border border-[#182350]/20 w-full max-w-md p-6 bg-[#FFFFFF] border border-[#18A6A6] shadow-2xl space-y-4 animate-in zoom-in-95 duration-150"
+            className="panel w-full max-w-md p-6 bg-[#12233B] border border-[#18A6A6] shadow-2xl space-y-4 animate-in zoom-in-95 duration-150"
             style={{ boxShadow: "0 0 25px rgba(24, 166, 166, 0.3)" }}
           >
-            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
+            <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-2">
-                <span className="text-base font-bold text-[#182350] uppercase tracking-wider">
+                <span className="text-base font-bold text-white uppercase tracking-wider">
                   {selectedConstraint.name}
                 </span>
                 {(() => {
@@ -2757,29 +2790,29 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               </div>
               <button
                 onClick={() => setSelectedConstraint(null)}
-                className="text-[#737985] hover:text-[#182350] text-lg cursor-pointer"
+                className="text-muted-foreground hover:text-white text-lg cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             <div className="space-y-3 text-xs">
-              <div className="p-2.5 rounded bg-[#FAFAF5] border border-[#182350]/20/50">
-                <div className="text-[10px] text-[#737985] uppercase mb-0.5">Normal Baseline:</div>
-                <div className="text-[#182350] font-semibold font-sans">{selectedConstraint.normal}</div>
+              <div className="p-2.5 rounded bg-[#0B1628] border border-border/50">
+                <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Normal Baseline:</div>
+                <div className="text-white font-semibold font-sans">{selectedConstraint.normal}</div>
               </div>
 
-              <div className="p-2.5 rounded bg-[#FAFAF5] border border-[#182350]/20/50">
-                <div className="text-[10px] text-[#737985] uppercase mb-0.5">Simulated State:</div>
+              <div className="p-2.5 rounded bg-[#0B1628] border border-border/50">
+                <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Simulated State:</div>
                 <div className="text-amber-300 font-semibold font-sans">{selectedConstraint.simulated}</div>
               </div>
 
-              <div className="p-2.5 rounded bg-[#FAFAF5] border border-[#182350]/20/50">
-                <div className="text-[10px] text-[#737985] uppercase mb-0.5">Operational Impact:</div>
-                <div className="text-[#182350] font-sans">{selectedConstraint.impact}</div>
+              <div className="p-2.5 rounded bg-[#0B1628] border border-border/50">
+                <div className="text-[10px] text-muted-foreground uppercase mb-0.5">Operational Impact:</div>
+                <div className="text-white font-sans">{selectedConstraint.impact}</div>
               </div>
 
-              <div className="p-2.5 rounded bg-[#FFFFFF] border border-[#18A6A6]/40">
+              <div className="p-2.5 rounded bg-[#172B46] border border-[#18A6A6]/40">
                 <div className="text-[10px] text-[#18A6A6] uppercase font-bold mb-0.5">
                   Optimizer Result & Remediation:
                 </div>
@@ -2790,7 +2823,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setSelectedConstraint(null)}
-                className="px-4 py-1.5 rounded text-xs font-bold bg-[#18A6A6] text-[#FAFAF5] uppercase cursor-pointer"
+                className="px-4 py-1.5 rounded text-xs font-bold bg-[#18A6A6] text-[#0B1628] uppercase cursor-pointer"
               >
                 Close Diagnostic
               </button>
@@ -2806,17 +2839,17 @@ export default function WhatIfAnalysis({ vessel }: Props) {
           style={{ background: "rgba(6, 15, 30, 0.88)", backdropFilter: "blur(4px)" }}
         >
           <div
-            className="panel border border-[#182350]/20 w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="panel w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             style={{
-              background: "#FFFFFF",
+              background: "#12233B",
               border: "1px solid #18A6A6",
               boxShadow: "0 0 30px rgba(24, 166, 166, 0.25)",
             }}
           >
-            <div className="flex items-center justify-between p-5 border-b border-[#182350]/20 bg-[#FAFAF5]">
+            <div className="flex items-center justify-between p-5 border-b border-border bg-[#0B1628]">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-base font-extrabold text-[#182350] tracking-wider">
+                  <span className="text-base font-extrabold text-white tracking-wider">
                     {editingScenario
                       ? `EDIT SCENARIO ${editingScenario.id}: ${editingScenario.label}`
                       : "SIMULATE REAL-WORLD EVENT"}
@@ -2828,7 +2861,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     Control Mode
                   </span>
                 </div>
-                <div className="text-xs text-[#737985] font-sans mt-0.5">
+                <div className="text-xs text-muted-foreground font-sans mt-0.5">
                   Select an operational category to model disruption impact on vessel voyage.
                 </div>
               </div>
@@ -2837,21 +2870,21 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   setShowBuilder(false);
                   setEditingScenario(null);
                 }}
-                className="w-8 h-8 rounded flex items-center justify-center text-[#737985] hover:text-[#182350] hover:bg-border/40 text-lg transition-colors cursor-pointer"
+                className="w-8 h-8 rounded flex items-center justify-center text-muted-foreground hover:text-white hover:bg-border/40 text-lg transition-colors cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <div className="px-5 pt-4 pb-2 border-b border-[#182350]/20 bg-[#FAFAF5]/60 overflow-x-auto flex gap-1.5 scrollbar-thin">
+            <div className="px-5 pt-4 pb-2 border-b border-border/60 bg-[#0B1628]/60 overflow-x-auto flex gap-1.5 scrollbar-thin">
               {categoryList.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                     selectedCategory === cat.id
-                      ? "bg-[#18A6A6] text-[#FAFAF5] shadow-sm font-bold"
-                      : "text-[#737985] hover:text-[#182350] hover:bg-[#FFFFFF]"
+                      ? "bg-[#18A6A6] text-[#0B1628] shadow-sm font-bold"
+                      : "text-muted-foreground hover:text-white hover:bg-[#172B46]"
                   }`}
                 >
                   <span>{cat.icon}</span>
@@ -2861,21 +2894,21 @@ export default function WhatIfAnalysis({ vessel }: Props) {
             </div>
 
             <div className="p-5 overflow-y-auto space-y-5 flex-1 text-xs">
-              <div className="flex items-center justify-between p-3 rounded bg-[#FAFAF5] border border-[#182350]/20">
+              <div className="flex items-center justify-between p-3 rounded bg-[#0B1628] border border-border/60">
                 <div className="flex items-center gap-2">
                   <span className="text-base">
                     {categoryList.find((c) => c.id === selectedCategory)?.icon}
                   </span>
                   <div>
-                    <div className="font-bold text-[#182350] uppercase tracking-wider text-xs">
+                    <div className="font-bold text-white uppercase tracking-wider text-xs">
                       {categoryList.find((c) => c.id === selectedCategory)?.label} Disruption Parameters
                     </div>
-                    <div className="text-[11px] text-[#737985] font-sans">
+                    <div className="text-[11px] text-muted-foreground font-sans">
                       {categoryList.find((c) => c.id === selectedCategory)?.description}
                     </div>
                   </div>
                 </div>
-                <span className="text-[10px] font-sans px-2 py-0.5 rounded bg-[#FFFFFF] text-[#18A6A6] border border-[#18A6A6]/40">
+                <span className="text-[10px] font-sans px-2 py-0.5 rounded bg-[#172B46] text-[#18A6A6] border border-[#18A6A6]/40">
                   Deterministic Simulator
                 </span>
               </div>
@@ -2884,13 +2917,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "port" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Port
                     </label>
                     <select
                       value={params.portName}
                       onChange={(e) => setParams({ ...params, portName: e.target.value })}
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Port of Singapore (Approach B)">Port of Singapore (Approach B)</option>
                       <option value="Port B (Deep Water Terminal)">Port B (Deep Water Terminal)</option>
@@ -2901,7 +2934,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Congestion
                     </label>
                     <select
@@ -2909,7 +2942,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onChange={(e) =>
                         setParams({ ...params, congestionLevel: e.target.value as any })
                       }
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Low">Low (0 - 1 hr queue)</option>
                       <option value="Moderate">Moderate (2 - 4 hr queue)</option>
@@ -2920,7 +2953,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
 
                   <div>
                     <div className="flex justify-between mb-1.5">
-                      <label className="text-[#737985] font-sans uppercase tracking-wider">
+                      <label className="text-muted-foreground font-sans uppercase tracking-wider">
                         Additional Waiting
                       </label>
                       <span className="text-[#18A6A6] font-bold font-sans">
@@ -2941,7 +2974,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Available Berths
                     </label>
                     <div className="grid grid-cols-4 gap-2">
@@ -2952,8 +2985,8 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                           onClick={() => setParams({ ...params, availableBerths: b })}
                           className={`py-2 rounded font-sans text-xs font-bold border transition-all cursor-pointer ${
                             params.availableBerths === b
-                              ? "bg-[#18A6A6] text-[#FAFAF5] border-[#18A6A6]"
-                              : "bg-[#FAFAF5] text-secondary-foreground border-[#182350]/20 hover:border-primary/50"
+                              ? "bg-[#18A6A6] text-[#0B1628] border-[#18A6A6]"
+                              : "bg-[#0B1628] text-secondary-foreground border-border hover:border-primary/50"
                           }`}
                         >
                           {b === 0 ? "0 (Full)" : b}
@@ -2963,7 +2996,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Port Closure
                     </label>
                     <button
@@ -2972,11 +3005,11 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       className={`w-full py-2.5 px-4 rounded font-sans text-xs font-bold border transition-all flex items-center justify-between cursor-pointer ${
                         params.portClosed
                           ? "bg-danger/20 text-danger border-danger"
-                          : "bg-[#FAFAF5] text-secondary-foreground border-[#182350]/20"
+                          : "bg-[#0B1628] text-secondary-foreground border-border"
                       }`}
                     >
                       <span>Emergency Harbor Closure</span>
-                      <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold bg-[#FFFFFF]">
+                      <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold bg-[#172B46]">
                         {params.portClosed ? "ON (PORT CLOSED)" : "OFF (OPERATIONAL)"}
                       </span>
                     </button>
@@ -2988,7 +3021,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "weather" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Condition
                     </label>
                     <select
@@ -2996,7 +3029,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onChange={(e) =>
                         setParams({ ...params, weatherCondition: e.target.value as any })
                       }
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Calm">Calm (Beaufort 0-2)</option>
                       <option value="Moderate">Moderate (Beaufort 3-5)</option>
@@ -3006,7 +3039,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Wind
                     </label>
                     <div className="flex items-center gap-2">
@@ -3016,14 +3049,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, windSpeed: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">kn</span>
+                      <span className="text-muted-foreground font-sans">kn</span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Wave Height
                     </label>
                     <div className="flex items-center gap-2">
@@ -3034,14 +3067,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, waveHeight: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">m</span>
+                      <span className="text-muted-foreground font-sans">m</span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Speed Restriction
                     </label>
                     <div className="flex items-center gap-2">
@@ -3051,9 +3084,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, speedRestrictionPct: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">%</span>
+                      <span className="text-muted-foreground font-sans">%</span>
                     </div>
                   </div>
                 </div>
@@ -3063,13 +3096,13 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "fuel" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Fuel Type
                     </label>
                     <select
                       value={params.fuelType}
                       onChange={(e) => setParams({ ...params, fuelType: e.target.value })}
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="LNG">LNG (Liquefied Natural Gas)</option>
                       <option value="Methanol">Green Methanol</option>
@@ -3080,7 +3113,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Fuel Availability
                     </label>
                     <div className="flex items-center gap-2">
@@ -3090,14 +3123,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, fuelAvailabilityDelta: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">%</span>
+                      <span className="text-muted-foreground font-sans">%</span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Fuel Price
                     </label>
                     <div className="flex items-center gap-2">
@@ -3107,14 +3140,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, fuelPriceDelta: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">%</span>
+                      <span className="text-muted-foreground font-sans">%</span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Bunkering
                     </label>
                     <select
@@ -3122,7 +3155,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onChange={(e) =>
                         setParams({ ...params, bunkeringStatus: e.target.value as any })
                       }
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Available">Available (Normal operation)</option>
                       <option value="Delayed">Delayed (+4 hrs queue)</option>
@@ -3136,7 +3169,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "route" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Route Variant
                     </label>
                     <select
@@ -3144,7 +3177,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onChange={(e) =>
                         setParams({ ...params, routeVariant: e.target.value as any })
                       }
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Standard">Standard Direct Corridor</option>
                       <option value="Optimized">AI Optimized Eco Route</option>
@@ -3154,7 +3187,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                   </div>
 
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Distance Modifier
                     </label>
                     <div className="flex items-center gap-2">
@@ -3164,14 +3197,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, distanceModifier: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">nm</span>
+                      <span className="text-muted-foreground font-sans">nm</span>
                     </div>
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       High Risk Area (HRA) Piracy Bypass
                     </label>
                     <button
@@ -3180,7 +3213,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       className={`w-full py-2 px-4 rounded font-sans text-xs border transition-all flex items-center justify-between cursor-pointer ${
                         params.hraAvoidance
                           ? "bg-primary/20 text-primary border-primary"
-                          : "bg-[#FAFAF5] text-secondary-foreground border-[#182350]/20"
+                          : "bg-[#0B1628] text-secondary-foreground border-border"
                       }`}
                     >
                       <span>Corridor Security Protocol</span>
@@ -3194,24 +3227,24 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "cargo" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Cargo Load (Tonnes)
                     </label>
                     <input
                       type="number"
                       value={params.cargoLoad}
                       onChange={(e) => setParams({ ...params, cargoLoad: Number(e.target.value) })}
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                     />
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Cargo Classification
                     </label>
                     <select
                       value={params.cargoType}
                       onChange={(e) => setParams({ ...params, cargoType: e.target.value })}
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Cryogenic LNG">Cryogenic LNG (-162°C)</option>
                       <option value="Standard Bulk">Standard Dry Bulk</option>
@@ -3220,7 +3253,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     </select>
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Draft Restriction
                     </label>
                     <div className="flex items-center gap-2">
@@ -3229,9 +3262,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         step="0.1"
                         value={params.draftDepth}
                         onChange={(e) => setParams({ ...params, draftDepth: Number(e.target.value) })}
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">m</span>
+                      <span className="text-muted-foreground font-sans">m</span>
                     </div>
                   </div>
                 </div>
@@ -3241,7 +3274,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "vessel" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Engine Derating
                     </label>
                     <div className="flex items-center gap-2">
@@ -3251,19 +3284,19 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, engineDeratingPct: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">% Power</span>
+                      <span className="text-muted-foreground font-sans">% Power</span>
                     </div>
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Auxiliary Generators Status
                     </label>
                     <select
                       value={params.auxGenStatus}
                       onChange={(e) => setParams({ ...params, auxGenStatus: e.target.value })}
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="3/3 Online">3/3 Online (Optimal Redundancy)</option>
                       <option value="2/3 Online">2/3 Online (Nominal)</option>
@@ -3271,7 +3304,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     </select>
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Hull Fouling Penalty
                     </label>
                     <div className="flex items-center gap-2">
@@ -3281,9 +3314,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, hullFoulingPct: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">% Drag</span>
+                      <span className="text-muted-foreground font-sans">% Drag</span>
                     </div>
                   </div>
                 </div>
@@ -3293,7 +3326,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "schedule" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Target ETA Constraint
                     </label>
                     <select
@@ -3301,14 +3334,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       onChange={(e) =>
                         setParams({ ...params, etaConstraint: e.target.value as any })
                       }
-                      className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary"
+                      className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary"
                     >
                       <option value="Strict Window">Strict Window (Contractual SLA)</option>
                       <option value="Flexible (±12h)">Flexible Window (±12h Buffer)</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Demurrage / Delay Penalty
                     </label>
                     <div className="flex items-center gap-2">
@@ -3318,9 +3351,9 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, delayPenaltyPerHour: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">$/hr</span>
+                      <span className="text-muted-foreground font-sans">$/hr</span>
                     </div>
                   </div>
                 </div>
@@ -3330,7 +3363,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               {selectedCategory === "shorePower" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Shore Power Grid Connection
                     </label>
                     <button
@@ -3341,7 +3374,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                       className={`w-full py-2.5 px-4 rounded font-sans text-xs font-bold border transition-all flex items-center justify-between cursor-pointer ${
                         params.shorePowerAvailable
                           ? "bg-primary/20 text-primary border-primary"
-                          : "bg-[#FAFAF5] text-secondary-foreground border-[#182350]/20"
+                          : "bg-[#0B1628] text-secondary-foreground border-border"
                       }`}
                     >
                       <span>Cold Ironing Berth Plug</span>
@@ -3349,7 +3382,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                     </button>
                   </div>
                   <div>
-                    <label className="text-[#737985] font-sans uppercase tracking-wider block mb-1.5">
+                    <label className="text-muted-foreground font-sans uppercase tracking-wider block mb-1.5">
                       Grid Power Price
                     </label>
                     <div className="flex items-center gap-2">
@@ -3360,22 +3393,22 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setParams({ ...params, gridPowerPrice: Number(e.target.value) })
                         }
-                        className="w-full px-3 py-2 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 outline-none focus:border-primary font-sans"
+                        className="w-full px-3 py-2 rounded bg-[#0B1628] text-white border border-border outline-none focus:border-primary font-sans"
                       />
-                      <span className="text-[#737985] font-sans">$/kWh</span>
+                      <span className="text-muted-foreground font-sans">$/kWh</span>
                     </div>
                   </div>
                 </div>
               )}
 
               {editingScenario && (
-                <div className="mt-4 pt-4 border-t border-[#182350]/20">
-                  <div className="text-xs font-bold text-[#182350] uppercase tracking-wider mb-2">
+                <div className="mt-4 pt-4 border-t border-border/60">
+                  <div className="text-xs font-bold text-white uppercase tracking-wider mb-2">
                     Scenario Configuration Attributes:
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     <div>
-                      <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                      <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                         Scenario Name
                       </label>
                       <input
@@ -3384,11 +3417,11 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setEditingScenario({ ...editingScenario, label: e.target.value })
                         }
-                        className="w-full px-2.5 py-1.5 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 text-xs"
+                        className="w-full px-2.5 py-1.5 rounded bg-[#0B1628] text-white border border-border text-xs"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                      <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                         Speed (kn)
                       </label>
                       <input
@@ -3400,11 +3433,11 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                             speed: Number(e.target.value),
                           })
                         }
-                        className="w-full px-2.5 py-1.5 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 text-xs"
+                        className="w-full px-2.5 py-1.5 rounded bg-[#0B1628] text-white border border-border text-xs"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-[#737985] uppercase block mb-1">
+                      <label className="text-[10px] text-muted-foreground uppercase block mb-1">
                         Fuel Type
                       </label>
                       <select
@@ -3412,7 +3445,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                         onChange={(e) =>
                           setEditingScenario({ ...editingScenario, fuelType: e.target.value })
                         }
-                        className="w-full px-2.5 py-1.5 rounded bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 text-xs"
+                        className="w-full px-2.5 py-1.5 rounded bg-[#0B1628] text-white border border-border text-xs"
                       >
                         {["LNG", "Methanol", "Ammonia", "Hydrogen", "VLSFO"].map((f) => (
                           <option key={f} value={f}>
@@ -3426,14 +3459,14 @@ export default function WhatIfAnalysis({ vessel }: Props) {
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-3 p-4 border-t border-[#182350]/20 bg-[#FAFAF5]">
+            <div className="flex items-center justify-end gap-3 p-4 border-t border-border bg-[#0B1628]">
               <button
                 type="button"
                 onClick={() => {
                   setShowBuilder(false);
                   setEditingScenario(null);
                 }}
-                className="px-5 py-2 rounded text-xs font-sans font-bold text-secondary-foreground hover:text-[#182350] border border-[#182350]/20 hover:border-muted-foreground transition-colors cursor-pointer"
+                className="px-5 py-2 rounded text-xs font-sans font-bold text-secondary-foreground hover:text-white border border-border hover:border-muted-foreground transition-colors cursor-pointer"
               >
                 CANCEL
               </button>
@@ -3444,7 +3477,7 @@ export default function WhatIfAnalysis({ vessel }: Props) {
                 className="px-6 py-2 rounded text-xs font-sans font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-lg hover:opacity-90 active:scale-95"
                 style={{
                   background: "#18A6A6",
-                  color: "#FFFFFF",
+                  color: "#0B1628",
                   boxShadow: "0 0 12px rgba(24, 166, 166, 0.4)",
                 }}
               >

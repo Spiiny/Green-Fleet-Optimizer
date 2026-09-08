@@ -47,14 +47,14 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
         {/* Captains roster */}
         <div
           className="rounded-lg shadow-xs overflow-hidden"
-          style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+          style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
         >
-          <div className="px-4 py-3 border-b border-[#182350]/20 bg-[#FDFCF7]">
+          <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
             <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
               Captain Roster
             </div>
           </div>
-          <div className="divide-y divide-[#182350]">
+          <div className="divide-y divide-[#ECE8DF]">
             {captains.map((c) => {
               const assignedVessel = vessels.find((v) => assignments[v.id] === c.id);
               return (
@@ -94,7 +94,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                           className="text-[10px] font-sans px-1.5 py-0.5 rounded"
                           style={{
                             background: "#FAFAF5",
-                            border: "1px solid rgba(24, 35, 80, 0.2)",
+                            border: "1px solid #E6E2D8",
                             color: "#737985",
                           }}
                         >
@@ -119,14 +119,14 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
         <div className="space-y-3">
           <div
             className="rounded-lg shadow-xs overflow-hidden"
-            style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+            style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="px-4 py-3 border-b border-[#182350]/20 bg-[#FDFCF7]">
+            <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
               <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
                 Vessel Assignments
               </div>
             </div>
-            <div className="divide-y divide-[#182350]">
+            <div className="divide-y divide-[#ECE8DF]">
               {vessels.map((v) => {
                 const captain = getAssignedCaptain(v.id);
                 const isSelected = v.id === selectedVesselId;
@@ -146,7 +146,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                           setTargetVessel(v.id);
                           setShowAssignModal(true);
                         }}
-                        className="text-xs font-sans font-semibold px-2.5 py-1 rounded-lg border border-[#182350]/20 text-[#737985] hover:border-[#182350]/20 hover:text-[#182350] bg-white cursor-pointer transition-colors"
+                        className="text-xs font-sans font-semibold px-2.5 py-1 rounded-lg border border-[#182350] text-[#737985] hover:border-[#182350] hover:text-[#182350] bg-white cursor-pointer transition-colors"
                       >
                         Change
                       </button>
@@ -154,7 +154,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                     {captain ? (
                       <div
                         className="flex items-center gap-3 p-2.5 rounded-lg"
-                        style={{ background: "#FAFAF5", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+                        style={{ background: "#FAFAF5", border: "1px solid #E6E2D8" }}
                       >
                         <div
                           className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
@@ -193,7 +193,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
           {/* Stats */}
           <div
             className="p-4 rounded-lg shadow-xs"
-            style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+            style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
             <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider mb-3">
               Fleet Summary
@@ -213,7 +213,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                 <div
                   key={s.label}
                   className="p-3 rounded-lg"
-                  style={{ background: "#FAFAF5", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+                  style={{ background: "#FAFAF5", border: "1px solid #E6E2D8" }}
                 >
                   <div className="text-xl font-extrabold font-sans text-[#182350]">{s.value}</div>
                   <div className="text-xs text-[#737985] mt-1 font-sans">{s.label}</div>
@@ -232,9 +232,9 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
         >
           <div
             className="p-6 rounded-xl shadow-2xl w-[440px]"
-            style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+            style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="flex justify-between items-center mb-5 pb-2 border-b border-[#182350]/20">
+            <div className="flex justify-between items-center mb-5 pb-2 border-b border-[#ECE8DF]">
               <h4 className="font-bold text-[#182350] text-sm">Assign Captain to Vessel</h4>
               <button
                 onClick={() => setShowAssignModal(false)}
@@ -252,7 +252,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                   value={targetVessel}
                   onChange={(e) => setTargetVessel(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg text-sm text-[#182350] outline-none font-sans"
-                  style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+                  style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
                 >
                   {vessels.map((v) => (
                     <option key={v.id} value={v.id}>
@@ -273,7 +273,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
                       className="p-3 rounded-lg cursor-pointer transition-all"
                       style={{
                         background: selectedCaptain === c.id ? "#EAF4FE" : "#FFFFFF",
-                        border: `1px solid ${selectedCaptain === c.id ? "#AFD2FA" : "#182350"}`,
+                        border: `1px solid ${selectedCaptain === c.id ? "#AFD2FA" : "#E6E2D8"}`,
                       }}
                     >
                       <div className="flex items-center gap-3">
@@ -301,7 +301,7 @@ export default function CaptainAssignment({ selectedVesselId }: Props) {
               <div className="flex gap-3 mt-4">
                 <button
                   onClick={() => setShowAssignModal(false)}
-                  className="flex-1 py-2 rounded-lg text-xs font-semibold text-[#737985] border border-[#182350]/20 hover:bg-[#F7F5EE] cursor-pointer"
+                  className="flex-1 py-2 rounded-lg text-xs font-semibold text-[#737985] border border-[#182350] hover:bg-[#F7F5EE] cursor-pointer"
                 >
                   Cancel
                 </button>

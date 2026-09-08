@@ -11,21 +11,33 @@ import {
   ChevronDown,
   Shield,
   LogOut,
+  Layers,
+  Ship,
+  Calendar,
+  Settings,
+  ClipboardList,
+  Route,
+  Box,
+  Compass,
+  Sliders,
+  Anchor,
 } from "lucide-react";
 import { TextRoll } from "../ui/animated-menu";
 import { motion } from "framer-motion";
+import { EditProfile, ProfileData } from "../ui/EditProfile";
+import { CommandSearch } from "../ui/CommandSearch";
 
 export type ControllerTab =
   | "overview"
   | "vessel"
+  | "schedule"
   | "manage"
   | "layout"
   | "map"
   | "routes"
   | "whatif"
   | "orders"
-  | "captains"
-  | "schedule";
+  | "captains";
 
 interface Props {
   activeTab: ControllerTab;
@@ -84,6 +96,36 @@ export default function TerminalHeader({
   const [showContactModal, setShowContactModal] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
 
+  // Profile data & modal state
+  const [profileData, setProfileData] = useState<ProfileData>(() => {
+    const defaultData: ProfileData = {
+      fullName: username || "Captain Tarun",
+      email: "tarun.controller@greenfleet.maritime",
+      timezone: "GMT+5:30",
+      workingHours: "08:00 - 18:00 UTC",
+      title: "Chief Fleet Operations Controller",
+      avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+      lastUpdated: "Today at 09:30 AM",
+    };
+    try {
+      const saved = localStorage.getItem("fleet_user_profile");
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      // ignore
+    }
+    return defaultData;
+  });
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+
+  const handleSaveProfile = (updated: ProfileData) => {
+    setProfileData(updated);
+    try {
+      localStorage.setItem("fleet_user_profile", JSON.stringify(updated));
+    } catch (e) {
+      // ignore
+    }
+  };
+
   const containerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -114,6 +156,15 @@ export default function TerminalHeader({
     onSelectTab(tab);
     setIsOpen(false);
     setOpenDropdown(null);
+    try {
+      if (tab === "schedule") {
+        window.history.pushState(null, "", "/schedule");
+      } else {
+        window.history.pushState(null, "", "/");
+      }
+    } catch (e) {
+      // ignore
+    }
   };
 
   // GSAP Slide-In Menu Animation
@@ -136,6 +187,7 @@ export default function TerminalHeader({
   const fullNavLinks: { id: ControllerTab; label: string; sub: string }[] = [
     { id: "overview", label: "Fleet Overview", sub: "Command Matrix & Telemetry" },
     { id: "vessel", label: "Vessel Info", sub: "Flagship Real-Time Cockpit" },
+    { id: "schedule", label: "Fleet Schedule", sub: "Gantt Timeline & Berthing Matrix" },
     { id: "manage", label: "Manage Ships", sub: "Fleet Inventory & IMO Specs" },
     { id: "orders", label: "Orders", sub: "Commercial Consignments & Scoring" },
     { id: "layout", label: "Cargo & Layout", sub: "Hold Hydrodynamics & 2D LCG" },
@@ -152,7 +204,7 @@ export default function TerminalHeader({
         <header
           className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-2xl shadow-xl border border-[#AFD2FA]/25 transition-all duration-300"
           style={{
-            background: "linear-gradient(135deg, #182350 0%, #0F1838 100%)",
+            background: "#1F0E06",
             color: "#FFFFFF",
           }}
         >
@@ -182,10 +234,11 @@ export default function TerminalHeader({
             <div className="relative">
               <button
                 onClick={(e) => toggleDropdown("system", e)}
-                className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
-                  openDropdown === "system" || ["overview", "vessel", "manage", "orders", "schedule"].includes(activeTab)
+                style={{ background: "transparent", backgroundColor: "transparent", border: "none" }}
+                className={`bg-transparent border-0 p-0 shadow-none flex items-center gap-1.5 transition-colors cursor-pointer ${
+                  openDropdown === "system" || ["overview", "vessel", "schedule", "manage", "orders"].includes(activeTab)
                     ? "text-[#AFD2FA] font-bold"
-                    : "text-white/80 hover:text-white"
+                    : "text-white/90 hover:text-white"
                 }`}
               >
                 <span>System</span>
@@ -196,7 +249,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "system" && (
-                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Core Operational Modules
                   </div>
@@ -206,7 +259,7 @@ export default function TerminalHeader({
                       activeTab === "overview" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>◈</span>
+                    <Layers size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Fleet Overview</span>
                   </button>
                   <button
@@ -215,8 +268,17 @@ export default function TerminalHeader({
                       activeTab === "vessel" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>⛴</span>
+                    <Ship size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Vessel Info Cockpit</span>
+                  </button>
+                  <button
+                    onClick={() => handleSelectNav("schedule")}
+                    className={`w-full px-3.5 py-2 text-left text-xs font-semibold hover:bg-[#EAF4FE] transition-colors flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "schedule" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
+                    }`}
+                  >
+                    <Calendar size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
+                    <span>Fleet Schedule</span>
                   </button>
                   <button
                     onClick={() => handleSelectNav("manage")}
@@ -224,7 +286,7 @@ export default function TerminalHeader({
                       activeTab === "manage" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>⚙</span>
+                    <Settings size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Manage Ships & Registry</span>
                   </button>
                   <button
@@ -233,17 +295,8 @@ export default function TerminalHeader({
                       activeTab === "orders" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>📋</span>
+                    <ClipboardList size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Orders Flow & Logistics</span>
-                  </button>
-                  <button
-                    onClick={() => handleSelectNav("schedule")}
-                    className={`w-full px-3.5 py-2 text-left text-xs font-semibold hover:bg-[#EAF4FE] transition-colors flex items-center gap-2.5 cursor-pointer ${
-                      activeTab === "schedule" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
-                    }`}
-                  >
-                    <span>📅</span>
-                    <span>Fleet Schedule</span>
                   </button>
                 </div>
               )}
@@ -253,10 +306,11 @@ export default function TerminalHeader({
             <div className="relative">
               <button
                 onClick={(e) => toggleDropdown("ai", e)}
-                className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
+                style={{ background: "transparent", backgroundColor: "transparent", border: "none" }}
+                className={`bg-transparent border-0 p-0 shadow-none flex items-center gap-1.5 transition-colors cursor-pointer ${
                   openDropdown === "ai" || ["routes", "layout", "whatif", "map"].includes(activeTab)
                     ? "text-[#AFD2FA] font-bold"
-                    : "text-white/80 hover:text-white"
+                    : "text-white/90 hover:text-white"
                 }`}
               >
                 <span>AI Engines</span>
@@ -267,7 +321,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "ai" && (
-                <div className="absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-[#182350] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Optimization Engines
                   </div>
@@ -277,7 +331,7 @@ export default function TerminalHeader({
                       activeTab === "routes" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>⟳</span>
+                    <Route size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Route Optimization (Quantum)</span>
                   </button>
                   <button
@@ -286,7 +340,7 @@ export default function TerminalHeader({
                       activeTab === "layout" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>▦</span>
+                    <Box size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Cargo & 2D Trim Drag</span>
                   </button>
                   <button
@@ -295,7 +349,7 @@ export default function TerminalHeader({
                       activeTab === "map" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>◎</span>
+                    <Compass size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Live Map (Global AIS)</span>
                   </button>
                   <button
@@ -304,7 +358,7 @@ export default function TerminalHeader({
                       activeTab === "whatif" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>⚗</span>
+                    <Sliders size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>What-If Analysis (Monte Carlo)</span>
                   </button>
                 </div>
@@ -315,10 +369,11 @@ export default function TerminalHeader({
             <div className="relative">
               <button
                 onClick={(e) => toggleDropdown("ops", e)}
-                className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
+                style={{ background: "transparent", backgroundColor: "transparent", border: "none" }}
+                className={`bg-transparent border-0 p-0 shadow-none flex items-center gap-1.5 transition-colors cursor-pointer ${
                   openDropdown === "ops" || ["orders", "captains"].includes(activeTab)
                     ? "text-[#AFD2FA] font-bold"
-                    : "text-white/80 hover:text-white"
+                    : "text-white/90 hover:text-white"
                 }`}
               >
                 <span>Operations</span>
@@ -329,7 +384,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "ops" && (
-                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Logistics & Bridge
                   </div>
@@ -339,7 +394,7 @@ export default function TerminalHeader({
                       activeTab === "orders" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>📋</span>
+                    <ClipboardList size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Orders Flow & Allocation</span>
                   </button>
                   <button
@@ -348,7 +403,7 @@ export default function TerminalHeader({
                       activeTab === "captains" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
                     }`}
                   >
-                    <span>⚓</span>
+                    <Anchor size={15} className="text-black shrink-0" style={{ color: "#000000" }} strokeWidth={2.2} />
                     <span>Captains Assignment Portal</span>
                   </button>
                 </div>
@@ -358,7 +413,8 @@ export default function TerminalHeader({
             {/* 4. About */}
             <button
               onClick={() => setShowAboutModal(true)}
-              className="text-white/80 hover:text-white transition-colors cursor-pointer"
+              style={{ background: "transparent", backgroundColor: "transparent", border: "none" }}
+              className="bg-transparent border-0 p-0 shadow-none text-white/90 hover:text-white transition-colors cursor-pointer"
             >
               About
             </button>
@@ -366,6 +422,30 @@ export default function TerminalHeader({
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Command Search Bar */}
+            <CommandSearch
+              onSelectTab={handleSelectNav}
+              onOpenProfile={() => setIsEditProfileOpen(true)}
+              onOpenAbout={() => setShowAboutModal(true)}
+              onOpenNotifications={() => setShowNotifications(true)}
+            />
+
+            {/* User Profile Pill Button */}
+            <button
+              onClick={() => setIsEditProfileOpen(true)}
+              className="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all cursor-pointer shadow-xs flex items-center gap-2"
+              title="Click to view & edit your profile"
+            >
+              <img
+                src={profileData.avatarUrl}
+                alt={profileData.fullName}
+                className="w-5 h-5 rounded-full object-cover ring-1 ring-[#AFD2FA]"
+              />
+              <span className="hidden sm:inline font-sans text-xs max-w-[120px] truncate font-bold text-white">
+                {profileData.fullName}
+              </span>
+            </button>
+
             {/* Logout Pill Button */}
             <button
               onClick={onLogout}
@@ -445,6 +525,26 @@ export default function TerminalHeader({
               );
             })}
 
+            {/* Edit Profile Action in Overlay */}
+            <div
+              onClick={() => {
+                setIsOpen(false);
+                setIsEditProfileOpen(true);
+              }}
+              className="nav-link group relative block w-fit cursor-pointer pt-2"
+            >
+              <div className="flex items-center gap-3 text-[#AFD2FA] hover:text-white transition-colors">
+                <img
+                  src={profileData.avatarUrl}
+                  alt={profileData.fullName}
+                  className="w-7 h-7 rounded-full object-cover ring-2 ring-[#AFD2FA]"
+                />
+                <span className="text-xl sm:text-2xl font-bold uppercase tracking-wider font-mono">
+                  Edit Profile ({profileData.fullName})
+                </span>
+              </div>
+            </div>
+
             {/* Logout Action in Overlay */}
             <div
               onClick={onLogout}
@@ -505,8 +605,8 @@ export default function TerminalHeader({
       {/* ── Contact / Operational Communications Modal ── */}
       {showContactModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350] space-y-4 text-[#182350]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-[#2E9B68]" />
                 <h3 className="text-base font-extrabold text-[#182350]">
@@ -539,8 +639,8 @@ export default function TerminalHeader({
       {/* ── About Modal ── */}
       {showAboutModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350] space-y-4 text-[#182350]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
               <div className="flex items-center gap-2">
                 <Hexagon size={18} className="text-[#182350]" />
                 <h3 className="text-base font-extrabold text-[#182350]">
@@ -557,7 +657,7 @@ export default function TerminalHeader({
             <p className="text-xs text-[#3F4654] font-sans leading-relaxed">
               Developed for the Smart India Hackathon (SIH 2026) under the Ministry of Ports, Shipping & Waterways. GreenFleet OS provides end-to-end multi-objective route pathfinding, 2D hold stability, and dual-fuel decarbonization under IMO 2030 CII mandates.
             </p>
-            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-[11px] font-mono">
+            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350] text-[11px] font-mono">
               Version: <strong>2.6.4 Flagship Release</strong> · Status: <span className="text-[#2E9B68]">Verified</span>
             </div>
             <button
@@ -569,6 +669,14 @@ export default function TerminalHeader({
           </div>
         </div>
       )}
+
+      {/* ── Edit Profile Modal ── */}
+      <EditProfile
+        isOpen={isEditProfileOpen}
+        onClose={() => setIsEditProfileOpen(false)}
+        initialData={profileData}
+        onSave={handleSaveProfile}
+      />
     </div>
   );
 }

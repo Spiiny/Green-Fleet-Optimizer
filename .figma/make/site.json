@@ -1,0 +1,10 @@
+{
+  "description": "Optimizes maritime fleet operations by predicting fuel use, enabling cargo load management, route planning, and emissions control for controllers and captains.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

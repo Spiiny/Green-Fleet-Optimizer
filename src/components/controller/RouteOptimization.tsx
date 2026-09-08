@@ -1,6 +1,5 @@
 import { Vessel, routePlans, RoutePlan } from "../../data/fleet";
 import { useState } from "react";
-import CreepyButton from "../ui/AnimatedButton";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
 
 interface Props {
@@ -26,19 +25,17 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
     { metric: "Time", Fastest: 95, Efficient: 65, Custom: 78 },
   ];
 
-  const PlanCard = ({ plan, isSelected }: { plan: RoutePlan; isSelected: boolean }) => {
-    const planColor = plan.label === "Fastest" ? "#C94B4B" : plan.label === "Efficient" ? "#2E9B68" : plan.label === "Custom" ? "#B9915E" : plan.color;
-    return (
+  const PlanCard = ({ plan, isSelected }: { plan: RoutePlan; isSelected: boolean }) => (
     <div
       className="p-5 rounded-lg flex flex-col shadow-xs transition-all"
       style={{
         background: isSelected ? "#EAF4FE" : "#FFFFFF",
-        border: `1px solid ${isSelected ? "#AFD2FA" : "#182350"}`,
+        border: `1px solid ${isSelected ? "#AFD2FA" : "#E6E2D8"}`,
       }}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full" style={{ background: planColor }} />
+          <div className="w-2.5 h-2.5 rounded-full" style={{ background: plan.color }} />
           <span
             className="text-xs font-sans font-bold tracking-widest uppercase"
             style={{ color: "#182350" }}
@@ -76,12 +73,12 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
       </div>
 
       {/* Efficiency bar */}
-      <div className="mt-4 pt-2 border-t border-[#182350]/20">
+      <div className="mt-4 pt-2 border-t border-[#ECE8DF]">
         <div className="flex justify-between text-xs mb-1">
           <span className="font-sans text-[#737985]">Efficiency Score</span>
           <span className="font-sans font-bold text-[#182350]">{plan.efficiency}/100</span>
         </div>
-        <div className="h-1.5 rounded-full bg-[#182350]">
+        <div className="h-1.5 rounded-full bg-[#ECE8DF]">
           <div
             className="h-full rounded-full transition-all"
             style={{ width: `${plan.efficiency}%`, background: "#182350" }}
@@ -89,22 +86,18 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
         </div>
       </div>
 
-      <div className="mt-4">
-        <CreepyButton
-          onClick={() => onPlanSelect(plan.label)}
-          className="w-full text-[11px]"
-          coverStyle={{
-            backgroundColor: isSelected ? planColor : "#FFFFFF",
-            color: isSelected ? "#FFFFFF" : planColor,
-            border: `1px solid ${planColor}`,
-          }}
-        >
-          {isSelected ? "✓ PLAN SELECTED" : "SELECT THIS PLAN"}
-        </CreepyButton>
-      </div>
+      <button
+        onClick={() => onPlanSelect(plan.label)}
+        className={`mt-4 py-2 rounded-lg text-xs font-bold tracking-widest uppercase transition-all cursor-pointer ${
+          isSelected
+            ? "bg-[#182350] text-white shadow-xs"
+            : "bg-white text-[#182350] border border-[#182350] hover:bg-[#F7F5EE]"
+        }`}
+      >
+        {isSelected ? "✓ Plan Selected" : "Select This Plan"}
+      </button>
     </div>
   );
-  }
 
   const savings = {
     fuel: fastest.fuelConsumption - efficient.fuelConsumption,
@@ -142,9 +135,9 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
       {/* Comparison table */}
       <div
         className="rounded-lg shadow-xs overflow-hidden"
-        style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+        style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
       >
-        <div className="px-4 py-3 border-b border-[#182350]/20 bg-[#FDFCF7]">
+        <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
           <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
             Plan Comparison Matrix
           </div>
@@ -152,7 +145,7 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#182350]/20 bg-[#FAFAF5]">
+              <tr className="border-b border-[#182350] bg-[#FAFAF5]">
                 <th className="px-4 py-3 text-left text-[11px] font-sans text-[#182350] font-bold uppercase tracking-wider">
                   Metric
                 </th>
@@ -226,7 +219,7 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
                   save: `+${efficient.efficiency - fastest.efficiency} pts`,
                 },
               ].map((row, i) => (
-                <tr key={i} className="border-b border-[#182350]/20 hover:bg-[#EAF4FE]/30 transition-colors">
+                <tr key={i} className="border-b border-[#ECE8DF] hover:bg-[#EAF4FE]/30 transition-colors">
                   <td className="px-4 py-3 text-xs font-sans text-[#737985] font-medium">
                     {row.label}
                   </td>
@@ -264,14 +257,14 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
         {/* Radar chart */}
         <div
           className="p-4 rounded-lg shadow-xs"
-          style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+          style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
         >
           <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider mb-2">
             Performance Radar
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <RadarChart data={radarData}>
-              <PolarGrid stroke="#182350" />
+              <PolarGrid stroke="#ECE8DF" />
               <PolarAngleAxis dataKey="metric" tick={{ fill: "#737985", fontSize: 10 }} />
               <Radar
                 name="Fastest"
@@ -301,7 +294,7 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
         {/* Custom plan controls */}
         <div
           className="p-4 rounded-lg shadow-xs"
-          style={{ background: "#FFFFFF", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+          style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
         >
           <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider mb-4">
             Custom Plan Parameters
@@ -337,10 +330,10 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
                     className="py-2 rounded-lg text-xs font-sans font-bold transition-all cursor-pointer"
                     style={
                       customFuel === f
-                        ? { background: "#182350", border: "1px solid rgba(24, 35, 80, 0.2)", color: "#FFFFFF" }
+                        ? { background: "#182350", border: "1px solid #182350", color: "#FFFFFF" }
                         : {
                             background: "#FFFFFF",
-                            border: "1px solid rgba(24, 35, 80, 0.2)",
+                            border: "1px solid #E6E2D8",
                             color: "#737985",
                           }
                     }
@@ -352,7 +345,7 @@ export default function RouteOptimization({ vessel, onPlanSelect, selectedPlan }
             </div>
             <div
               className="p-3 rounded-lg"
-              style={{ background: "#FAFAF5", border: "1px solid rgba(24, 35, 80, 0.2)" }}
+              style={{ background: "#FAFAF5", border: "1px solid #E6E2D8" }}
             >
               <div className="text-[11px] font-sans text-[#737985] font-bold uppercase mb-2">
                 Estimated Impact

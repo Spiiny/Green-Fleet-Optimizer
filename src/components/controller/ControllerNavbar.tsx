@@ -123,7 +123,7 @@ export default function ControllerNavbar({
           width: "96%",
           backgroundColor: isOpen
             ? "rgba(8, 20, 36, 0)"
-            : "rgba(24, 35, 80, 0.94)",
+            : "#1F0E06",
           backdropFilter: isOpen ? "none" : "blur(20px)",
           borderColor: isOpen ? "rgba(255, 255, 255, 0)" : "rgba(175, 210, 250, 0.25)",
           y: scrolled ? 6 : 10,
@@ -187,14 +187,14 @@ export default function ControllerNavbar({
             >
               <Bell size={18} />
               {unreadCount > 0 && (
-                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-[#C94B4B] rounded-full border border-[#182350]/20" />
+                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-[#C94B4B] rounded-full border border-[#182350]" />
               )}
             </motion.button>
 
             {/* Notification Panel */}
             {showNotifications && (
-              <div className="absolute top-full right-0 mt-3 w-80 sm:w-88 bg-white rounded-2xl shadow-2xl border border-[#182350]/20 overflow-hidden text-left z-50 animate-in fade-in zoom-in-95 duration-200">
-                <div className="p-3.5 border-b border-[#182350]/20 flex justify-between items-center bg-[#FAFAF5]">
+              <div className="absolute top-full right-0 mt-3 w-80 sm:w-88 bg-white rounded-2xl shadow-2xl border border-[#182350] overflow-hidden text-left z-50 animate-in fade-in zoom-in-95 duration-200">
+                <div className="p-3.5 border-b border-[#ECE8DF] flex justify-between items-center bg-[#FAFAF5]">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#2E9B68] animate-pulse" />
                     <h4 className="font-mono font-bold text-xs uppercase tracking-wider text-[#182350]">
@@ -206,7 +206,7 @@ export default function ControllerNavbar({
                   </span>
                 </div>
 
-                <div className="max-h-64 overflow-y-auto divide-y divide-[#182350]">
+                <div className="max-h-64 overflow-y-auto divide-y divide-[#ECE8DF]">
                   {notifications.map((n) => (
                     <div
                       key={n.id}
@@ -238,7 +238,7 @@ export default function ControllerNavbar({
                   ))}
                 </div>
 
-                <div className="p-2 border-t border-[#182350]/20 bg-[#FAFAF5] text-center">
+                <div className="p-2 border-t border-[#ECE8DF] bg-[#FAFAF5] text-center">
                   <button
                     onClick={() => {
                       setUnreadCount(0);
