@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
+import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
+import NumberFlow from "@number-flow/react";
 import { vessels, Vessel } from "../../data/fleet";
 import { FuelType, FUEL_DENSITIES } from "../../types/fleetManagement";
 import {
@@ -88,6 +90,60 @@ const VESSEL_FUEL_CONFIGS: Record<string, InternalFuelTank[]> = {
     { id: "f5", name: "Forepeak H2 Storage", capacityVolume: 500, currentVolume: 400, currentFuel: "Hydrogen", xPos: 45 },
     { id: "f6", name: "Fuel-Cell Buffer Tank", capacityVolume: 300, currentVolume: 240, currentFuel: "Hydrogen", xPos: -15 },
   ],
+};
+
+
+const TrimSliderWidget = ({ value, onChange }: { value: number; onChange: (v: number) => void }) => {
+  // x ranges from -480 to 480 (mapped to -3.0 to +3.0)
+  const x = useMotionValue(-value * 160);
+
+  // Update x if value changes externally
+  useEffect(() => {
+    x.set(-value * 160);
+  }, [value, x]);
+
+  useMotionValueEvent(x, "change", (latest) => {
+    if (typeof latest !== "number") return;
+    const calculated = -latest / 160;
+    if (!Number.isFinite(calculated)) return;
+    
+    // Clamp between -3.0 and 3.0
+    const clamped = Math.max(-3.0, Math.min(3.0, calculated));
+    const rounded = Math.round(clamped * 20) / 20; // step of 0.05
+    
+    if (rounded !== value) {
+      onChange(rounded);
+    }
+  });
+
+  return (
+    <div className="relative flex flex-col justify-between overflow-hidden rounded-xl border border-[#182350]/20 bg-[#FAFAF5] p-2 shadow-sm my-2">
+      <div className="relative -mx-4 flex h-12 items-center justify-center cursor-grab active:cursor-grabbing overflow-hidden rounded-lg">
+        {/* Center line (indicator) */}
+        <div className="absolute left-1/2 z-10 h-10 w-[3px] -translate-x-1/2 bg-[#B9915E] rounded-full shadow-md" />
+
+        <motion.div
+          drag="x"
+          dragConstraints={{ right: 480, left: -480 }}
+          dragElastic={0.05}
+          style={{ x, left: "50%" }}
+          transition={{ type: "spring", stiffness: 450, damping: 35 }}
+          className="absolute left-1/2 flex items-center gap-[12px]"
+        >
+          {/* Ticks: from -3.0 to 3.0, 61 ticks */}
+          {[...Array(61)].map((_, i) => {
+            const isMajor = i % 10 === 0;
+            return (
+              <div
+                key={i}
+                className={`w-1 flex-shrink-0 rounded-full ${isMajor ? 'h-6 bg-[#182350]/60' : 'h-3 bg-[#182350]/20'}`}
+              />
+            );
+          })}
+        </motion.div>
+      </div>
+    </div>
+  );
 };
 
 export default function CargoLayout({
@@ -361,7 +417,7 @@ export default function CargoLayout({
   };
 
   return (
-    <div className="space-y-4 max-w-7xl mx-auto select-none pb-12" style={{ background: "#FEFAEF" }}>
+    <div className="flex flex-col h-full space-y-4 max-w-7xl mx-auto select-none" style={{ background: "#FEFAEF" }}>
       {/* ── Toast Alert ── */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#182350] text-white px-4 py-2.5 rounded-xl shadow-2xl border border-[#AFD2FA]/30 flex items-center gap-2.5 text-xs font-mono font-bold animate-in fade-in slide-in-from-bottom-3 duration-200">
@@ -371,7 +427,7 @@ export default function CargoLayout({
       )}
 
       {/* ── Top Header Section with Right-Top Sliders for Cargo & Fuel ── */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs">
+      <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#182350]/20 shadow-xs">
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
           {/* Vessel Info & Badge */}
           <div className="flex items-center gap-3">
@@ -406,7 +462,7 @@ export default function CargoLayout({
           {/* ── Right Top Sliders (Fuel & Cargo) + Filter Tabs ── */}
           <div className="flex flex-wrap items-center gap-3">
             {/* View Mode Filters */}
-            <div className="flex rounded-xl border border-[#E6E2D8] overflow-hidden bg-[#FAFAF5] text-xs font-bold font-mono">
+            <div className="flex rounded-xl border border-[#182350]/20 overflow-hidden bg-[#FAFAF5] text-xs font-bold font-mono">
               {(["Cargo", "Both", "Fuel"] as const).map((mode) => (
                 <button
                   key={mode}
@@ -423,7 +479,7 @@ export default function CargoLayout({
             </div>
 
             {/* Global Cargo Slider */}
-            <div className="p-2 px-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-0.5 w-36 sm:w-44">
+            <div className="p-2 px-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-0.5 w-36 sm:w-44">
               <div className="flex justify-between text-[10.5px] font-mono">
                 <span className="text-[#737985] font-bold">Cargo DWT:</span>
                 <span className="font-extrabold text-[#182350]">{globalCargoSlider}%</span>
@@ -434,12 +490,12 @@ export default function CargoLayout({
                 max="100"
                 value={globalCargoSlider}
                 onChange={(e) => handleGlobalCargoSlider(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg cursor-pointer accent-[#182350] border border-[#AFD2FA]"
               />
             </div>
 
             {/* Global Fuel Slider */}
-            <div className="p-2 px-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-0.5 w-36 sm:w-44">
+            <div className="p-2 px-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-0.5 w-36 sm:w-44">
               <div className="flex justify-between text-[10.5px] font-mono">
                 <span className="text-[#737985] font-bold">Fuel Level:</span>
                 <span className="font-extrabold text-[#2E9B68]">{globalFuelSlider}%</span>
@@ -450,7 +506,7 @@ export default function CargoLayout({
                 max="100"
                 value={globalFuelSlider}
                 onChange={(e) => handleGlobalFuelSlider(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#2E9B68]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg cursor-pointer accent-[#2E9B68] border border-[#AFD2FA]"
               />
             </div>
 
@@ -465,7 +521,7 @@ export default function CargoLayout({
               }}
               className={`px-3 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer border ${
                 showRecommended
-                  ? "bg-[#182350] text-white border-[#182350] shadow-xs"
+                  ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
                   : "bg-[#EAF4FE] text-[#182350] border-[#AFD2FA] hover:bg-[#AFD2FA]/30"
               }`}
             >
@@ -474,7 +530,7 @@ export default function CargoLayout({
 
             <button
               onClick={handleReset}
-              className="px-3 py-2 rounded-xl text-xs font-mono text-[#737985] hover:text-[#182350] border border-[#E6E2D8] bg-white cursor-pointer hover:bg-[#FAFAF5]"
+              className="px-3 py-2 rounded-xl text-xs font-mono text-[#737985] hover:text-[#182350] border border-[#182350]/20 bg-white cursor-pointer hover:bg-[#FAFAF5]"
             >
               Reset
             </button>
@@ -483,12 +539,12 @@ export default function CargoLayout({
       </div>
 
       {/* ── Main Workspace Grid: Fully Visible 2D Vessel Schematic on Left/Center (8 cols) + Feature Controls as Side Navbar on Right (4 cols) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0 pb-4 overflow-hidden">
         {/* ── LEFT / CENTER MAIN STAGE: Fully Visible 2D Anatomy Diagrams (8 cols) ── */}
-        <div className="lg:col-span-8 space-y-4">
+        <div className="lg:col-span-8 flex flex-col min-h-0">
           {/* Card 1: 2D Top-Down & Dynamic Profile Anatomy Container */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#ECE8DF]">
+          <div className="p-5 sm:p-4 rounded-2xl bg-white border border-[#182350]/20 shadow-xs flex flex-col space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#182350]/20">
               <div>
                 <div className="text-[10px] font-mono font-bold text-[#737985] uppercase tracking-wider">
                   HYDRODYNAMIC HOLD LAYOUT &amp; BUNKER ARCHITECTURE
@@ -501,14 +557,14 @@ export default function CargoLayout({
                 <span className="text-[#737985]">
                   Balance: <strong style={{ color: balanceColor }}>{balanceText}</strong>
                 </span>
-                <span className="text-[#182350] font-bold bg-[#FAFAF5] px-2.5 py-0.5 rounded-full border border-[#E6E2D8]">
+                <span className="text-[#182350] font-bold bg-[#FAFAF5] px-2.5 py-0.5 rounded-full border border-[#182350]/20">
                   Trim: {trimAngle > 0 ? `+${trimAngle.toFixed(2)}° (Bow Down)` : `${trimAngle.toFixed(2)}° (Stern Down)`}
                 </span>
               </div>
             </div>
 
             {/* ── Top-Down 2D Anatomy View (Spacious & Prominent) ── */}
-            <div className="relative w-full py-7 px-4 bg-[#FAFAF5] rounded-xl border border-[#E6E2D8] flex items-center justify-center overflow-x-auto">
+            <div className="relative w-full py-1 px-4 bg-[#FAFAF5] rounded-xl border border-[#182350]/20 flex items-center justify-center overflow-x-auto shrink-0 h-40">
               <div className="absolute left-4 top-3 text-[10px] font-mono font-bold text-[#737985] tracking-widest uppercase">
                 ← STERN (AFT / BACK)
               </div>
@@ -523,7 +579,7 @@ export default function CargoLayout({
                 width="670"
                 height="160"
                 viewBox="0 0 670 160"
-                className="drop-shadow-xs"
+                className="drop-shadow-xs h-full w-auto max-w-full"
                 style={{
                   transform: `rotate(${listAngle}deg)`,
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -616,7 +672,7 @@ export default function CargoLayout({
                               fill="#AFD2FA"
                               clipPath={`url(#clip-bulk-${hold.id})`}
                             />
-                            <rect x={x + 4} y={y + 4} width={w - 8} height={h - 8} fill="none" stroke="#E6E2D8" strokeWidth="1" strokeDasharray="2 2" />
+                            <rect x={x + 4} y={y + 4} width={w - 8} height={h - 8} fill="none" stroke="#182350" strokeWidth="1" strokeDasharray="2 2" />
                             <text x={x + w / 2} y={y + 24} fill="#182350" fontSize="7.5" fontWeight="bold" textAnchor="middle">
                               {hold.name}
                             </text>
@@ -720,7 +776,7 @@ export default function CargoLayout({
             </div>
 
             {/* ── Side Profile Dynamic Pitch & Waterline View ── */}
-            <div className="relative w-full py-5 px-4 bg-[#FAFAF5] rounded-xl border border-[#E6E2D8] flex flex-col items-center justify-center">
+            <div className="relative w-full py-2 px-4 bg-[#FAFAF5] rounded-xl border border-[#182350]/20 flex flex-col items-center justify-center shrink-0">
               <div className="w-full flex justify-between px-2 mb-2 text-xs font-mono">
                 <span className="font-bold uppercase tracking-wider text-[#737985]">
                   SIDE PROFILE DYNAMIC PITCH &amp; WATERLINE (STERN ↔ BOW)
@@ -778,14 +834,56 @@ export default function CargoLayout({
                 </svg>
               </div>
             </div>
+
+            {/* Panel 2: Trim Stabilizer & Hydrodynamic Drag Impact */}
+            <div className="shrink-0 flex flex-col justify-center pt-2 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20 shrink-0">
+                <div className="flex items-center gap-2">
+                  <Gauge size={16} className="text-[#2E9B68]" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
+                    Trim Stabilizer
+                  </h3>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#2E9B68] bg-[#EAF7F0] px-2 py-0.5 rounded">
+                  Dynamic LCG
+                </span>
+              </div>
+
+              <div className="space-y-1.5 text-xs font-mono">
+                <div className="flex justify-between text-[#737985] items-center">
+                  <span>Target Trim Angle:</span>
+                  <div className="font-bold text-[#182350] flex items-center gap-1">
+                    <span>{trimAngle > 0 ? "+" : trimAngle === 0 ? "" : "-"}</span>
+                    <NumberFlow
+                      value={Math.abs(trimAngle)}
+                      format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                    />
+                    <span>° {trimAngle > 0 ? "(Bow)" : trimAngle < 0 ? "(Stern)" : "(Even)"}</span>
+                  </div>
+                </div>
+                
+                <TrimSliderWidget value={trimAngle} onChange={handleTrimSliderChange} />
+                
+                <div className="flex justify-between text-[10px] text-[#737985] font-bold tracking-wider">
+                  <span>STERN</span>
+                  <span>0.0°</span>
+                  <span>BOW</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-[#EAF4FE] border border-[#AFD2FA] text-xs font-mono text-[#182350] flex justify-between items-center">
+                <span>Voyage Fuel Burn:</span>
+                <strong>{currentConsumption} t/day ({fuelDelta})</strong>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* ── RIGHT-HAND FEATURE SIDE NAVBAR / CONTROL PANEL (4 cols) ── */}
-        <div className="lg:col-span-4 space-y-4">
+        <div className="lg:col-span-4 flex flex-col min-h-0 gap-3">
           {/* Panel 1: Hold-by-Hold Allocation Sliders */}
-          <div className="p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex flex-col flex-1 min-h-0 p-4 rounded-2xl bg-white border border-[#182350]/20 shadow-xs space-y-2">
+            <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20 shrink-0">
               <div className="flex items-center gap-2">
                 <Layers size={16} className="text-[#182350]" />
                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
@@ -797,9 +895,9 @@ export default function CargoLayout({
               </span>
             </div>
 
-            <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1">
+            <div className="space-y-2 overflow-y-auto pr-1 flex-1 min-h-0">
               {currentHolds.map((hold) => (
-                <div key={hold.id} className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-1.5">
+                <div key={hold.id} className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-1.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-xs text-[#182350]">{hold.name}</span>
@@ -819,59 +917,16 @@ export default function CargoLayout({
                     step={hold.capacity / 100}
                     value={hold.currentCargo}
                     onChange={(e) => handleHoldChange(hold.id, parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+                    className="w-full h-1.5 bg-[#182350] rounded-lg cursor-pointer accent-[#182350] border border-[#AFD2FA]"
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Panel 2: Trim Stabilizer & Hydrodynamic Drag Impact */}
-          <div className="p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
-              <div className="flex items-center gap-2">
-                <Gauge size={16} className="text-[#2E9B68]" />
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
-                  Trim Stabilizer
-                </h3>
-              </div>
-              <span className="text-[10px] font-mono font-bold text-[#2E9B68] bg-[#EAF7F0] px-2 py-0.5 rounded">
-                Dynamic LCG
-              </span>
-            </div>
-
-            <div className="space-y-1.5 text-xs font-mono">
-              <div className="flex justify-between text-[#737985]">
-                <span>Target Trim Angle:</span>
-                <span className="font-bold text-[#182350]">
-                  {trimAngle > 0 ? `+${trimAngle.toFixed(2)}° (Bow)` : `${trimAngle.toFixed(2)}° (Stern)`}
-                </span>
-              </div>
-              <input
-                type="range"
-                min="-3.0"
-                max="3.0"
-                step="0.05"
-                value={trimAngle}
-                onChange={(e) => handleTrimSliderChange(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#B9915E]"
-              />
-              <div className="flex justify-between text-[10px] text-[#737985]">
-                <span>-3.0° (Stern)</span>
-                <span>0.0° (Even Keel)</span>
-                <span>+3.0° (Bow)</span>
-              </div>
-            </div>
-
-            <div className="p-2.5 rounded-xl bg-[#EAF4FE] border border-[#AFD2FA] text-xs font-mono text-[#182350] flex justify-between items-center">
-              <span>Voyage Fuel Burn:</span>
-              <strong>{currentConsumption} t/day ({fuelDelta})</strong>
-            </div>
-          </div>
-
           {/* Panel 3: 6 Fuel Bunker Compartments & Auto-Balance */}
-          <div className="p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex flex-col flex-1 min-h-0 p-4 rounded-2xl bg-white border border-[#182350]/20 shadow-xs space-y-2">
+            <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20 shrink-0">
               <div className="flex items-center gap-2">
                 <Droplets size={16} className="text-[#2E9B68]" />
                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
@@ -883,9 +938,9 @@ export default function CargoLayout({
               </span>
             </div>
 
-            <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+            <div className="space-y-2 overflow-y-auto pr-1 flex-1 min-h-0">
               {currentFuelTanks.map((tank) => (
-                <div key={tank.id} className="p-2 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-xs font-mono space-y-1">
+                <div key={tank.id} className="p-2 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-xs font-mono space-y-1">
                   <div className="flex justify-between font-bold text-[#182350]">
                     <span className="truncate">{tank.name}</span>
                     <span className="text-[10.5px]">
@@ -896,7 +951,7 @@ export default function CargoLayout({
                     <select
                       value={tank.currentFuel}
                       onChange={(e) => handleFuelTypeChange(tank.id, e.target.value as FuelType)}
-                      className="text-[11px] px-2 py-0.5 rounded-lg bg-white border border-[#E6E2D8] text-[#182350]"
+                      className="text-[11px] px-2 py-0.5 rounded-lg bg-white border border-[#182350]/20 text-[#182350]"
                     >
                       <option value="LNG">LNG</option>
                       <option value="Methanol">Methanol</option>
@@ -910,20 +965,20 @@ export default function CargoLayout({
                       max={tank.capacityVolume}
                       value={tank.currentVolume}
                       onChange={(e) => handleFuelTankChange(tank.id, parseFloat(e.target.value))}
-                      className="flex-1 h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#2E9B68]"
+                      className="flex-1 h-1.5 bg-[#182350] rounded-lg cursor-pointer accent-[#2E9B68] border border-[#AFD2FA]"
                     />
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="flex gap-2 pt-1">
+            <div className="flex gap-2 pt-1 shrink-0">
               <input
                 type="number"
                 placeholder="Target Total Fuel Mass (t)"
                 value={targetTotalFuel}
                 onChange={(e) => setTargetTotalFuel(e.target.value)}
-                className="flex-1 px-3 py-1.5 rounded-xl text-xs font-mono border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                className="flex-1 px-3 py-1.5 rounded-xl text-xs font-mono border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
               />
               <button
                 onClick={handleDistributeMassEqually}
@@ -933,7 +988,8 @@ export default function CargoLayout({
               </button>
             </div>
           </div>
-        </div>
+
+                  </div>
       </div>
     </div>
   );

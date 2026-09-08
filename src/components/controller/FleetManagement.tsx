@@ -187,7 +187,7 @@ export default function FleetManagement({
 
   const statusColors: Record<OpStatus, { bg: string; text: string; border: string }> = {
     "In Voyage": { bg: "#EAF4FE", text: "#182350", border: "#AFD2FA" },
-    "At Berth": { bg: "#FAFAF5", text: "#737985", border: "#E6E2D8" },
+    "At Berth": { bg: "#FAFAF5", text: "#737985", border: "#182350" },
     "Under Maintenance": { bg: "#FEF3C7", text: "#92400E", border: "#FCD34D" },
     "Docking/Undocking": { bg: "#E0F2FE", text: "#0369A1", border: "#BAE6FD" },
     Idle: { bg: "#F3F4F6", text: "#4B5563", border: "#E5E7EB" },
@@ -196,7 +196,7 @@ export default function FleetManagement({
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto" style={{ background: "#FEFAEF" }}>
       {/* Top Header & Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#E6E2D8]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#182350]/20">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#EAF4FE] text-[#182350] border border-[#AFD2FA]">
@@ -221,37 +221,37 @@ export default function FleetManagement({
 
       {/* KPI Stats Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">Total Fleet</div>
           <div className="text-2xl font-black text-[#182350] mt-0.5">{stats.total}</div>
           <div className="text-[10px] text-[#737985] mt-0.5">Active registry</div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">In Voyage</div>
           <div className="text-2xl font-black text-[#182350] mt-0.5">{stats.inVoyage}</div>
           <div className="text-[10px] text-[#2E9B68] font-semibold mt-0.5">Underway at sea</div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">At Berth / Port</div>
           <div className="text-2xl font-black text-[#182350] mt-0.5">{stats.atBerth}</div>
           <div className="text-[10px] text-[#737985] mt-0.5">Anchored / Docked</div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">Maintenance</div>
           <div className="text-2xl font-black text-[#B9915E] mt-0.5">{stats.underMaintenance}</div>
           <div className="text-[10px] text-[#737985] mt-0.5">Dry-dock inspection</div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">Class-A Health</div>
           <div className="text-2xl font-black text-[#2E9B68] mt-0.5">{stats.excellentHealth}</div>
           <div className="text-[10px] text-[#2E9B68] font-semibold mt-0.5">Optimal condition</div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-[#E6E2D8] shadow-2xs">
+        <div className="p-3.5 rounded-xl bg-white border border-[#182350]/20 shadow-2xs">
           <div className="text-[10.5px] font-bold text-[#737985] uppercase tracking-wider">Avg Fuel Reserve</div>
           <div className="text-2xl font-black text-[#182350] mt-0.5">{stats.avgFuel}%</div>
           <div className="text-[10px] text-[#737985] mt-0.5">Fleetwide bunker</div>
@@ -259,7 +259,7 @@ export default function FleetManagement({
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="p-4 rounded-xl bg-white border border-[#E6E2D8] shadow-xs space-y-3">
+      <div className="p-4 rounded-xl bg-white border border-[#182350]/20 shadow-xs space-y-3">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Search Input */}
           <div className="relative flex-1">
@@ -268,7 +268,7 @@ export default function FleetManagement({
               placeholder="Search by vessel name, ID, IMO, captain, location, or type..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-lg text-xs font-sans border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none focus:border-[#AFD2FA]"
+              className="w-full pl-9 pr-4 py-2 rounded-lg text-xs font-sans border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none focus:border-[#AFD2FA]"
             />
             <span className="absolute left-3 top-2.5 text-[#737985] text-xs">🔍</span>
             {searchQuery && (
@@ -286,7 +286,7 @@ export default function FleetManagement({
             <select
               value={selectedHealth}
               onChange={(e) => setSelectedHealth(e.target.value)}
-              className="px-2.5 py-2 rounded-lg border border-[#E6E2D8] bg-white text-[#182350] outline-none cursor-pointer"
+              className="px-2.5 py-2 rounded-lg border border-[#182350]/20 bg-white text-[#182350] outline-none cursor-pointer"
             >
               <option value="ALL">All Health</option>
               <option value="Excellent">Excellent</option>
@@ -298,7 +298,7 @@ export default function FleetManagement({
             <select
               value={selectedFuel}
               onChange={(e) => setSelectedFuel(e.target.value)}
-              className="px-2.5 py-2 rounded-lg border border-[#E6E2D8] bg-white text-[#182350] outline-none cursor-pointer"
+              className="px-2.5 py-2 rounded-lg border border-[#182350]/20 bg-white text-[#182350] outline-none cursor-pointer"
             >
               <option value="ALL">All Fuel Types</option>
               <option value="LNG">LNG</option>
@@ -309,7 +309,7 @@ export default function FleetManagement({
             </select>
 
             {/* View Switcher */}
-            <div className="flex rounded-lg border border-[#E6E2D8] overflow-hidden bg-[#FAFAF5]">
+            <div className="flex rounded-lg border border-[#182350]/20 overflow-hidden bg-[#FAFAF5]">
               <button
                 onClick={() => setViewMode("table")}
                 className={`px-3 py-1.5 font-bold transition-all cursor-pointer ${
@@ -341,7 +341,7 @@ export default function FleetManagement({
               className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 selectedStatus === status
                   ? "bg-[#182350] text-white shadow-2xs"
-                  : "bg-[#FAFAF5] text-[#737985] hover:text-[#182350] border border-[#E6E2D8]"
+                  : "bg-[#FAFAF5] text-[#737985] hover:text-[#182350] border border-[#182350]/20"
               }`}
             >
               {status === "ALL" ? `All Vessels (${ships.length})` : status}
@@ -352,11 +352,11 @@ export default function FleetManagement({
 
       {/* Main Table / Grid View */}
       {viewMode === "table" ? (
-        <div className="rounded-xl overflow-hidden shadow-xs border border-[#E6E2D8] bg-white">
+        <div className="rounded-xl overflow-hidden shadow-xs border border-[#182350]/20 bg-white">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-sans">
               <thead>
-                <tr className="border-b border-[#E6E2D8] bg-[#F7F5EE] text-[#737985] font-semibold text-[11px] uppercase tracking-wider">
+                <tr className="border-b border-[#182350]/20 bg-[#F7F5EE] text-[#737985] font-semibold text-[11px] uppercase tracking-wider">
                   <th className="py-3 px-4">Vessel Name</th>
                   <th className="py-3 px-4">Model & Type</th>
                   <th className="py-3 px-4">Location</th>
@@ -369,7 +369,7 @@ export default function FleetManagement({
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#ECE8DF]">
+              <tbody className="divide-y divide-[#182350]">
                 {filteredShips.map((ship) => {
                   const hStyle = healthColors[ship.health];
                   const sStyle = statusColors[ship.status];
@@ -461,14 +461,14 @@ export default function FleetManagement({
                           </button>
                           <button
                             onClick={() => setEditingShip(ship)}
-                            className="px-2 py-1 rounded bg-[#FAFAF5] text-[#737985] hover:text-[#182350] border border-[#E6E2D8] text-[11px] cursor-pointer"
+                            className="px-2 py-1 rounded bg-[#FAFAF5] text-[#737985] hover:text-[#182350] border border-[#182350]/20 text-[11px] cursor-pointer"
                             title="Edit Vessel"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => handleDeleteShip(ship.id)}
-                            className="px-2 py-1 rounded bg-white text-[#C94B4B] hover:bg-[#FEE2E2] border border-[#E6E2D8] text-[11px] cursor-pointer"
+                            className="px-2 py-1 rounded bg-white text-[#C94B4B] hover:bg-[#FEE2E2] border border-[#182350]/20 text-[11px] cursor-pointer"
                             title="Decommission Ship"
                           >
                             ✕
@@ -492,7 +492,7 @@ export default function FleetManagement({
             return (
               <div
                 key={ship.id}
-                className="p-5 rounded-xl bg-white border border-[#E6E2D8] shadow-xs flex flex-col justify-between space-y-4 hover:border-[#AFD2FA] transition-all"
+                className="p-5 rounded-xl bg-white border border-[#182350]/20 shadow-xs flex flex-col justify-between space-y-4 hover:border-[#AFD2FA] transition-all"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-2">
@@ -512,7 +512,7 @@ export default function FleetManagement({
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] grid grid-cols-2 gap-2 text-xs font-sans mb-3">
+                  <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 grid grid-cols-2 gap-2 text-xs font-sans mb-3">
                     <div>
                       <span className="text-[#737985] text-[10px] uppercase font-bold block">Location</span>
                       <span className="font-medium text-[#182350] truncate block">{ship.location}</span>
@@ -541,7 +541,7 @@ export default function FleetManagement({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-2 border-t border-[#ECE8DF]">
+                <div className="flex items-center gap-2 pt-2 border-t border-[#182350]/20">
                   <button
                     onClick={() => setDrawerShip(ship)}
                     className="flex-1 py-2 rounded-lg bg-[#EAF4FE] hover:bg-[#AFD2FA] text-[#182350] font-bold text-xs cursor-pointer text-center"
@@ -550,13 +550,13 @@ export default function FleetManagement({
                   </button>
                   <button
                     onClick={() => setEditingShip(ship)}
-                    className="py-2 px-3 rounded-lg border border-[#E6E2D8] bg-white text-[#737985] hover:text-[#182350] text-xs cursor-pointer"
+                    className="py-2 px-3 rounded-lg border border-[#182350]/20 bg-white text-[#737985] hover:text-[#182350] text-xs cursor-pointer"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDeleteShip(ship.id)}
-                    className="py-2 px-3 rounded-lg border border-[#E6E2D8] bg-white text-[#C94B4B] hover:bg-[#FEE2E2] text-xs cursor-pointer"
+                    className="py-2 px-3 rounded-lg border border-[#182350]/20 bg-white text-[#C94B4B] hover:bg-[#FEE2E2] text-xs cursor-pointer"
                   >
                     ✕
                   </button>
@@ -571,7 +571,7 @@ export default function FleetManagement({
       {drawerShip && (
         <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-xs">
           <div className="w-full max-w-xl bg-white h-full shadow-2xl overflow-y-auto p-6 space-y-6 animate-in slide-in-from-right">
-            <div className="flex items-start justify-between pb-4 border-b border-[#ECE8DF]">
+            <div className="flex items-start justify-between pb-4 border-b border-[#182350]/20">
               <div>
                 <span className="text-[10px] font-mono font-bold text-[#B9915E] uppercase tracking-widest">
                   {drawerShip.id} · {drawerShip.imo}
@@ -581,7 +581,7 @@ export default function FleetManagement({
               </div>
               <button
                 onClick={() => setDrawerShip(null)}
-                className="w-8 h-8 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] text-[#737985] hover:text-[#182350] flex items-center justify-center font-bold cursor-pointer"
+                className="w-8 h-8 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 text-[#737985] hover:text-[#182350] flex items-center justify-center font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -592,7 +592,7 @@ export default function FleetManagement({
               <div className="text-xs font-bold uppercase tracking-wider text-[#182350]">
                 Identity & Specifications
               </div>
-              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] grid grid-cols-2 gap-3 text-xs font-sans">
+              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 grid grid-cols-2 gap-3 text-xs font-sans">
                 <div>
                   <span className="text-[#737985]">Flag / Registry:</span>
                   <div className="font-bold text-[#182350]">{drawerShip.flag}</div>
@@ -625,7 +625,7 @@ export default function FleetManagement({
               <div className="text-xs font-bold uppercase tracking-wider text-[#182350]">
                 Condition & Regulatory Status
               </div>
-              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] grid grid-cols-2 gap-3 text-xs font-sans">
+              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 grid grid-cols-2 gap-3 text-xs font-sans">
                 <div>
                   <span className="text-[#737985]">Health Status:</span>
                   <div className="font-bold text-[#182350]">{drawerShip.health}</div>
@@ -656,7 +656,7 @@ export default function FleetManagement({
               <div className="text-xs font-bold uppercase tracking-wider text-[#182350]">
                 Powertrain & Fuel Compatibility
               </div>
-              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-2 text-xs font-sans">
+              <div className="p-4 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-2 text-xs font-sans">
                 <div className="flex justify-between">
                   <span className="text-[#737985]">Engine Type:</span>
                   <span className="font-bold text-[#182350]">{drawerShip.engineType}</span>
@@ -665,11 +665,11 @@ export default function FleetManagement({
                   <span className="text-[#737985]">Engine Power:</span>
                   <span className="font-mono font-bold text-[#182350]">{drawerShip.enginePower}</span>
                 </div>
-                <div className="flex justify-between items-center pt-2 border-t border-[#ECE8DF]">
+                <div className="flex justify-between items-center pt-2 border-t border-[#182350]/20">
                   <span className="text-[#737985]">Compatible Dual Fuels:</span>
                   <div className="flex gap-1">
                     {drawerShip.fuelCompatibility.map((f) => (
-                      <span key={f} className="px-2 py-0.5 rounded bg-white border border-[#E6E2D8] text-[10px] font-mono font-bold text-[#182350]">
+                      <span key={f} className="px-2 py-0.5 rounded bg-white border border-[#182350]/20 text-[10px] font-mono font-bold text-[#182350]">
                         {f}
                       </span>
                     ))}
@@ -685,7 +685,7 @@ export default function FleetManagement({
               </div>
               <div className="space-y-2">
                 {drawerShip.statusHistory.map((h, i) => (
-                  <div key={i} className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] flex justify-between text-xs font-sans">
+                  <div key={i} className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex justify-between text-xs font-sans">
                     <span className="text-[#182350] font-medium">{h.event}</span>
                     <span className="text-[#737985]">{h.time}</span>
                   </div>
@@ -693,7 +693,7 @@ export default function FleetManagement({
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#ECE8DF] flex gap-3">
+            <div className="pt-4 border-t border-[#182350]/20 flex gap-3">
               <button
                 onClick={() => {
                   if (onSelectShipForLayout) onSelectShipForLayout(drawerShip.id);
@@ -711,8 +711,8 @@ export default function FleetManagement({
       {/* Add Ship Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#E6E2D8] p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#182350]/20 p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <h2 className="text-base font-extrabold text-[#182350]">Register New Fleet Vessel</h2>
               <button
                 onClick={() => setIsAddModalOpen(false)}
@@ -734,7 +734,7 @@ export default function FleetManagement({
                     placeholder="e.g. MV Pacific Voyager"
                     value={newShipForm.name}
                     onChange={(e) => setNewShipForm({ ...newShipForm, name: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   />
                 </div>
 
@@ -745,7 +745,7 @@ export default function FleetManagement({
                   <select
                     value={newShipForm.model}
                     onChange={(e) => handleModelChange(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   >
                     {VESSEL_MODELS.map((m) => (
                       <option key={m} value={m}>
@@ -763,7 +763,7 @@ export default function FleetManagement({
                     type="text"
                     value={newShipForm.vesselType}
                     onChange={(e) => setNewShipForm({ ...newShipForm, vesselType: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   />
                 </div>
 
@@ -775,7 +775,7 @@ export default function FleetManagement({
                     type="text"
                     value={newShipForm.captain}
                     onChange={(e) => setNewShipForm({ ...newShipForm, captain: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   />
                 </div>
 
@@ -786,7 +786,7 @@ export default function FleetManagement({
                   <select
                     value={newShipForm.fuelType}
                     onChange={(e) => setNewShipForm({ ...newShipForm, fuelType: e.target.value as FuelType })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   >
                     <option value="LNG">LNG</option>
                     <option value="Methanol">Methanol</option>
@@ -804,7 +804,7 @@ export default function FleetManagement({
                     type="text"
                     value={newShipForm.capacity}
                     onChange={(e) => setNewShipForm({ ...newShipForm, capacity: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   />
                 </div>
 
@@ -816,7 +816,7 @@ export default function FleetManagement({
                     type="text"
                     value={newShipForm.location}
                     onChange={(e) => setNewShipForm({ ...newShipForm, location: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   />
                 </div>
 
@@ -827,7 +827,7 @@ export default function FleetManagement({
                   <select
                     value={newShipForm.status}
                     onChange={(e) => setNewShipForm({ ...newShipForm, status: e.target.value as OpStatus })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   >
                     <option value="At Berth">At Berth</option>
                     <option value="In Voyage">In Voyage</option>
@@ -837,11 +837,11 @@ export default function FleetManagement({
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-[#ECE8DF] flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#182350]/20 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 rounded-lg border border-[#E6E2D8] bg-white text-[#737985] hover:text-[#182350] font-bold cursor-pointer"
+                  className="px-4 py-2 rounded-lg border border-[#182350]/20 bg-white text-[#737985] hover:text-[#182350] font-bold cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -860,8 +860,8 @@ export default function FleetManagement({
       {/* Edit Ship Modal */}
       {editingShip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-          <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#E6E2D8] p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#182350]/20 p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <h2 className="text-base font-extrabold text-[#182350]">Edit Vessel Details: {editingShip.name}</h2>
               <button
                 onClick={() => setEditingShip(null)}
@@ -878,7 +878,7 @@ export default function FleetManagement({
                   type="text"
                   value={editingShip.name}
                   onChange={(e) => setEditingShip({ ...editingShip, name: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                  className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                 />
               </div>
 
@@ -888,7 +888,7 @@ export default function FleetManagement({
                   type="text"
                   value={editingShip.captain}
                   onChange={(e) => setEditingShip({ ...editingShip, captain: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                  className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                 />
               </div>
 
@@ -898,7 +898,7 @@ export default function FleetManagement({
                   type="text"
                   value={editingShip.location}
                   onChange={(e) => setEditingShip({ ...editingShip, location: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                  className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                 />
               </div>
 
@@ -908,7 +908,7 @@ export default function FleetManagement({
                   <select
                     value={editingShip.status}
                     onChange={(e) => setEditingShip({ ...editingShip, status: e.target.value as OpStatus })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   >
                     <option value="In Voyage">In Voyage</option>
                     <option value="At Berth">At Berth</option>
@@ -922,7 +922,7 @@ export default function FleetManagement({
                   <select
                     value={editingShip.health}
                     onChange={(e) => setEditingShip({ ...editingShip, health: e.target.value as HealthStatus })}
-                    className="w-full px-3 py-2 rounded-lg border border-[#E6E2D8] bg-[#FAFAF5] text-[#182350] outline-none"
+                    className="w-full px-3 py-2 rounded-lg border border-[#182350]/20 bg-[#FAFAF5] text-[#182350] outline-none"
                   >
                     <option value="Excellent">Excellent</option>
                     <option value="Good">Good</option>
@@ -932,11 +932,11 @@ export default function FleetManagement({
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#ECE8DF] flex justify-end gap-3">
+              <div className="pt-3 border-t border-[#182350]/20 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setEditingShip(null)}
-                  className="px-4 py-2 rounded-lg border border-[#E6E2D8] bg-white text-[#737985] hover:text-[#182350] font-bold cursor-pointer"
+                  className="px-4 py-2 rounded-lg border border-[#182350]/20 bg-white text-[#737985] hover:text-[#182350] font-bold cursor-pointer"
                 >
                   Cancel
                 </button>

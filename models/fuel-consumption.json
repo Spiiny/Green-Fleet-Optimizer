@@ -1,0 +1,55 @@
+{
+  "model_name": "Deep LSTM Plant Demand Forecaster (Production)",
+  "version": "20251205-000816",
+  "performance": {
+    "train": {
+      "mae_tons": 8490.184372231506,
+      "rmse_tons": 8674.027292580779,
+      "r2_score": -17.459861265631385,
+      "mape_percent": 96.16224297041003
+    },
+    "val": {
+      "mae_tons": 8755.196378754406,
+      "rmse_tons": 8899.119412837632,
+      "r2_score": -23.60651693678982,
+      "mape_percent": 95.5875695930942
+    },
+    "test": {
+      "mae_tons": 8273.494465307987,
+      "rmse_tons": 8461.775340836244,
+      "r2_score": -16.728379746781982,
+      "mape_percent": 96.33713421272424
+    }
+  },
+  "features": [
+    "past_30d_avg",
+    "past_7d_avg",
+    "yesterday_consumption",
+    "production_index",
+    "temperature",
+    "weekday",
+    "grade_numeric",
+    "demand_trend_ratio",
+    "recent_momentum",
+    "production_deviation",
+    "is_weekend",
+    "is_monday",
+    "is_friday",
+    "season_0",
+    "season_1",
+    "season_2",
+    "season_3",
+    "prod_temp_interaction",
+    "consumption_volatility",
+    "yesterday_normalized",
+    "ma_crossover_strength",
+    "demand_per_production",
+    "high_production",
+    "heating_season",
+    "cooling_season",
+    "temp_squared",
+    "production_squared",
+    "demand_acceleration",
+    "long_term_deviation"
+  ]
+}

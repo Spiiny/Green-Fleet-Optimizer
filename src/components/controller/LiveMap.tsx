@@ -1107,7 +1107,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
   return (
     <div className="space-y-3 max-w-[1700px] mx-auto select-none pb-6" style={{ background: "#FEFAEF" }}>
       {/* ── Top Tactical Header Bar ── */}
-      <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs flex flex-wrap items-center justify-between gap-3">
+      <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#182350]/20 shadow-xs flex flex-wrap items-center justify-between gap-3">
         {/* Left: Vessel Identity & Live AIS SOG */}
         <div className="flex items-center gap-3">
           <div
@@ -1142,7 +1142,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         {/* Center/Right: Floating Overlay Triggers & Mode Selectors */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Mode Selectors */}
-          <div className="flex rounded-xl border border-[#E6E2D8] overflow-hidden bg-[#FAFAF5] text-xs font-mono font-bold">
+          <div className="flex rounded-xl border border-[#182350]/20 overflow-hidden bg-[#FAFAF5] text-xs font-mono font-bold">
             <button
               onClick={() => setMapMode("normal")}
               className={`px-3 py-1.5 transition-all cursor-pointer ${
@@ -1174,7 +1174,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             onClick={() => toggleDrawer("routes")}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
               activeDrawer === "routes"
-                ? "bg-[#182350] text-white border-[#182350] shadow-xs"
+                ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
                 : "bg-[#EAF4FE] text-[#182350] border-[#AFD2FA] hover:bg-[#AFD2FA]/30"
             }`}
           >
@@ -1186,8 +1186,8 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             onClick={() => toggleDrawer("bunker")}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
               activeDrawer === "bunker"
-                ? "bg-[#182350] text-white border-[#182350] shadow-xs"
-                : "bg-[#FAFAF5] text-[#182350] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
+                : "bg-[#FAFAF5] text-[#182350] border-[#182350]/20 hover:border-[#AFD2FA]"
             }`}
           >
             <span>⛽</span>
@@ -1198,8 +1198,8 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             onClick={() => toggleDrawer("ports")}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
               activeDrawer === "ports"
-                ? "bg-[#182350] text-white border-[#182350] shadow-xs"
-                : "bg-[#FAFAF5] text-[#182350] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
+                : "bg-[#FAFAF5] text-[#182350] border-[#182350]/20 hover:border-[#AFD2FA]"
             }`}
           >
             <span>⚓</span>
@@ -1210,8 +1210,8 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             onClick={() => toggleDrawer("speed")}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
               activeDrawer === "speed"
-                ? "bg-[#182350] text-white border-[#182350] shadow-xs"
-                : "bg-[#FAFAF5] text-[#182350] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
+                : "bg-[#FAFAF5] text-[#182350] border-[#182350]/20 hover:border-[#AFD2FA]"
             }`}
           >
             <span>⚙</span>
@@ -1220,7 +1220,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
 
           <button
             onClick={resetView}
-            className="p-2 rounded-xl text-xs font-mono text-[#737985] hover:text-[#182350] border border-[#E6E2D8] bg-white cursor-pointer hover:bg-[#FAFAF5]"
+            className="p-2 rounded-xl text-xs font-mono text-[#737985] hover:text-[#182350] border border-[#182350]/20 bg-white cursor-pointer hover:bg-[#FAFAF5]"
             title="Reset Pan & Zoom"
           >
             Reset
@@ -1230,7 +1230,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
 
       {/* ── 100% Full-Bleed Map Canvas Container ── */}
       <div
-        className="w-full rounded-2xl overflow-hidden relative shadow-sm border border-[#E6E2D8]"
+        className="w-full rounded-2xl overflow-hidden relative shadow-sm border border-[#182350]/20"
         style={{
           height: "calc(100vh - 165px)",
           minHeight: 650,
@@ -1247,21 +1247,21 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         <div className="absolute top-3 right-3 flex flex-col gap-1.5 z-20 shadow-xs">
           <button
             onClick={() => setZoom((z) => Math.min(10, z * 1.25))}
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-base font-bold bg-white text-[#182350] border border-[#E6E2D8] shadow-xs hover:bg-[#F7F5EE] active:bg-[#EAF4FE] transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-base font-bold bg-white text-[#182350] border border-[#182350]/20 shadow-xs hover:bg-[#F7F5EE] active:bg-[#EAF4FE] transition-colors cursor-pointer"
             title="Zoom In"
           >
             +
           </button>
           <button
             onClick={() => setZoom((z) => Math.max(0.6, z * 0.8))}
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-base font-bold bg-white text-[#182350] border border-[#E6E2D8] shadow-xs hover:bg-[#F7F5EE] active:bg-[#EAF4FE] transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-base font-bold bg-white text-[#182350] border border-[#182350]/20 shadow-xs hover:bg-[#F7F5EE] active:bg-[#EAF4FE] transition-colors cursor-pointer"
             title="Zoom Out"
           >
             −
           </button>
           <button
             onClick={resetView}
-            className="px-2 py-1 rounded-xl text-[10px] font-mono font-bold uppercase tracking-wider bg-white text-[#737985] hover:text-[#182350] border border-[#E6E2D8] shadow-xs hover:bg-[#F7F5EE] transition-colors cursor-pointer"
+            className="px-2 py-1 rounded-xl text-[10px] font-mono font-bold uppercase tracking-wider bg-white text-[#737985] hover:text-[#182350] border border-[#182350]/20 shadow-xs hover:bg-[#F7F5EE] transition-colors cursor-pointer"
             title="Reset Map View"
           >
             Reset
@@ -1269,12 +1269,12 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         </div>
 
         {/* Standard North-Up Compass */}
-        <div className="absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-md p-2 rounded-xl border border-[#E6E2D8] shadow-xs text-center select-none pointer-events-none">
+        <div className="absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-md p-2 rounded-xl border border-[#182350]/20 shadow-xs text-center select-none pointer-events-none">
           <div className="text-[10px] font-black text-rose-600 tracking-wider">N</div>
           <div className="text-[9px] font-bold text-[#737985] leading-none">↑</div>
           <div className="flex items-center justify-center gap-1.5 text-[8px] font-bold text-[#182350] my-0.5">
             <span>W</span>
-            <span className="text-[9px] text-[#E6E2D8]">┼</span>
+            <span className="text-[9px] text-[#182350]">┼</span>
             <span>E</span>
           </div>
           <div className="text-[9px] font-bold text-[#737985] leading-none">↓</div>
@@ -1282,7 +1282,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         </div>
 
         {/* ── Compact Integrated Route Legend ── */}
-        <div className="absolute top-3 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#E6E2D8] shadow-xs flex items-center gap-3 text-xs font-mono select-none">
+        <div className="absolute top-3 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#182350]/20 shadow-xs flex items-center gap-3 text-xs font-mono select-none">
           <div
             onClick={() => setSelectedRouteId("rec")}
             className={`flex items-center gap-1.5 cursor-pointer transition-all ${
@@ -1294,7 +1294,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
               ● Recommended
             </span>
           </div>
-          <span className="text-[#E6E2D8]">|</span>
+          <span className="text-[#182350]">|</span>
           <div
             onClick={() => setSelectedRouteId("alt1")}
             className={`flex items-center gap-1.5 cursor-pointer transition-all ${
@@ -1306,7 +1306,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
               ┄ Alternative 1
             </span>
           </div>
-          <span className="text-[#E6E2D8]">|</span>
+          <span className="text-[#182350]">|</span>
           <div
             onClick={() => setSelectedRouteId("alt2")}
             className={`flex items-center gap-1.5 cursor-pointer transition-all ${
@@ -1321,7 +1321,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         </div>
 
         {/* Floating Quick Dock Icon Strip on Right Edge */}
-        <div className="absolute top-28 right-3 z-30 flex flex-col gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-2xl border border-[#E6E2D8] shadow-md">
+        <div className="absolute top-28 right-3 z-30 flex flex-col gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-2xl border border-[#182350]/20 shadow-md">
           <button
             onClick={() => toggleDrawer("routes")}
             className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-all cursor-pointer ${
@@ -1381,13 +1381,13 @@ export default function LiveMap({ vessel: propVessel }: Props) {
 
         {/* Mode-Specific Top Floating HUD Overlays */}
         {mapMode === "fuel_checker" && (
-          <div className="absolute top-12 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#E6E2D8] shadow-sm flex items-center gap-3 text-xs select-none animate-in fade-in">
+          <div className="absolute top-12 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#182350]/20 shadow-sm flex items-center gap-3 text-xs select-none animate-in fade-in">
             <div className="flex items-center gap-1.5 font-sans">
               <span className="w-2.5 h-2.5 rounded-full bg-[#182350] animate-pulse" />
               <span className="font-bold text-[#737985] uppercase text-[10px] font-mono">Fuel Range:</span>
               <span className="font-mono font-extrabold text-[#182350]">{estimatedRangeNM.toLocaleString()} NM</span>
             </div>
-            <span className="text-[#E6E2D8]">|</span>
+            <span className="text-[#182350]">|</span>
             <div className="text-[10.5px] text-[#737985] font-mono">
               Dark track = reachable with {fuelPct}% ({currentFuelTonnes} t)
             </div>
@@ -1395,13 +1395,13 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         )}
 
         {mapMode === "best_bunker" && recommendedBunkerEvaluation && (
-          <div className="absolute top-12 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#E6E2D8] shadow-sm flex items-center gap-3 text-xs select-none animate-in fade-in">
+          <div className="absolute top-12 left-20 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#182350]/20 shadow-sm flex items-center gap-3 text-xs select-none animate-in fade-in">
             <div className="flex items-center gap-1.5 font-sans">
               <span className="text-xs text-[#B9915E]">★</span>
               <span className="font-bold text-[#737985] uppercase text-[10px] font-mono">Optimal Bunker:</span>
               <span className="font-bold text-[#182350]">{recommendedBunkerEvaluation.port.name}</span>
             </div>
-            <span className="text-[#E6E2D8]">|</span>
+            <span className="text-[#182350]">|</span>
             <div className="text-[10.5px] text-[#B9915E] font-mono font-bold">
               ${recommendedBunkerEvaluation.pricePerTonne}/t · {recommendedBunkerEvaluation.availableTonnes.toLocaleString()} t supply
             </div>
@@ -1409,23 +1409,23 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         )}
 
         {/* Floating Telemetry Chip in Bottom Left */}
-        <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-[#E6E2D8] shadow-lg max-w-sm hidden sm:block">
-          <div className="flex items-center justify-between gap-3 pb-1.5 mb-1.5 border-b border-[#ECE8DF]">
+        <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-[#182350]/20 shadow-lg max-w-sm hidden sm:block">
+          <div className="flex items-center justify-between gap-3 pb-1.5 mb-1.5 border-b border-[#182350]/20">
             <span className="text-xs font-black text-[#182350] font-sans">{vessel.name}</span>
             <span className="text-[10px] font-mono font-bold text-[#2E9B68] bg-[#EAF7F0] px-2 py-0.5 rounded-full border border-[#2E9B68]/30">
               AIS ONLINE
             </span>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
-            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
               <div className="text-[9px] text-[#737985] uppercase">Speed</div>
               <div className="font-extrabold text-[#182350]">{vesselSpeed.toFixed(1)} kn</div>
             </div>
-            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
               <div className="text-[9px] text-[#737985] uppercase">Fuel DWT</div>
               <div className="font-extrabold text-[#182350]">{fuelPct}%</div>
             </div>
-            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+            <div className="p-1.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
               <div className="text-[9px] text-[#737985] uppercase">Distance</div>
               <div className="font-extrabold text-[#B9915E]">{activeSelectedRoute?.distanceNM} NM</div>
             </div>
@@ -1488,7 +1488,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                   key={geo.id || `geo-${idx}`}
                   d={pathGen(geo) ?? ""}
                   fill="#F5F5F0"
-                  stroke="#E6E2D8"
+                  stroke="#182350"
                   strokeWidth={0.7}
                 />
               ))}
@@ -1671,7 +1671,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                     height={20}
                     rx={6}
                     fill={isHovered || isSelected ? "#182350" : "#FFFFFF"}
-                    stroke={isHovered || isSelected ? "#AFD2FA" : "#E6E2D8"}
+                    stroke={isHovered || isSelected ? "#AFD2FA" : "#182350"}
                     strokeWidth={1.2}
                     filter="url(#tag-shadow)"
                     className="transition-all duration-150 pointer-events-none"
@@ -1724,7 +1724,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
           >
             <div className="w-[310px] sm:w-[330px] rounded-2xl bg-white/95 backdrop-blur-xl border border-[#AFD2FA] shadow-2xl p-3.5 text-[#182350] relative">
               {/* Header: Port identity & Country & ETA */}
-              <div className="flex items-start justify-between pb-2 mb-2 border-b border-[#ECE8DF]">
+              <div className="flex items-start justify-between pb-2 mb-2 border-b border-[#182350]/20">
                 <div>
                   <div className="flex items-center gap-1.5">
                     <span className="text-xs">⚓</span>
@@ -1766,7 +1766,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                       className={`flex items-center justify-between px-2 py-1 rounded-lg text-xs transition-all ${
                         isVesselFuel
                           ? "bg-[#EAF4FE] border border-[#AFD2FA] font-bold text-[#182350]"
-                          : "bg-[#FAFAF5] border border-[#E6E2D8]/60 text-[#4A5260]"
+                          : "bg-[#FAFAF5] border border-[#182350]/60 text-[#4A5260]"
                       }`}
                     >
                       <div className="flex items-center gap-1.5">
@@ -1788,7 +1788,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
               </div>
 
               {/* Shore Power / Grid Power Available Status */}
-              <div className="pt-2 border-t border-[#ECE8DF] flex items-center justify-between text-xs font-mono">
+              <div className="pt-2 border-t border-[#182350]/20 flex items-center justify-between text-xs font-mono">
                 <div>
                   <div className="text-[9px] text-[#737985] uppercase font-bold tracking-wider">
                     Shore Grid Power (OPS)
@@ -1816,7 +1816,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
         {activeDrawer && (
           <div className="absolute top-3 right-14 bottom-3 w-[390px] max-w-[calc(100%-80px)] z-40 bg-white/95 backdrop-blur-xl border border-[#AFD2FA]/80 rounded-2xl shadow-2xl p-5 overflow-y-auto animate-in slide-in-from-right duration-200 text-[#182350]">
             {/* Drawer Header with Title and Close Button */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#ECE8DF]">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <span className="text-base font-black text-[#182350] font-sans">
                   {activeDrawer === "routes" && "🧭 ROUTE CORRIDORS"}
@@ -1828,7 +1828,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
               </div>
               <button
                 onClick={() => setActiveDrawer(null)}
-                className="w-7 h-7 rounded-xl flex items-center justify-center text-[#737985] hover:text-[#182350] bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#E6E2D8] text-xs font-bold cursor-pointer transition-all"
+                className="w-7 h-7 rounded-xl flex items-center justify-center text-[#737985] hover:text-[#182350] bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#182350]/20 text-xs font-bold cursor-pointer transition-all"
               >
                 ✕
               </button>
@@ -1850,7 +1850,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                         className={`p-3 rounded-xl border transition-all cursor-pointer space-y-2 ${
                           isSelected
                             ? "bg-[#EAF4FE] border-[#AFD2FA] shadow-xs ring-1 ring-[#AFD2FA]"
-                            : "bg-[#FAFAF5] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                            : "bg-[#FAFAF5] border-[#182350]/20 hover:border-[#AFD2FA]"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -1867,19 +1867,19 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                         </div>
                         <div className="text-[10px] text-[#737985] font-mono">{r.description}</div>
                         <div className="grid grid-cols-4 gap-1.5 text-center font-mono text-[10px]">
-                          <div className="p-1.5 rounded-lg bg-white border border-[#E6E2D8]">
+                          <div className="p-1.5 rounded-lg bg-white border border-[#182350]/20">
                             <div className="text-[8.5px] text-[#737985]">ETA</div>
                             <div className="font-bold text-[#182350]">{r.eta.split("·")[1]?.trim() || "18:00"}</div>
                           </div>
-                          <div className="p-1.5 rounded-lg bg-white border border-[#E6E2D8]">
+                          <div className="p-1.5 rounded-lg bg-white border border-[#182350]/20">
                             <div className="text-[8.5px] text-[#737985]">Dist</div>
                             <div className="font-bold text-[#182350]">{r.distanceNM} NM</div>
                           </div>
-                          <div className="p-1.5 rounded-lg bg-white border border-[#E6E2D8]">
+                          <div className="p-1.5 rounded-lg bg-white border border-[#182350]/20">
                             <div className="text-[8.5px] text-[#737985]">Fuel</div>
                             <div className="font-bold text-[#182350]">{r.fuelTonnes} t</div>
                           </div>
-                          <div className="p-1.5 rounded-lg bg-white border border-[#E6E2D8]">
+                          <div className="p-1.5 rounded-lg bg-white border border-[#182350]/20">
                             <div className="text-[8.5px] text-[#737985]">Cost</div>
                             <div className="font-bold text-[#B9915E]">{r.costFormatted}</div>
                           </div>
@@ -1895,7 +1895,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             {activeDrawer === "bunker" && (
               <div className="space-y-3.5">
                 <div className="grid grid-cols-2 gap-2 font-mono">
-                  <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+                  <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
                     <div className="text-[10px] text-[#737985] uppercase">Current Fuel</div>
                     <div className="text-sm font-bold text-[#182350]">{currentFuelTonnes.toLocaleString()} t</div>
                     <div className="text-[9px] text-[#737985]">Capacity: {fuelCapacity.toLocaleString()} t</div>
@@ -1919,7 +1919,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                     step={1}
                     value={fuelPct}
                     onChange={(e) => setFuelPct(Number(e.target.value))}
-                    className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+                    className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#182350]"
                   />
                   <div className="flex justify-between text-[9.5px] text-[#737985] pt-0.5">
                     <button onClick={() => setFuelPct(25)} className="hover:text-[#182350] cursor-pointer">25% (Low)</button>
@@ -1929,7 +1929,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-[#ECE8DF]">
+                <div className="pt-2 border-t border-[#182350]/20">
                   <div className="text-xs font-bold text-[#182350] uppercase font-mono mb-2">
                     Multi-Criteria Bunker Ranking:
                   </div>
@@ -1940,7 +1940,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                         className={`p-2.5 rounded-xl border text-xs font-mono space-y-1 ${
                           b.isRecommended
                             ? "bg-[#EAF4FE] border-[#AFD2FA] shadow-2xs"
-                            : "bg-[#FAFAF5] border-[#E6E2D8]"
+                            : "bg-[#FAFAF5] border-[#182350]/20"
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -1972,7 +1972,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                   <div
                     key={p.id}
                     onClick={() => setSelectedPort(p)}
-                    className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer space-y-1.5"
+                    className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer space-y-1.5"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -2007,7 +2007,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                     step={0.5}
                     value={vesselSpeed}
                     onChange={(e) => setVesselSpeed(Number(e.target.value))}
-                    className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+                    className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#182350]"
                   />
                   <div className="flex justify-between text-[9.5px] text-[#737985]">
                     <span>10.0 kn (Eco)</span>
@@ -2016,7 +2016,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-2 text-xs">
+                <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-2 text-xs">
                   <div className="font-bold text-[#182350] uppercase">Simulate Port Congestion / Delay:</div>
                   <button
                     onClick={() =>
@@ -2027,7 +2027,7 @@ export default function LiveMap({ vessel: propVessel }: Props) {
                     className={`w-full py-2 rounded-xl text-xs font-bold uppercase transition-all cursor-pointer ${
                       simulatedDelayPortId
                         ? "bg-[#182350] text-white shadow-xs"
-                        : "bg-white border border-[#E6E2D8] text-[#737985] hover:text-[#182350]"
+                        : "bg-white border border-[#182350]/20 text-[#737985] hover:text-[#182350]"
                     }`}
                   >
                     {simulatedDelayPortId ? "⚡ +12h Delay Active (Congestion)" : "Simulate +12h Port Delay"}
@@ -2050,23 +2050,23 @@ export default function LiveMap({ vessel: propVessel }: Props) {
             {/* TAB CONTENT 5: VOYAGE TELEMETRY */}
             {activeDrawer === "voyage" && (
               <div className="space-y-2 text-xs font-mono">
-                <div className="flex justify-between py-1.5 border-b border-[#ECE8DF]">
+                <div className="flex justify-between py-1.5 border-b border-[#182350]/20">
                   <span className="text-[#737985]">Vessel</span>
                   <span className="font-bold text-[#182350]">{vessel.name}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#ECE8DF]">
+                <div className="flex justify-between py-1.5 border-b border-[#182350]/20">
                   <span className="text-[#737985]">IMO Number</span>
                   <span className="font-bold text-[#182350]">{vessel.imo}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#ECE8DF]">
+                <div className="flex justify-between py-1.5 border-b border-[#182350]/20">
                   <span className="text-[#737985]">Active Corridor</span>
                   <span className="font-bold text-[#182350] truncate max-w-[180px]">{activeSelectedRoute?.name}</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#ECE8DF]">
+                <div className="flex justify-between py-1.5 border-b border-[#182350]/20">
                   <span className="text-[#737985]">Transit Speed</span>
                   <span className="font-bold text-[#182350]">{vesselSpeed.toFixed(1)} kn</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#ECE8DF]">
+                <div className="flex justify-between py-1.5 border-b border-[#182350]/20">
                   <span className="text-[#737985]">Remaining Distance</span>
                   <span className="font-bold text-[#182350]">{activeSelectedRoute?.distanceNM} NM</span>
                 </div>

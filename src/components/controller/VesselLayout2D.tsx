@@ -175,7 +175,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
 
       {/* ── Top Header Banner with Real-time Balance & Sliders in Right Top ── */}
       <div
-        className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#E6E2D8] transition-all"
+        className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#182350]/20 transition-all"
         style={{ background: "#FFFFFF" }}
       >
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
@@ -207,7 +207,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
           </div>
 
           {/* ── Right Top Sliders: Cargo, Fuel Bunkers & Trim Angle ── */}
-          <div className="flex flex-wrap items-center gap-3 bg-[#FAFAF5] p-3 rounded-2xl border border-[#E6E2D8]">
+          <div className="flex flex-wrap items-center gap-3 bg-[#FAFAF5] p-3 rounded-2xl border border-[#182350]/20">
             {/* Cargo Load Slider */}
             <div className="w-36 sm:w-44 space-y-1">
               <div className="flex justify-between text-[11px] font-mono">
@@ -221,7 +221,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                 step={1}
                 value={cargoLoadRatio}
                 onChange={(e) => handleGlobalCargoSliderChange(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#182350]"
               />
             </div>
 
@@ -238,7 +238,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                 step={1}
                 value={fuelBunkersRatio}
                 onChange={(e) => handleFuelSliderChange(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#2E9B68]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#2E9B68]"
               />
             </div>
 
@@ -257,14 +257,14 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                 step={0.05}
                 value={trimAngleOverride}
                 onChange={(e) => setTrimAngleOverride(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#B9915E]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#B9915E]"
               />
             </div>
 
             {/* Quick Level Keel Reset */}
             <button
               onClick={() => applyPreset("eco")}
-              className="p-2 rounded-xl bg-white hover:bg-[#EAF4FE] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer shadow-2xs"
+              className="p-2 rounded-xl bg-white hover:bg-[#EAF4FE] text-[#182350] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer shadow-2xs"
               title="Reset to Optimal Eco-Trim (+0.59°)"
             >
               <RotateCcw size={14} />
@@ -279,11 +279,11 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
         <div className="lg:col-span-8 space-y-4">
           {/* 1. TOP-DOWN HULL & HOLD SCHEMATIC */}
           <div
-            className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#E6E2D8] transition-all space-y-3"
+            className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#182350]/20 transition-all space-y-3"
             style={{ background: "#FFFFFF" }}
           >
             {/* Compass & Orientation Legend */}
-            <div className="flex items-center justify-between text-xs font-mono font-bold text-[#737985] pb-2 border-b border-[#ECE8DF]">
+            <div className="flex items-center justify-between text-xs font-mono font-bold text-[#737985] pb-2 border-b border-[#182350]/20">
               <span>← STERN (AFT / BACK)</span>
               <span className="text-[#182350]">PORT ↕ STARBOARD</span>
               <span>BOW (FORE / FRONT) →</span>
@@ -453,10 +453,10 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
 
           {/* 2. SIDE PROFILE DYNAMIC PITCH & WATERLINE SCHEMATIC */}
           <div
-            className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#E6E2D8] transition-all space-y-3"
+            className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#182350]/20 transition-all space-y-3"
             style={{ background: "#FFFFFF" }}
           >
-            <div className="flex items-center justify-between text-xs font-mono font-bold pb-2 border-b border-[#ECE8DF]">
+            <div className="flex items-center justify-between text-xs font-mono font-bold pb-2 border-b border-[#182350]/20">
               <span className="text-[#182350]">SIDE PROFILE DYNAMIC PITCH &amp; WATERLINE (STERN ↔ BOW)</span>
               <span
                 className="px-2.5 py-0.5 rounded-full text-xs"
@@ -542,7 +542,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                 </g>
 
                 {/* Midship Axis Marker */}
-                <line x1="370" y1="20" x2="370" y2="120" stroke="#E6E2D8" strokeWidth="1" strokeDasharray="3 3" />
+                <line x1="370" y1="20" x2="370" y2="120" stroke="#182350" strokeWidth="1" strokeDasharray="3 3" />
                 <text x="375" y="32" fill="#737985" fontSize="8" fontFamily="monospace">
                   Midship Axis
                 </text>
@@ -555,10 +555,10 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
         <div className="lg:col-span-4 space-y-4">
           {/* Panel 1: Hold Details & Direct Cargo Assignment */}
           <div
-            className="p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-3"
+            className="p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-3"
             style={{ background: "#FFFFFF" }}
           >
-            <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+            <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Layers size={16} className="text-[#182350]" />
                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
@@ -583,7 +583,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                     className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
                       isCurrent
                         ? "bg-[#EAF4FE] border-[#AFD2FA] shadow-xs"
-                        : "bg-[#FAFAF5] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                        : "bg-[#FAFAF5] border-[#182350]/20 hover:border-[#AFD2FA]"
                     }`}
                   >
                     <div className="flex justify-between text-xs font-mono mb-1">
@@ -592,7 +592,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                       </span>
                       <span className="font-extrabold text-[#182350]">{pct}%</span>
                     </div>
-                    <div className="h-1.5 w-full bg-[#ECE8DF] rounded-full overflow-hidden mb-1">
+                    <div className="h-1.5 w-full bg-[#182350] rounded-full overflow-hidden mb-1">
                       <div
                         className="h-full rounded-full transition-all duration-300"
                         style={{
@@ -611,7 +611,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
             </div>
 
             {/* Fast Hold Assignment Form */}
-            <div className="pt-2 border-t border-[#ECE8DF] space-y-2">
+            <div className="pt-2 border-t border-[#182350]/20 space-y-2">
               <div className="text-[11px] font-mono text-[#737985] uppercase font-bold">
                 Assign Cargo to {selectedHold.name}:
               </div>
@@ -619,7 +619,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                 <select
                   value={selectedCargoType}
                   onChange={(e) => setSelectedCargoType(e.target.value)}
-                  className="flex-1 px-2.5 py-1.5 rounded-xl border border-[#E6E2D8] text-xs font-mono bg-[#FAFAF5]"
+                  className="flex-1 px-2.5 py-1.5 rounded-xl border border-[#182350]/20 text-xs font-mono bg-[#FAFAF5]"
                 >
                   {cargoTypes.map((c) => (
                     <option key={c} value={c}>
@@ -631,7 +631,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
                   type="number"
                   value={newCargoQty}
                   onChange={(e) => setNewCargoQty(parseInt(e.target.value) || 0)}
-                  className="w-20 px-2 py-1.5 rounded-xl border border-[#E6E2D8] text-xs font-mono text-center bg-[#FAFAF5]"
+                  className="w-20 px-2 py-1.5 rounded-xl border border-[#182350]/20 text-xs font-mono text-center bg-[#FAFAF5]"
                 />
               </div>
               <button
@@ -646,10 +646,10 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
 
           {/* Panel 2: Hydrodynamic Stability & Metacenter Gauges */}
           <div
-            className="p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-3"
+            className="p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-3"
             style={{ background: "#FFFFFF" }}
           >
-            <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+            <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Gauge size={16} className="text-[#2E9B68]" />
                 <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350]">
@@ -662,13 +662,13 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
             </div>
 
             <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-              <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+              <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
                 <div className="text-[10px] text-[#737985] uppercase font-bold">LCG Center</div>
                 <div className="text-base font-extrabold text-[#182350] font-sans">{lcgMeter}m</div>
                 <div className="text-[9.5px] text-[#2E9B68]">Nominal Midship</div>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8]">
+              <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20">
                 <div className="text-[10px] text-[#737985] uppercase font-bold">Metacenter GM</div>
                 <div className="text-base font-extrabold text-[#182350] font-sans">{gmHeight}m</div>
                 <div className="text-[9.5px] text-[#2E9B68]">IMO Reg Valid</div>
@@ -685,7 +685,7 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
 
           {/* Panel 3: Quick Trim & Cargo Presets */}
           <div
-            className="p-4 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-2.5"
+            className="p-4 rounded-2xl shadow-sm border border-[#182350]/20 space-y-2.5"
             style={{ background: "#FFFFFF" }}
           >
             <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#182350] flex items-center gap-1.5">
@@ -695,28 +695,28 @@ export default function VesselLayout2D({ vessel, onVesselUpdate }: Props) {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => applyPreset("eco")}
-                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer"
+                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer"
               >
                 <div>🌱 Eco-Trim</div>
                 <div className="text-[10px] text-[#737985] font-normal">+0.59° Bow Bulb</div>
               </button>
               <button
                 onClick={() => applyPreset("level")}
-                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer"
+                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer"
               >
                 <div>⚖ Level Keel</div>
                 <div className="text-[10px] text-[#737985] font-normal">0.00° Neutral</div>
               </button>
               <button
                 onClick={() => applyPreset("ballast")}
-                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer"
+                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer"
               >
                 <div>⚓ Ballast Sea</div>
                 <div className="text-[10px] text-[#737985] font-normal">-1.40° Aft Immersion</div>
               </button>
               <button
                 onClick={() => applyPreset("laden")}
-                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer"
+                className="p-2 rounded-xl text-left text-xs font-mono font-bold bg-[#FAFAF5] hover:bg-[#EAF4FE] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer"
               >
                 <div>📦 Full Laden</div>
                 <div className="text-[10px] text-[#737985] font-normal">95% DWT Capacity</div>

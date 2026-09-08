@@ -1,96 +1,11 @@
 import { useState, useMemo } from "react";
 import { vessels, Vessel } from "../../data/fleet";
+import { OrderItem, INITIAL_ORDERS } from "../../data/orders";
 
-export interface OrderItem {
-  id: string;
-  customer: string;
-  cargo: string;
-  cargoType: "LNG" | "Dry Bulk" | "Liquid Chemical" | "Containers" | "General Cargo";
-  quantity: number;
-  unit: string;
-  origin: string;
-  destination: string;
-  loadDate: string;
-  deliveryDeadline: string;
-  priority: "Urgent" | "High" | "Medium" | "Low";
-  status: "PENDING" | "ASSIGNED";
-  assignedVesselId?: string;
-  assignedVesselName?: string;
-  assignedAt?: string;
-}
 
-const INITIAL_ORDERS: OrderItem[] = [
-  {
-    id: "ORD-2026-0891",
-    customer: "PetroChem Global Corp",
-    cargo: "Liquefied Natural Gas (LNG)",
-    cargoType: "LNG",
-    quantity: 22000,
-    unit: "MT",
-    origin: "Mundra Port, India",
-    destination: "Port of Rotterdam, Netherlands",
-    loadDate: "2026-09-08",
-    deliveryDeadline: "2026-10-15",
-    priority: "High",
-    status: "PENDING",
-  },
-  {
-    id: "ORD-2026-0892",
-    customer: "ArcelorMittal Minerals",
-    cargo: "Iron Ore & Bulk Coal",
-    cargoType: "Dry Bulk",
-    quantity: 10000,
-    unit: "MT",
-    origin: "Chennai Port, India",
-    destination: "Port of Singapore",
-    loadDate: "2026-09-10",
-    deliveryDeadline: "2026-09-28",
-    priority: "Medium",
-    status: "PENDING",
-  },
-  {
-    id: "ORD-2026-0893",
-    customer: "Gulf Chemical Industries",
-    cargo: "Liquid Solvents & Lubricants",
-    cargoType: "Liquid Chemical",
-    quantity: 8000,
-    unit: "MT",
-    origin: "JNPT Mumbai, India",
-    destination: "Port of Fujairah, UAE",
-    loadDate: "2026-09-06",
-    deliveryDeadline: "2026-09-20",
-    priority: "Urgent",
-    status: "PENDING",
-  },
-  {
-    id: "ORD-2026-0894",
-    customer: "Trans-Eurasia Logistics",
-    cargo: "Containerized Freight (TEU)",
-    cargoType: "Containers",
-    quantity: 27000,
-    unit: "MT",
-    origin: "Colombo, Sri Lanka",
-    destination: "Port of Jeddah, Saudi Arabia",
-    loadDate: "2026-09-12",
-    deliveryDeadline: "2026-10-05",
-    priority: "Medium",
-    status: "PENDING",
-  },
-  {
-    id: "ORD-2026-0895",
-    customer: "Apex Energy Trading",
-    cargo: "LNG Bunkering Cargo (Batch B)",
-    cargoType: "LNG",
-    quantity: 18000,
-    unit: "MT",
-    origin: "Mundra Port, India",
-    destination: "Port of Rotterdam, Netherlands",
-    loadDate: "2026-09-15",
-    deliveryDeadline: "2026-10-25",
-    priority: "Low",
-    status: "PENDING",
-  },
-];
+
+
+
 
 interface VesselRecommendation {
   vessel: Vessel;
@@ -282,7 +197,7 @@ export default function OrdersFlow({}: Props) {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto" style={{ background: "#FEFAEF" }}>
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E6E2D8]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#182350]/20">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#EAF4FE] text-[#182350] border border-[#AFD2FA]">
@@ -295,7 +210,7 @@ export default function OrdersFlow({}: Props) {
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#E6E2D8] text-xs font-sans">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#182350]/20 text-xs font-sans">
             <span className="text-[#737985]">Pending:</span>
             <span className="font-bold text-[#B9915E]">
               {orders.filter((o) => o.status === "PENDING").length}
@@ -310,10 +225,10 @@ export default function OrdersFlow({}: Props) {
 
       {/* 1. ORDER LIST */}
       <div
-        className="rounded-xl overflow-hidden shadow-xs border border-[#E6E2D8]"
+        className="rounded-xl overflow-hidden shadow-xs border border-[#182350]/20"
         style={{ background: "#FFFFFF" }}
       >
-        <div className="px-5 py-3.5 border-b border-[#E6E2D8] flex items-center justify-between bg-[#FAFAF5]">
+        <div className="px-5 py-3.5 border-b border-[#182350]/20 flex items-center justify-between bg-[#FAFAF5]">
           <div className="flex items-center gap-2">
             <span className="text-sm font-extrabold text-[#182350]">1. Customer Orders List</span>
             <span className="text-xs text-[#737985] font-sans">
@@ -326,7 +241,7 @@ export default function OrdersFlow({}: Props) {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-sans">
             <thead>
-              <tr className="border-b border-[#E6E2D8] bg-[#F7F5EE] text-[#737985] font-semibold text-[11px] uppercase tracking-wider">
+              <tr className="border-b border-[#182350]/20 bg-[#F7F5EE] text-[#737985] font-semibold text-[11px] uppercase tracking-wider">
                 <th className="py-3 px-4">Order ID</th>
                 <th className="py-3 px-4">Customer</th>
                 <th className="py-3 px-4">Cargo</th>
@@ -338,7 +253,7 @@ export default function OrdersFlow({}: Props) {
                 <th className="py-3 px-4 text-center">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#ECE8DF]">
+            <tbody className="divide-y divide-[#182350]">
               {orders.map((ord) => {
                 const isSelected = ord.id === selectedOrder.id;
                 const pStyle = priorityColors[ord.priority];
@@ -406,10 +321,10 @@ export default function OrdersFlow({}: Props) {
 
       {/* 2. SELECTED ORDER DETAILS */}
       <div
-        className="p-5 rounded-xl shadow-xs border border-[#E6E2D8]"
+        className="p-5 rounded-xl shadow-xs border border-[#182350]/20"
         style={{ background: "#FFFFFF" }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-4 border-b border-[#ECE8DF]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-4 border-b border-[#182350]/20">
           <div className="flex items-center gap-2">
             <span className="w-6 h-6 rounded-md bg-[#182350] text-white flex items-center justify-center text-xs font-bold">
               2
@@ -433,33 +348,33 @@ export default function OrdersFlow({}: Props) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3 text-xs font-sans">
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Order ID</div>
             <div className="font-mono font-bold text-[#182350] truncate">{selectedOrder.id}</div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] col-span-1 sm:col-span-2">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 col-span-1 sm:col-span-2">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Customer</div>
             <div className="font-bold text-[#182350] truncate">{selectedOrder.customer}</div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] col-span-1 sm:col-span-2">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 col-span-1 sm:col-span-2">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Cargo Type</div>
             <div className="font-semibold text-[#182350] truncate">{selectedOrder.cargo}</div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Quantity</div>
             <div className="font-mono font-bold text-[#182350]">
               {selectedOrder.quantity.toLocaleString()} {selectedOrder.unit}
             </div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Load Date</div>
             <div className="font-mono text-[#182350]">{selectedOrder.loadDate}</div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Deadline</div>
             <div className="font-mono font-bold text-[#182350]">{selectedOrder.deliveryDeadline}</div>
           </div>
-          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+          <div className="p-3 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
             <div className="text-[10px] font-bold text-[#737985] uppercase tracking-wider mb-1">Priority</div>
             <div>
               <span
@@ -476,11 +391,11 @@ export default function OrdersFlow({}: Props) {
         </div>
 
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-sans">
-          <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] flex items-center justify-between">
+          <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex items-center justify-between">
             <span className="text-[#737985]">Origin Port:</span>
             <span className="font-bold text-[#182350]">📍 {selectedOrder.origin}</span>
           </div>
-          <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8] flex items-center justify-between">
+          <div className="p-2.5 rounded-lg bg-[#FAFAF5] border border-[#182350]/20 flex items-center justify-between">
             <span className="text-[#737985]">Destination Port:</span>
             <span className="font-bold text-[#182350]">🏁 {selectedOrder.destination}</span>
           </div>
@@ -520,10 +435,10 @@ export default function OrdersFlow({}: Props) {
                   isCurrentOrderApproved
                     ? isCurrentlyAssigned
                       ? "bg-[#EAF4FE] border-[#AFD2FA] ring-2 ring-[#AFD2FA]"
-                      : "bg-white border-[#E6E2D8] opacity-75 cursor-not-allowed"
+                      : "bg-white border-[#182350]/20 opacity-75 cursor-not-allowed"
                     : isSelected
-                    ? "bg-[#EAF4FE] border-[#182350] ring-2 ring-[#AFD2FA] cursor-pointer"
-                    : "bg-white border-[#E6E2D8] hover:border-[#AFD2FA] hover:bg-[#FDFBF7] cursor-pointer"
+                    ? "bg-[#EAF4FE] border-[#182350]/20 ring-2 ring-[#AFD2FA] cursor-pointer"
+                    : "bg-white border-[#182350]/20 hover:border-[#AFD2FA] hover:bg-[#FDFBF7] cursor-pointer"
                 }`}
               >
                 {/* Best Recommendation Badge */}
@@ -557,12 +472,12 @@ export default function OrdersFlow({}: Props) {
                   </div>
 
                   {/* Compatibility Pill */}
-                  <div className="mb-3 p-1.5 rounded-md bg-[#FAFAF5] border border-[#E6E2D8] text-[11px] font-sans text-[#3F4654]">
+                  <div className="mb-3 p-1.5 rounded-md bg-[#FAFAF5] border border-[#182350]/20 text-[11px] font-sans text-[#3F4654]">
                     <div className="font-semibold text-[#182350] truncate">{rec.compatibilityDesc}</div>
                   </div>
 
                   {/* Vessel Metrics */}
-                  <div className="space-y-2 text-xs font-sans border-b border-[#ECE8DF] pb-3 mb-3">
+                  <div className="space-y-2 text-xs font-sans border-b border-[#182350]/20 pb-3 mb-3">
                     <div className="flex justify-between">
                       <span className="text-[#737985]">Current Location:</span>
                       <span className="font-medium text-[#182350] truncate max-w-[130px]">
@@ -585,7 +500,7 @@ export default function OrdersFlow({}: Props) {
                         {v.currentLoad.toLocaleString()} MT
                       </span>
                     </div>
-                    <div className="flex justify-between items-center bg-white px-2 py-1 rounded border border-[#E6E2D8]">
+                    <div className="flex justify-between items-center bg-white px-2 py-1 rounded border border-[#182350]/20">
                       <span className="font-bold text-[#182350]">Available Cap:</span>
                       <span
                         className={`font-mono font-extrabold ${
@@ -604,7 +519,7 @@ export default function OrdersFlow({}: Props) {
                     <div className="flex justify-between items-center">
                       <span className="text-[#737985]">Fuel Level:</span>
                       <div className="flex items-center gap-1.5">
-                        <div className="w-16 h-2 rounded-full bg-[#ECE8DF] overflow-hidden">
+                        <div className="w-16 h-2 rounded-full bg-[#182350] overflow-hidden">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -656,10 +571,10 @@ export default function OrdersFlow({}: Props) {
                       isCurrentOrderApproved
                         ? isCurrentlyAssigned
                           ? "bg-[#182350] text-white"
-                          : "bg-[#FAFAF5] text-[#737985] border border-[#E6E2D8]"
+                          : "bg-[#FAFAF5] text-[#737985] border border-[#182350]/20"
                         : isSelected
                         ? "bg-[#182350] text-white shadow-xs"
-                        : "bg-white text-[#182350] border border-[#E6E2D8] hover:bg-[#F7F5EE]"
+                        : "bg-white text-[#182350] border border-[#182350]/20 hover:bg-[#F7F5EE]"
                     }`}
                   >
                     {isCurrentOrderApproved
@@ -679,10 +594,10 @@ export default function OrdersFlow({}: Props) {
 
       {/* 4. APPROVAL & CONFIRMATION SUMMARY */}
       <div
-        className="p-5 rounded-xl shadow-xs border border-[#E6E2D8]"
+        className="p-5 rounded-xl shadow-xs border border-[#182350]/20"
         style={{ background: "#FFFFFF" }}
       >
-        <div className="flex items-center gap-2 pb-3 mb-4 border-b border-[#ECE8DF]">
+        <div className="flex items-center gap-2 pb-3 mb-4 border-b border-[#182350]/20">
           <span className="w-6 h-6 rounded-md bg-[#182350] text-white flex items-center justify-center text-xs font-bold">
             4
           </span>
@@ -738,13 +653,13 @@ export default function OrdersFlow({}: Props) {
         ) : (
           /* Confirmation Summary Box & Approve Button */
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-[#FAFAF5] border border-[#E6E2D8]">
+            <div className="p-4 rounded-lg bg-[#FAFAF5] border border-[#182350]/20">
               <div className="text-xs font-bold uppercase tracking-wider text-[#182350] mb-3">
                 Pre-Approval Assignment Summary:
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs font-sans">
-                <div className="p-3 rounded-md bg-white border border-[#E6E2D8]">
+                <div className="p-3 rounded-md bg-white border border-[#182350]/20">
                   <div className="text-[#737985] text-[10px] uppercase font-bold">Order → Selected Vessel</div>
                   <div className="font-bold text-[#182350] mt-0.5 truncate">
                     {selectedOrder.id} → {activeRecommendedVessel.name}
@@ -752,7 +667,7 @@ export default function OrdersFlow({}: Props) {
                   <div className="text-[11px] text-[#737985] mt-0.5">{activeRecommendedVessel.type}</div>
                 </div>
 
-                <div className="p-3 rounded-md bg-white border border-[#E6E2D8]">
+                <div className="p-3 rounded-md bg-white border border-[#182350]/20">
                   <div className="text-[#737985] text-[10px] uppercase font-bold">Cargo → Quantity</div>
                   <div className="font-bold text-[#182350] mt-0.5">
                     {selectedOrder.quantity.toLocaleString()} {selectedOrder.unit}
@@ -760,13 +675,13 @@ export default function OrdersFlow({}: Props) {
                   <div className="text-[11px] text-[#737985] mt-0.5 truncate">{selectedOrder.cargo}</div>
                 </div>
 
-                <div className="p-3 rounded-md bg-white border border-[#E6E2D8]">
+                <div className="p-3 rounded-md bg-white border border-[#182350]/20">
                   <div className="text-[#737985] text-[10px] uppercase font-bold">Estimated Arrival / ETA</div>
                   <div className="font-bold text-[#182350] mt-0.5">{activeRecData.estimatedArrival}</div>
                   <div className="text-[11px] text-[#2E9B68] font-semibold mt-0.5">Meets Deadline ({selectedOrder.deliveryDeadline})</div>
                 </div>
 
-                <div className="p-3 rounded-md bg-white border border-[#E6E2D8]">
+                <div className="p-3 rounded-md bg-white border border-[#182350]/20">
                   <div className="text-[#737985] text-[10px] uppercase font-bold">Fuel & Engine Profile</div>
                   <div className="font-bold text-[#182350] mt-0.5">
                     {activeRecommendedVessel.fuelLevel}% {activeRecommendedVessel.fuelType}
@@ -776,7 +691,7 @@ export default function OrdersFlow({}: Props) {
                   </div>
                 </div>
 
-                <div className="p-3 rounded-md bg-white border border-[#E6E2D8]">
+                <div className="p-3 rounded-md bg-white border border-[#182350]/20">
                   <div className="text-[#737985] text-[10px] uppercase font-bold">Key Constraints</div>
                   <div className="font-semibold text-[#2E9B68] mt-0.5">✓ Capacity Verified</div>
                   <div className="text-[11px] text-[#3F4654] mt-0.5">✓ Port Clearances Active</div>

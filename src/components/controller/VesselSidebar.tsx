@@ -36,9 +36,9 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
   });
 
   return (
-    <div className="flex flex-col h-full bg-white border-r border-[#E6E2D8] select-none">
+    <div className="flex flex-col h-full bg-white border-r border-[#182350]/20 select-none">
       {/* Header */}
-      <div className="p-3.5 border-b border-[#E6E2D8] bg-[#FAFAF5]">
+      <div className="p-3.5 border-b border-[#182350]/20 bg-[#FAFAF5]">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#2E9B68] animate-pulse" />
@@ -58,7 +58,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search flagship / port..."
-            className="w-full px-3 py-1.5 pl-7 rounded-lg text-xs font-sans bg-white border border-[#E6E2D8] text-[#182350] placeholder:text-[#94A3B8] outline-none focus:border-[#AFD2FA] transition-all"
+            className="w-full px-3 py-1.5 pl-7 rounded-lg text-xs font-sans bg-white border border-[#182350]/20 text-[#182350] placeholder:text-[#94A3B8] outline-none focus:border-[#AFD2FA] transition-all"
           />
           <span className="absolute left-2.5 top-1.5 text-xs text-[#94A3B8]">🔍</span>
         </div>
@@ -72,7 +72,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
               className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 fuelFilter === fuel
                   ? "bg-[#182350] text-white shadow-2xs"
-                  : "bg-white text-[#737985] border border-[#E6E2D8] hover:border-[#AFD2FA]"
+                  : "bg-white text-[#737985] border border-[#182350]/20 hover:border-[#AFD2FA]"
               }`}
             >
               {fuel}
@@ -96,7 +96,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
               className={`w-full text-left rounded-xl p-3 transition-all duration-150 cursor-pointer relative border ${
                 isSelected
                   ? "bg-[#EAF4FE] border-[#AFD2FA] shadow-sm scale-[1.01]"
-                  : "bg-white border-[#E6E2D8] hover:border-[#AFD2FA] hover:bg-[#FAFAF5]"
+                  : "bg-white border-[#182350]/20 hover:border-[#AFD2FA] hover:bg-[#FAFAF5]"
               }`}
             >
               {/* Selected indicator bar */}
@@ -133,7 +133,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
               </div>
 
               {/* Real-time telemetry snippet */}
-              <div className="mt-2.5 pt-2 border-t border-[#E6E2D8]/60 grid grid-cols-2 gap-y-1 text-[10.5px] font-sans">
+              <div className="mt-2.5 pt-2 border-t border-[#182350]/60 grid grid-cols-2 gap-y-1 text-[10.5px] font-sans">
                 <div className="text-[#737985]">Speed / SOG</div>
                 <div className="text-[#182350] font-mono font-bold text-right">
                   {v.speed} kn
@@ -151,7 +151,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
               </div>
 
               {/* Micro Load Progress Bar */}
-              <div className="w-full bg-[#E6E2D8]/70 h-1 rounded-full mt-1.5 overflow-hidden">
+              <div className="w-full bg-[#182350]/70 h-1 rounded-full mt-1.5 overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{
@@ -166,7 +166,7 @@ export default function VesselSidebar({ vessels, selectedId, onSelect }: Props) 
       </div>
 
       {/* Footer Info */}
-      <div className="p-2.5 border-t border-[#E6E2D8] bg-[#FAFAF5] text-[10px] font-mono text-[#737985] flex items-center justify-between">
+      <div className="p-2.5 border-t border-[#182350]/20 bg-[#FAFAF5] text-[10px] font-mono text-[#737985] flex items-center justify-between">
         <span>AIS POLLING: 10s</span>
         <span className="text-[#2E9B68] font-bold">● ACTIVE</span>
       </div>

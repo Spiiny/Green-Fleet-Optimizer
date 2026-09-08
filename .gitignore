@@ -1,20 +1,75 @@
+# Dependencies
 node_modules/
+**/node_modules/
+.pnpm-store/
+front/
+
+# Production & Build Outputs
 dist/
+dist-ssr/
 build/
-.cache/
-.env*
+out/
 .vite/
 vite.config.*.timestamp-*
 *.tsbuildinfo
-*-debug.log*
+
+# Environment & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+*.key
+
+# Logs & Debug
 logs/
 *.log
-.claude-replay.*
-.tmp-*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*-debug.log*
 
-# Platform-managed agentplat state, not project source. In the
-# client-initiated single-repo workspace layout (make's `Path: "."` spec) the
-# repo root IS the workspace root, so these land inside this repo rather than
-# beside it.
+# Python Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+.pytest_cache/
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Temporary & Platform / Agent Files
+.cache/
+.tmp/
+.tmp-*
+.temp/
+.claude-replay.*
 /.plugins/
 /.opencode-skills/
+.gemini/
+.agents/

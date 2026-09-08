@@ -60,7 +60,7 @@ export default function FleetOverview() {
   return (
     <div className="p-4 sm:p-6 space-y-6 select-none" style={{ background: "#FEFAEF" }}>
       {/* ── Top Tactical Warning / Status Ticker ── */}
-      <div className="p-3.5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs flex flex-wrap items-center justify-between gap-3">
+      <div className="p-3.5 rounded-2xl bg-white border border-[#182350]/20 shadow-xs flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#2E9B68] animate-pulse" />
           <span className="text-xs font-mono font-bold text-[#182350] uppercase tracking-wider">
@@ -127,7 +127,7 @@ export default function FleetOverview() {
         ].map((kpi) => (
           <div
             key={kpi.label}
-            className="p-4 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs hover:border-[#AFD2FA] hover:shadow-md transition-all duration-200"
+            className="p-4 rounded-2xl bg-white border border-[#182350]/20 shadow-xs hover:border-[#AFD2FA] hover:shadow-md transition-all duration-200"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-[10.5px] font-mono text-[#737985] uppercase font-bold tracking-wider">
@@ -140,7 +140,7 @@ export default function FleetOverview() {
             </div>
             <div className="text-[11px] text-[#737985] font-sans mt-0.5">{kpi.unit}</div>
             <div
-              className="text-[10px] font-mono font-bold mt-2 pt-2 border-t border-[#ECE8DF]"
+              className="text-[10px] font-mono font-bold mt-2 pt-2 border-t border-[#182350]/20"
               style={{ color: kpi.trendColor }}
             >
               {kpi.delta}
@@ -152,7 +152,7 @@ export default function FleetOverview() {
       {/* ── Charts Grid ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Emissions & Consumption Benchmark */}
-        <div className="p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs col-span-1 lg:col-span-2 space-y-4">
+        <div className="p-5 rounded-2xl bg-white border border-[#182350]/20 shadow-xs col-span-1 lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs font-mono text-[#182350] font-bold uppercase tracking-wider">
@@ -176,13 +176,13 @@ export default function FleetOverview() {
 
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={emissionData} barSize={20} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ECE8DF" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#182350" />
               <XAxis dataKey="name" tick={{ fill: "#737985", fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "#737985", fontSize: 10 }} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={{
                   background: "#FFFFFF",
-                  border: "1px solid #E6E2D8",
+                  border: "1px solid rgba(24, 35, 80, 0.2)",
                   borderRadius: 12,
                   fontSize: 12,
                   boxShadow: "0 6px 20px rgba(24, 35, 80, 0.08)",
@@ -196,7 +196,7 @@ export default function FleetOverview() {
         </div>
 
         {/* Fuel Type & Energy Allocation */}
-        <div className="p-5 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs space-y-3">
+        <div className="p-5 rounded-2xl bg-white border border-[#182350]/20 shadow-xs space-y-3">
           <div className="text-xs font-mono text-[#182350] font-bold uppercase tracking-wider">
             Dual-Fuel Composition
           </div>
@@ -222,7 +222,7 @@ export default function FleetOverview() {
             </PieChart>
           </div>
 
-          <div className="space-y-2 pt-1 border-t border-[#ECE8DF]">
+          <div className="space-y-2 pt-1 border-t border-[#182350]/20">
             {fuelBreakdown.map((f) => (
               <div key={f.name} className="flex items-center justify-between text-xs font-sans">
                 <div className="flex items-center gap-2">
@@ -239,8 +239,8 @@ export default function FleetOverview() {
       </div>
 
       {/* ── Vessel Fleet Registry Table & Operations Hub ── */}
-      <div className="rounded-2xl bg-white border border-[#E6E2D8] shadow-sm overflow-hidden">
-        <div className="p-4 border-b border-[#E6E2D8] bg-[#FAFAF5] flex flex-wrap items-center justify-between gap-4">
+      <div className="rounded-2xl bg-white border border-[#182350]/20 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-[#182350]/20 bg-[#FAFAF5] flex flex-wrap items-center justify-between gap-4">
           <div>
             <div className="text-xs font-mono text-[#182350] font-bold uppercase tracking-wider">
               Fleet Operations Matrix — All Flagships
@@ -255,7 +255,7 @@ export default function FleetOverview() {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-3 py-1.5 rounded-xl text-xs font-mono font-medium bg-white border border-[#E6E2D8] text-[#182350] outline-none cursor-pointer"
+              className="px-3 py-1.5 rounded-xl text-xs font-mono font-medium bg-white border border-[#182350]/20 text-[#182350] outline-none cursor-pointer"
             >
               <option value="ALL">All Statuses</option>
               <option value="Underway">Underway</option>
@@ -266,7 +266,7 @@ export default function FleetOverview() {
             <select
               value={filterFuel}
               onChange={(e) => setFilterFuel(e.target.value)}
-              className="px-3 py-1.5 rounded-xl text-xs font-mono font-medium bg-white border border-[#E6E2D8] text-[#182350] outline-none cursor-pointer"
+              className="px-3 py-1.5 rounded-xl text-xs font-mono font-medium bg-white border border-[#182350]/20 text-[#182350] outline-none cursor-pointer"
             >
               <option value="ALL">All Fuel Types</option>
               <option value="LNG">LNG Dual-Fuel</option>
@@ -279,7 +279,7 @@ export default function FleetOverview() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#E6E2D8] bg-[#FAFAF5]">
+              <tr className="border-b border-[#182350]/20 bg-[#FAFAF5]">
                 {[
                   "Flagship Vessel",
                   "Class / Type",
@@ -309,7 +309,7 @@ export default function FleetOverview() {
                 return (
                   <tr
                     key={v.id}
-                    className="border-b border-[#ECE8DF] transition-colors hover:bg-[#EAF4FE]/40"
+                    className="border-b border-[#182350]/20 transition-colors hover:bg-[#EAF4FE]/40"
                   >
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="font-extrabold text-[#182350] text-sm">{v.name}</div>
@@ -357,7 +357,7 @@ export default function FleetOverview() {
 
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-16 rounded-full bg-[#ECE8DF] overflow-hidden">
+                        <div className="h-2 w-16 rounded-full bg-[#182350] overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
                             style={{
@@ -374,7 +374,7 @@ export default function FleetOverview() {
 
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-16 rounded-full bg-[#ECE8DF] overflow-hidden">
+                        <div className="h-2 w-16 rounded-full bg-[#182350] overflow-hidden">
                           <div
                             className="h-full rounded-full bg-[#2E9B68]"
                             style={{

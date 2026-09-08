@@ -220,7 +220,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
             href="#hero-parallax"
             className={`flex items-center gap-2.5 transition-all duration-300 group cursor-pointer ${
               isScrolledPastHero
-                ? "text-[#182350] hover:text-black bg-white/85 hover:bg-white backdrop-blur-md border border-[#E6E2D8] px-3.5 py-1.5 rounded-full shadow-md"
+                ? "text-[#182350] hover:text-black bg-white/85 hover:bg-white backdrop-blur-md border border-[#182350] px-3.5 py-1.5 rounded-full shadow-md"
                 : "text-white/95 hover:text-white"
             }`}
           >
@@ -271,7 +271,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
           <div
             className={`flex items-center p-1.5 pl-6 sm:pl-7 rounded-2xl sm:rounded-full backdrop-blur-md border transition-all duration-300 gap-4 sm:gap-6 ${
               isScrolledPastHero
-                ? "bg-white/90 hover:bg-white border-[#E6E2D8] shadow-xl text-[#182350]"
+                ? "bg-white/90 hover:bg-white border-[#182350] shadow-xl text-[#182350]"
                 : "bg-white/10 hover:bg-white/20 border-white/25 hover:border-white/40 shadow-xl shadow-black/10 text-white"
             }`}
           >
@@ -349,7 +349,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       {/* ── 2. Dual-Role Operational Gateways (Interactive 3D WebGL InfiniteMenu) ── */}
       <section
         id="gateway"
-        className="min-h-screen w-full flex items-center justify-center py-16 sm:py-24 px-6 sm:px-12 border-b border-[#E6E2D8] relative overflow-hidden bg-white"
+        className="min-h-screen w-full flex items-center justify-center py-16 sm:py-24 px-6 sm:px-12 border-b border-[#182350] relative overflow-hidden bg-white"
       >
         <div className="max-w-6xl mx-auto space-y-8 w-full">
           <div className="text-center space-y-2">
@@ -366,7 +366,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
 
           {/* Interactive 3D WebGL InfiniteMenu Viewport */}
           <div
-            className="w-full h-[520px] sm:h-[580px] rounded-3xl border border-[#E6E2D8] overflow-hidden shadow-md relative"
+            className="w-full h-[520px] sm:h-[580px] rounded-3xl border border-[#182350] overflow-hidden shadow-md relative"
             style={{ background: "#FEFAEF" }}
           >
             <InfiniteMenu
@@ -383,7 +383,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
           <div className="pt-2 flex justify-center">
             <button
               onClick={() => scrollToNextSection("gateway")}
-              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#FEFAEF] hover:bg-white text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
+              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#FEFAEF] hover:bg-white text-[#182350] border border-[#182350] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
             >
               <span>Next: Operational Fleet Performance</span>
               <span>↓</span>
@@ -395,7 +395,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       {/* ── 3. Operational Fleet Performance (Full-Screen 3D CardSwap GSAP Showcase) ── */}
       <section
         id="metrics"
-        className="min-h-screen w-full flex items-center justify-center py-16 sm:py-24 px-6 sm:px-12 border-b border-[#E6E2D8] overflow-hidden relative"
+        className="min-h-screen w-full flex items-center justify-center py-16 sm:py-24 px-6 sm:px-12 border-b border-[#182350] overflow-hidden relative"
         style={{ background: "#FEFAEF" }}
       >
         {/* Subtle grid pattern matching other sections */}
@@ -425,7 +425,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
 
             {/* Quick Stat Highlights Grid */}
             <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-xl bg-white border border-[#E6E2D8] shadow-xs hover:border-[#AFD2FA] transition-all">
+              <div className="p-4 rounded-xl bg-white border border-[#182350] shadow-xs hover:border-[#AFD2FA] transition-all">
                 <div className="text-2xl sm:text-3xl font-black text-[#182350] font-mono">
                   16.8%
                 </div>
@@ -435,7 +435,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
                 <div className="text-[11px] text-[#737985] mt-1 font-sans">Across all global voyages</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E6E2D8] shadow-xs hover:border-[#AFD2FA] transition-all">
+              <div className="p-4 rounded-xl bg-white border border-[#182350] shadow-xs hover:border-[#AFD2FA] transition-all">
                 <div className="text-2xl sm:text-3xl font-black text-[#2E9B68] font-mono">
                   42,600 t
                 </div>
@@ -445,7 +445,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
                 <div className="text-[11px] text-[#737985] mt-1 font-sans">IMO DCS verified</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E6E2D8] shadow-xs hover:border-[#AFD2FA] transition-all">
+              <div className="p-4 rounded-xl bg-white border border-[#182350] shadow-xs hover:border-[#AFD2FA] transition-all">
                 <div className="text-2xl sm:text-3xl font-black text-[#182350] font-mono">
                   &lt; 1.2s
                 </div>
@@ -455,7 +455,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
                 <div className="text-[11px] text-[#737985] mt-1 font-sans">Variational pathfinding</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E6E2D8] shadow-xs hover:border-[#AFD2FA] transition-all">
+              <div className="p-4 rounded-xl bg-white border border-[#182350] shadow-xs hover:border-[#AFD2FA] transition-all">
                 <div className="text-2xl sm:text-3xl font-black text-[#182350] font-mono">
                   99.4%
                 </div>
@@ -476,7 +476,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               </button>
               <button
                 onClick={() => scrollToNextSection("metrics")}
-                className="px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-white hover:bg-[#F7F5EE] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer shadow-xs flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-white hover:bg-[#F7F5EE] text-[#182350] border border-[#182350] hover:border-[#AFD2FA] transition-all cursor-pointer shadow-xs flex items-center gap-2"
               >
                 <span>Next Section</span>
                 <span>↓</span>
@@ -497,7 +497,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               easing="elastic"
             >
               {/* Card 1: Decarbonization Kinetics */}
-              <Card className="p-6 flex flex-col justify-between bg-white border border-[#E6E2D8] shadow-xl">
+              <Card className="p-6 flex flex-col justify-between bg-white border border-[#182350] shadow-xl">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#182350] font-bold px-2 py-0.5 rounded bg-[#EAF4FE] border border-[#AFD2FA]">
@@ -528,7 +528,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               </Card>
 
               {/* Card 2: Quantum Route Optimization */}
-              <Card className="p-6 flex flex-col justify-between bg-white border border-[#E6E2D8] shadow-xl">
+              <Card className="p-6 flex flex-col justify-between bg-white border border-[#182350] shadow-xl">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#182350] font-bold px-2 py-0.5 rounded bg-[#EAF4FE] border border-[#AFD2FA]">
@@ -559,10 +559,10 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               </Card>
 
               {/* Card 3: 2D Hydrodynamic Trim */}
-              <Card className="p-6 flex flex-col justify-between bg-white border border-[#E6E2D8] shadow-xl">
+              <Card className="p-6 flex flex-col justify-between bg-white border border-[#182350] shadow-xl">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#B9915E] font-bold px-2 py-0.5 rounded bg-[#FAFAF5] border border-[#E6E2D8]">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#B9915E] font-bold px-2 py-0.5 rounded bg-[#FAFAF5] border border-[#182350]">
                       Hydrodynamics
                     </span>
                     <span className="text-xs font-mono text-[#737985] font-semibold">2D LOAD EQUILIBRIUM</span>
@@ -590,7 +590,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               </Card>
 
               {/* Card 4: Bridge Telemetry */}
-              <Card className="p-6 flex flex-col justify-between bg-white border border-[#E6E2D8] shadow-xl">
+              <Card className="p-6 flex flex-col justify-between bg-white border border-[#182350] shadow-xl">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#182350] font-bold px-2 py-0.5 rounded bg-[#EAF4FE] border border-[#AFD2FA]">
@@ -625,7 +625,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       </section>
 
       {/* ── 4. Core Platform Capabilities (ScrollStack Smooth Stacking Animation) ── */}
-      <section id="features" className="py-20 px-4 sm:px-6 bg-[#FEFAEF] border-b border-[#E6E2D8]">
+      <section id="features" className="py-20 px-4 sm:px-6 bg-[#FEFAEF] border-b border-[#182350]">
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="text-xs font-bold uppercase tracking-widest text-[#2E9B68]">
@@ -654,7 +654,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
             {features.map((f, i) => (
               <ScrollStackItem
                 key={f.id}
-                itemClassName="bg-white border border-[#E6E2D8] shadow-lg"
+                itemClassName="bg-white border border-[#182350] shadow-lg"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
                   <div className="lg:col-span-7 space-y-3">
@@ -692,7 +692,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
                   </div>
 
                   {/* Performance Stats Column */}
-                  <div className="lg:col-span-5 p-5 rounded-2xl bg-[#FEFAEF] border border-[#E6E2D8] space-y-3">
+                  <div className="lg:col-span-5 p-5 rounded-2xl bg-[#FEFAEF] border border-[#182350] space-y-3">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#737985] flex items-center justify-between">
                       <span>Verified Benchmarks</span>
                       <span className="text-[#182350] font-mono font-bold">0{i + 1} / 04</span>
@@ -726,7 +726,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
           <div className="pt-2 flex justify-center">
             <button
               onClick={() => scrollToNextSection("features")}
-              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white hover:bg-[#FAFAF5] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
+              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white hover:bg-[#FAFAF5] text-[#182350] border border-[#182350] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
             >
               <span>Next: 5-Step Green Fleet Workflow</span>
               <span>↓</span>
@@ -736,7 +736,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       </section>
 
       {/* ── 5. 5-Step Operational Journey ── */}
-      <section id="workflow" className="py-16 px-6 bg-white border-b border-[#E6E2D8]">
+      <section id="workflow" className="py-16 px-6 bg-white border-b border-[#182350]">
         <div className="max-w-6xl mx-auto space-y-10">
           <div className="text-center space-y-2">
             <div className="text-xs font-bold uppercase tracking-widest text-[#B9915E]">
@@ -754,7 +754,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
             {operationalPillars.map((p, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-[#FEFAEF] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all flex flex-col justify-between space-y-4 relative group"
+                className="p-5 rounded-xl bg-[#FEFAEF] border border-[#182350] hover:border-[#AFD2FA] transition-all flex flex-col justify-between space-y-4 relative group"
               >
                 <div>
                   <div className="text-2xl font-black text-[#AFD2FA] group-hover:text-[#182350] transition-colors font-mono">
@@ -775,7 +775,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
           <div className="pt-2 flex justify-center">
             <button
               onClick={() => scrollToNextSection("workflow")}
-              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#FEFAEF] hover:bg-white text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
+              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#FEFAEF] hover:bg-white text-[#182350] border border-[#182350] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
             >
               <span>Next: Fleet Decarbonization ROI Calculator</span>
               <span>↓</span>
@@ -785,8 +785,8 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       </section>
 
       {/* ── 6. Interactive ROI Fuel, Carbon & Financial Savings Calculator ── */}
-      <section id="calculator" className="py-16 px-6 bg-[#FEFAEF] border-b border-[#E6E2D8]">
-        <div className="max-w-5xl mx-auto p-8 rounded-2xl bg-white border border-[#E6E2D8] shadow-sm space-y-8">
+      <section id="calculator" className="py-16 px-6 bg-[#FEFAEF] border-b border-[#182350]">
+        <div className="max-w-5xl mx-auto p-8 rounded-2xl bg-white border border-[#182350] shadow-sm space-y-8">
           <div className="text-center space-y-2">
             <div className="text-xs font-bold uppercase tracking-widest text-[#2E9B68]">
               Interactive Simulation
@@ -849,7 +849,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
             </div>
 
             {/* Savings Output Cards */}
-            <div className="p-6 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-4">
+            <div className="p-6 rounded-xl bg-[#FAFAF5] border border-[#182350] space-y-4">
               <div className="text-xs font-bold uppercase tracking-wider text-[#182350] pb-2 border-b border-[#ECE8DF]">
                 Projected Savings Per Single Voyage
               </div>
@@ -886,7 +886,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
           <div className="pt-2 flex justify-center">
             <button
               onClick={() => scrollToNextSection("calculator")}
-              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white hover:bg-[#FAFAF5] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
+              className="px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-white hover:bg-[#FAFAF5] text-[#182350] border border-[#182350] hover:border-[#AFD2FA] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center gap-2 transform hover:scale-105"
             >
               <span>Explore Platform Footer</span>
               <span>↓</span>
@@ -896,7 +896,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
       </section>
 
       {/* ── 7. Global Maritime Footer (Styled exactly to Reference Design) ── */}
-      <footer id="footer-section" className="relative bg-[#13161A] text-white pt-16 pb-12 px-6 sm:px-12 mt-20 border-t border-[#E6E2D8]/20">
+      <footer id="footer-section" className="relative bg-[#13161A] text-white pt-16 pb-12 px-6 sm:px-12 mt-20 border-t border-[#182350]/20">
         {/* Floating Capsule Newsletter / Subscribe Input (Overlapping Top Edge) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-4 z-20">
           <form
@@ -904,7 +904,7 @@ export default function HomePage({ onEnterLogin, onDirectLogin }: Props) {
               e.preventDefault();
               alert("Thank you for subscribing to GreenFleet Maritime Intelligence!");
             }}
-            className="p-1.5 pl-6 sm:pl-8 rounded-full bg-white shadow-[0_12px_40px_rgba(0,0,0,0.22)] border border-[#E6E2D8] flex items-center justify-between gap-3 transition-all focus-within:shadow-[0_14px_45px_rgba(0,0,0,0.28)]"
+            className="p-1.5 pl-6 sm:pl-8 rounded-full bg-white shadow-[0_12px_40px_rgba(0,0,0,0.22)] border border-[#182350] flex items-center justify-between gap-3 transition-all focus-within:shadow-[0_14px_45px_rgba(0,0,0,0.28)]"
           >
             <input
               type="email"

@@ -1,0 +1,48 @@
+{
+  "model_name": "Deep LSTM ETA Predictor",
+  "version": "20251205-000557",
+  "performance": {
+    "train": {
+      "mae_hours": 19.812696828580506,
+      "rmse_hours": 27.71114501849788,
+      "r2_score": 0.8624227767832118,
+      "mape_percent": 22.989048547124018
+    },
+    "val": {
+      "mae_hours": 20.440373542147043,
+      "rmse_hours": 28.7258737154043,
+      "r2_score": 0.8556865979333192,
+      "mape_percent": 23.58783573885193
+    },
+    "test": {
+      "mae_hours": 20.893010151819777,
+      "rmse_hours": 29.167701629749434,
+      "r2_score": 0.853410106776663,
+      "mape_percent": 23.106999092950243
+    }
+  },
+  "features": [
+    "vessel_size_class_encoded",
+    "grade_encoded",
+    "origin_region_encoded",
+    "dest_port_encoded",
+    "distance_nm",
+    "avg_speed_knots",
+    "weather_severity",
+    "port_congestion",
+    "planned_eta_hours",
+    "distance_speed_ratio",
+    "speed_efficiency",
+    "risk_factor",
+    "weather_distance_impact",
+    "congestion_time_impact",
+    "voyage_complexity",
+    "speed_weather_interaction",
+    "high_risk",
+    "is_long_voyage",
+    "congestion_squared",
+    "weather_squared",
+    "speed_deviation",
+    "distance_normalized"
+  ]
+}

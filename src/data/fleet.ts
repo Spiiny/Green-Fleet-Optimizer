@@ -8,6 +8,7 @@ export interface Hold {
 }
 
 export interface Vessel {
+  nextMaintenance?: string;
  id: string;
  name: string;
  type: string;
@@ -129,6 +130,7 @@ export const vessels: Vessel[] = [
  {
     id: "v1",
     name: "MV Green Horizon",
+    nextMaintenance: "2026-10-18",
     type: "LNG Carrier",
     flag: "India",
     imo: "IMO 9876543",

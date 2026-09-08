@@ -1,0 +1,5 @@
+vessel_id,vessel_name,quality,parcel_mt,eta_india,possible_ports
+V001,MV Ganga Glory,PremiumCoking,70000,2025-03-05,"Haldia;Paradip"
+V002,MV Bharat Star,LowAshCoking,55000,2025-03-09,"Paradip;Vizag"
+V003,MV Odisha Queen,MidCoking,75000,2025-03-15,"Haldia;Paradip;Vizag"
+V004,MV Steel Infinity,Limestone,65000,2025-03-20,"Vizag;Dhamra"

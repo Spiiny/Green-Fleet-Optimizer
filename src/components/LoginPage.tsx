@@ -46,7 +46,7 @@ export default function LoginPage({ onLogin, onBackToHome, initialRole = "contro
       {onBackToHome && (
         <button
           onClick={onBackToHome}
-          className="absolute top-6 left-6 z-30 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/90 hover:bg-white backdrop-blur-md border border-[#E6E2D8] hover:border-[#AFD2FA] text-[#182350] transition-all cursor-pointer flex items-center gap-2 shadow-xs hover:shadow-md transform hover:scale-105"
+          className="absolute top-6 left-6 z-30 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/90 hover:bg-white backdrop-blur-md border border-[#182350] hover:border-[#AFD2FA] text-[#182350] transition-all cursor-pointer flex items-center gap-2 shadow-xs hover:shadow-md transform hover:scale-105"
         >
           <span className="text-[#182350]">←</span> Back to Home
         </button>
@@ -62,7 +62,7 @@ export default function LoginPage({ onLogin, onBackToHome, initialRole = "contro
 
           <div className="inline-flex items-center justify-center gap-3">
             <div
-              className="w-11 h-11 rounded-2xl flex items-center justify-center shadow-sm border border-[#E6E2D8] bg-[#182350] text-white"
+              className="w-11 h-11 rounded-2xl flex items-center justify-center shadow-sm border border-[#182350] bg-[#182350] text-white"
             >
               <svg viewBox="0 0 40 40" className="w-5 h-5" fill="none">
                 <path d="M4 26 L20 10 L36 26 L32 30 L20 18 L8 30 Z" fill="white" opacity="0.95" />
@@ -101,7 +101,7 @@ export default function LoginPage({ onLogin, onBackToHome, initialRole = "contro
 
           {/* Role selector */}
           <div
-            className="grid grid-cols-2 gap-1.5 mb-6 p-1.5 rounded-xl border border-[#E6E2D8] bg-[#FAFAF5] shadow-2xs"
+            className="grid grid-cols-2 gap-1.5 mb-6 p-1.5 rounded-xl border border-[#182350] bg-[#FAFAF5] shadow-2xs"
           >
             {(["controller", "captain"] as const).map((r) => (
               <button
@@ -129,7 +129,7 @@ export default function LoginPage({ onLogin, onBackToHome, initialRole = "contro
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder={role === "controller" ? "ctrl_admin" : "capt_mehta"}
-                className="w-full px-4 py-2.5 rounded-xl text-[#182350] text-sm font-sans outline-none transition-all placeholder:text-[#94A3B8] bg-white border border-[#E6E2D8] shadow-2xs focus:border-[#AFD2FA]"
+                className="w-full px-4 py-2.5 rounded-xl text-[#182350] text-sm font-sans outline-none transition-all placeholder:text-[#94A3B8] bg-white border border-[#182350] shadow-2xs focus:border-[#AFD2FA]"
               />
             </div>
 
@@ -142,7 +142,7 @@ export default function LoginPage({ onLogin, onBackToHome, initialRole = "contro
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-2.5 rounded-xl text-[#182350] text-sm font-sans outline-none transition-all placeholder:text-[#94A3B8] bg-white border border-[#E6E2D8] shadow-2xs focus:border-[#AFD2FA]"
+                className="w-full px-4 py-2.5 rounded-xl text-[#182350] text-sm font-sans outline-none transition-all placeholder:text-[#94A3B8] bg-white border border-[#182350] shadow-2xs focus:border-[#AFD2FA]"
               />
             </div>
 

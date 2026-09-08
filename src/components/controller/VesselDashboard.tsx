@@ -179,7 +179,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
     Underway: { bg: "#EAF7F0", text: "#2E9B68", border: "#A8E5C4" },
     "At Anchor": { bg: "#FEF7EC", text: "#B9915E", border: "#F7D8A8" },
     "In Port": { bg: "#EAF4FE", text: "#182350", border: "#AFD2FA" },
-    Standby: { bg: "#F3EBDD", text: "#737985", border: "#E6E2D8" },
+    Standby: { bg: "#F3EBDD", text: "#737985", border: "#182350" },
   };
 
   const currentStatus = statusStyle[vessel.status] || statusStyle.Underway;
@@ -210,7 +210,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
 
       {/* ── SECTION 1: Flagship Tactical Header & Mission Controls ── */}
       <div
-        className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#E6E2D8] transition-all"
+        className="p-5 sm:p-6 rounded-2xl shadow-sm border border-[#182350]/20 transition-all"
         style={{ background: "#FFFFFF" }}
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -261,7 +261,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
           {/* Right: Operational Presets & Quick Export */}
           <div className="flex flex-wrap items-center gap-2.5">
             {/* Operational Mode Segmented Switch */}
-            <div className="p-1 bg-[#FAFAF5] border border-[#E6E2D8] rounded-xl flex items-center gap-1 text-xs font-mono font-bold">
+            <div className="p-1 bg-[#FAFAF5] border border-[#182350]/20 rounded-xl flex items-center gap-1 text-xs font-mono font-bold">
               {[
                 { id: "eco", label: "Eco-Steaming", icon: "🌱" },
                 { id: "optimal", label: "Quantum Opt", icon: "⚡" },
@@ -274,7 +274,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                   className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 ${
                     operationalMode === m.id
                       ? "bg-[#182350] text-white shadow-xs"
-                      : "text-[#737985] hover:text-[#182350] hover:bg-[#ECE8DF]/50"
+                      : "text-[#737985] hover:text-[#182350] hover:bg-[#182350]/50"
                   }`}
                 >
                   <span>{m.icon}</span>
@@ -286,7 +286,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
             {/* Satcom Broadcast Button */}
             <button
               onClick={() => setShowSatcomModal(true)}
-              className="p-2.5 rounded-xl bg-[#FAFAF5] hover:bg-[#EAF4FE] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA] transition-all cursor-pointer shadow-2xs"
+              className="p-2.5 rounded-xl bg-[#FAFAF5] hover:bg-[#EAF4FE] text-[#182350] border border-[#182350]/20 hover:border-[#AFD2FA] transition-all cursor-pointer shadow-2xs"
               title="Open Satcom Satellite Terminal"
             >
               <Radio size={16} />
@@ -304,7 +304,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
         </div>
 
         {/* ── Voyage Route Ribbon ── */}
-        <div className="mt-5 pt-4 border-t border-[#ECE8DF] grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div className="mt-5 pt-4 border-t border-[#182350]/20 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
           <div className="md:col-span-3 text-xs font-mono">
             <div className="text-[10px] text-[#737985] uppercase tracking-wider font-bold">Port of Origin</div>
             <div className="font-bold text-[#182350] text-sm truncate">⚓ {vessel.origin}</div>
@@ -317,7 +317,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               <span className="text-[#737985]">Remaining: <strong className="text-[#182350]">{remainingDistanceNM} NM</strong></span>
             </div>
             {/* Progress Bar */}
-            <div className="h-2.5 w-full bg-[#ECE8DF] rounded-full overflow-hidden p-0.5">
+            <div className="h-2.5 w-full bg-[#182350] rounded-full overflow-hidden p-0.5">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#182350] via-[#354992] to-[#2E9B68] transition-all duration-500 relative"
                 style={{ width: `${vessel.voyageProgress}%` }}
@@ -337,10 +337,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Left: Interactive Speed Governor & Trim Kinetics (7 cols) */}
         <div
-          className="lg:col-span-7 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4"
+          className="lg:col-span-7 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Gauge size={18} className="text-[#182350]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -371,7 +371,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                 setSpeedKnots(val);
                 if (onUpdate) onUpdate({ ...vessel, speed: val });
               }}
-              className="w-full h-2 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#182350]"
+              className="w-full h-2 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#182350]"
             />
             <div className="flex justify-between text-[10px] font-mono text-[#737985]">
               <span>10.0 kn (Slow Steaming)</span>
@@ -382,7 +382,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
 
           {/* Dual Ballast Hull Trim Sliders */}
           <div className="grid grid-cols-2 gap-3 pt-2">
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-1.5">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-1.5">
               <div className="flex justify-between text-[11px] font-mono">
                 <span className="text-[#737985]">Bow Draft / Ballast</span>
                 <span className="font-bold text-[#182350]">{bowBallastMeters.toFixed(1)}m</span>
@@ -394,11 +394,11 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                 step={0.1}
                 value={bowBallastMeters}
                 onChange={(e) => setBowBallastMeters(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#AFD2FA]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#AFD2FA]"
               />
             </div>
 
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-1.5">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-1.5">
               <div className="flex justify-between text-[11px] font-mono">
                 <span className="text-[#737985]">Aft Draft / Ballast</span>
                 <span className="font-bold text-[#182350]">{aftBallastMeters.toFixed(1)}m</span>
@@ -410,7 +410,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                 step={0.1}
                 value={aftBallastMeters}
                 onChange={(e) => setAftBallastMeters(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-[#ECE8DF] rounded-lg appearance-none cursor-pointer accent-[#AFD2FA]"
+                className="w-full h-1.5 bg-[#182350] rounded-lg appearance-none cursor-pointer accent-[#AFD2FA]"
               />
             </div>
           </div>
@@ -425,7 +425,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               <div className="text-[9.5px] font-mono text-[#2E9B68]">{(currentFuelBurnTonsPerDay * 0.0416).toFixed(2)} t/hr</div>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Daily CO₂ Output</div>
               <div className="text-base font-extrabold text-[#182350] font-sans">
                 {currentEmissionsTonsPerDay} <span className="text-[10px] font-mono font-normal">tCO₂/d</span>
@@ -433,7 +433,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               <div className="text-[9.5px] font-mono text-[#B9915E]">CII Index: {ciiGrade.rating}</div>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Main Engine MCR</div>
               <div className="text-base font-extrabold text-[#182350] font-sans">
                 {engineMCRPercent}%
@@ -445,10 +445,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
 
         {/* Right: Dual-Fuel Bunkering & Tank Telemetry (5 cols) */}
         <div
-          className="lg:col-span-5 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4 flex flex-col justify-between"
+          className="lg:col-span-5 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4 flex flex-col justify-between"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Droplets size={18} className="text-[#2E9B68]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -473,8 +473,8 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                   }}
                   className={`p-2 rounded-xl text-left text-xs font-mono font-semibold transition-all cursor-pointer border ${
                     selectedFuelType === f
-                      ? "bg-[#182350] text-white border-[#182350] shadow-xs"
-                      : "bg-[#FAFAF5] text-[#3F4654] border-[#E6E2D8] hover:border-[#AFD2FA]"
+                      ? "bg-[#182350] text-white border-[#182350]/20 shadow-xs"
+                      : "bg-[#FAFAF5] text-[#3F4654] border-[#182350]/20 hover:border-[#AFD2FA]"
                   }`}
                 >
                   <div className="font-bold truncate">{f}</div>
@@ -505,7 +505,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               <span className="text-[#737985]">Tank Level: <strong className="text-[#182350]">{vessel.fuelLevel}%</strong></span>
               <span className="text-[#737985]">Remaining: <strong className="text-[#182350]">{((vessel.fuelLevel / 100) * vessel.fuelCapacity).toFixed(0)} / {vessel.fuelCapacity} tonnes</strong></span>
             </div>
-            <div className="h-3 w-full bg-[#ECE8DF] rounded-full overflow-hidden p-0.5">
+            <div className="h-3 w-full bg-[#182350] rounded-full overflow-hidden p-0.5">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#2E9B68] to-[#182350] transition-all duration-300"
                 style={{ width: `${vessel.fuelLevel}%` }}
@@ -519,10 +519,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Telemetry Chart with Interactive Metric Switcher (8 cols) */}
         <div
-          className="lg:col-span-8 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4"
+          className="lg:col-span-8 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#ECE8DF]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Activity size={18} className="text-[#182350]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -531,7 +531,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
             </div>
 
             {/* Metric Selector Pills */}
-            <div className="flex items-center gap-1 bg-[#FAFAF5] p-1 rounded-xl border border-[#E6E2D8] text-xs font-mono font-bold">
+            <div className="flex items-center gap-1 bg-[#FAFAF5] p-1 rounded-xl border border-[#182350]/20 text-xs font-mono font-bold">
               {[
                 { id: "fuel", label: "Fuel Flow (t/h)" },
                 { id: "speed", label: "SOG Speed (kn)" },
@@ -563,7 +563,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
                     <stop offset="95%" stopColor="#AFD2FA" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#ECE8DF" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#182350" vertical={false} />
                 <XAxis dataKey="time" tick={{ fill: "#737985", fontSize: 11, fontFamily: "monospace" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fill: "#737985", fontSize: 11, fontFamily: "monospace" }} axisLine={false} tickLine={false} />
                 <Tooltip
@@ -592,10 +592,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
 
         {/* Cargo Holds & 2D Stowage Weight Balance (4 cols) */}
         <div
-          className="lg:col-span-4 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4"
+          className="lg:col-span-4 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Layers size={18} className="text-[#182350]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -612,12 +612,12 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
             {vessel.holds.map((h, i) => {
               const holdPct = Math.round((h.currentCargo / h.capacity) * 100);
               return (
-                <div key={h.id} className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] space-y-1">
+                <div key={h.id} className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 space-y-1">
                   <div className="flex justify-between text-xs font-mono">
                     <span className="font-bold text-[#182350]">Hold #{i + 1} ({h.position})</span>
                     <span className="text-[#737985]">{h.cargoType} · {holdPct}%</span>
                   </div>
-                  <div className="h-1.5 w-full bg-[#ECE8DF] rounded-full overflow-hidden">
+                  <div className="h-1.5 w-full bg-[#182350] rounded-full overflow-hidden">
                     <div
                       className="h-full bg-[#182350] rounded-full"
                       style={{ width: `${holdPct}%` }}
@@ -634,10 +634,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Oceanic Weather & Wave Swell Radar (6 cols) */}
         <div
-          className="lg:col-span-6 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4"
+          className="lg:col-span-6 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Waves size={18} className="text-[#AFD2FA]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -648,25 +648,25 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Wave Swell Hs</div>
               <div className="text-lg font-black text-[#182350] font-sans">2.2 m</div>
               <div className="text-[9px] font-mono text-[#2E9B68]">Calm–Moderate</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Wind Vector</div>
               <div className="text-lg font-black text-[#182350] font-sans">18 kn</div>
               <div className="text-[9px] font-mono text-[#737985]">NW 315°</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Surface Current</div>
               <div className="text-lg font-black text-[#2E9B68] font-sans">+0.7 kn</div>
               <div className="text-[9px] font-mono text-[#2E9B68]">Tail Current</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-center">
+            <div className="p-3 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-center">
               <div className="text-[10px] font-mono text-[#737985] uppercase font-bold">Sea Temp</div>
               <div className="text-lg font-black text-[#182350] font-sans">27.4°C</div>
               <div className="text-[9px] font-mono text-[#737985]">Tropical Warm</div>
@@ -683,10 +683,10 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
 
         {/* Master Mariner Bridge Dispatch Terminal (6 cols) */}
         <div
-          className="lg:col-span-6 p-5 rounded-2xl shadow-sm border border-[#E6E2D8] space-y-4 flex flex-col justify-between"
+          className="lg:col-span-6 p-5 rounded-2xl shadow-sm border border-[#182350]/20 space-y-4 flex flex-col justify-between"
           style={{ background: "#FFFFFF" }}
         >
-          <div className="flex items-center justify-between pb-2 border-b border-[#ECE8DF]">
+          <div className="flex items-center justify-between pb-2 border-b border-[#182350]/20">
             <div className="flex items-center gap-2">
               <Shield size={18} className="text-[#182350]" />
               <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-[#182350]">
@@ -701,7 +701,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
           {/* Quick Message Feed */}
           <div className="space-y-2 max-h-28 overflow-y-auto pr-1">
             {messageLogs.map((log, i) => (
-              <div key={i} className="p-2 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-xs font-mono flex items-start justify-between gap-2">
+              <div key={i} className="p-2 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-xs font-mono flex items-start justify-between gap-2">
                 <div className="space-y-0.5">
                   <span className="font-bold text-[#182350]">{log.sender}:</span>
                   <p className="text-[#3F4654] font-sans text-[11px]">{log.text}</p>
@@ -719,7 +719,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               onChange={(e) => setBridgeMessage(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendBridgeMessage()}
               placeholder="Transmit advisory to Master Mariner..."
-              className="flex-1 px-3.5 py-2 rounded-xl border border-[#E6E2D8] text-xs font-mono focus:outline-none focus:border-[#AFD2FA] bg-[#FAFAF5]"
+              className="flex-1 px-3.5 py-2 rounded-xl border border-[#182350]/20 text-xs font-mono focus:outline-none focus:border-[#AFD2FA] bg-[#FAFAF5]"
             />
             <button
               onClick={handleSendBridgeMessage}
@@ -735,8 +735,8 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
       {/* ── MODAL: Voyage CII Compliance Dossier ── */}
       {showDossierModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-[#E6E2D8] space-y-4 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Download size={18} className="text-[#182350]" />
                 <h3 className="text-base font-extrabold text-[#182350]">
@@ -751,7 +751,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               </button>
             </div>
 
-            <div className="space-y-2.5 text-xs font-mono bg-[#FAFAF5] p-4 rounded-xl border border-[#E6E2D8]">
+            <div className="space-y-2.5 text-xs font-mono bg-[#FAFAF5] p-4 rounded-xl border border-[#182350]/20">
               <div className="flex justify-between">
                 <span>Vessel:</span> <strong className="text-[#182350]">{vessel.name} (IMO {vessel.imo})</strong>
               </div>
@@ -784,7 +784,7 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
               </button>
               <button
                 onClick={() => setShowDossierModal(false)}
-                className="px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase bg-[#ECE8DF] hover:bg-[#E6E2D8] text-[#182350] cursor-pointer"
+                className="px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase bg-[#182350] hover:bg-[#182350] text-[#182350] cursor-pointer"
               >
                 Close
               </button>
@@ -796,8 +796,8 @@ export default function VesselDashboard({ vessel, onUpdate }: Props) {
       {/* ── MODAL: Satcom Terminal ── */}
       {showSatcomModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#E6E2D8] space-y-4 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Radio size={18} className="text-[#2E9B68]" />
                 <h3 className="text-base font-extrabold text-[#182350]">

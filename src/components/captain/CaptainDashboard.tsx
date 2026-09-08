@@ -86,7 +86,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
     <div className="min-h-screen flex flex-col" style={{ background: "#FEFAEF" }}>
       {/* Header */}
       <header
-        className="flex-shrink-0 flex items-center justify-between px-6 border-b border-[#E6E2D8]"
+        className="flex-shrink-0 flex items-center justify-between px-6 border-b border-[#182350]"
         style={{ background: "#FFFFFF", height: 52 }}
       >
         <div className="flex items-center gap-3">
@@ -114,7 +114,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
           </div>
           <button
             onClick={onLogout}
-            className="px-3 py-1.5 rounded-lg text-xs font-sans text-[#737985] border border-[#E6E2D8] hover:border-red-400 hover:text-red-600 bg-white transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-lg text-xs font-sans text-[#737985] border border-[#182350] hover:border-red-400 hover:text-red-600 bg-white transition-colors cursor-pointer"
           >
             Logout
           </button>
@@ -205,7 +205,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
             className="lg:col-span-2 rounded-lg shadow-xs overflow-hidden"
             style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#E6E2D8] bg-[#FDFCF7]">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
               <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
                 Final Optimized Route
               </div>
@@ -385,7 +385,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
             className="rounded-lg shadow-xs overflow-hidden"
             style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="px-4 py-3 border-b border-[#E6E2D8] bg-[#FDFCF7]">
+            <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
               <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
                 Voyage Schedule
               </div>
@@ -431,7 +431,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
             className="rounded-lg shadow-xs overflow-hidden"
             style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="px-4 py-3 border-b border-[#E6E2D8] bg-[#FDFCF7]">
+            <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
               <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
                 Cargo Information
               </div>
@@ -477,7 +477,7 @@ export default function CaptainDashboard({ username, onLogout }: Props) {
             className="rounded-lg shadow-xs overflow-hidden"
             style={{ background: "#FFFFFF", border: "1px solid #E6E2D8" }}
           >
-            <div className="px-4 py-3 border-b border-[#E6E2D8] bg-[#FDFCF7]">
+            <div className="px-4 py-3 border-b border-[#182350] bg-[#FDFCF7]">
               <div className="text-xs font-sans text-[#182350] font-bold uppercase tracking-wider">
                 Voyage Instructions
               </div>

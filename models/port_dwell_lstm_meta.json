@@ -1,0 +1,49 @@
+{
+  "model_name": "Deep LSTM Port Dwell Predictor (Production)",
+  "version": "20251205-001725",
+  "performance": {
+    "train": {
+      "mae_hours": 74.94949580368485,
+      "rmse_hours": 112.00595663609373,
+      "r2_score": 0.8507267331904511,
+      "mape_percent": 16.296697094683665
+    },
+    "val": {
+      "mae_hours": 78.74954961232068,
+      "rmse_hours": 117.30307376530348,
+      "r2_score": 0.8387713343530314,
+      "mape_percent": 16.77378715892723
+    },
+    "test": {
+      "mae_hours": 76.45541870275879,
+      "rmse_hours": 113.50623266793059,
+      "r2_score": 0.8473661559094978,
+      "mape_percent": 16.675503718839902
+    }
+  },
+  "features": [
+    "berth_queue",
+    "parcel_tons",
+    "cranes_available",
+    "discharge_rate_tph",
+    "weather_slowdown_factor",
+    "port_congestion_level",
+    "tide_window_multiplier",
+    "theoretical_discharge_hours",
+    "adjusted_discharge_hours",
+    "tons_per_crane",
+    "queue_pressure",
+    "combined_delay_factor",
+    "parcel_size_category",
+    "crane_adequacy",
+    "high_congestion",
+    "bad_weather",
+    "tide_restricted",
+    "efficiency_index",
+    "congestion_squared",
+    "weather_squared",
+    "queue_exponential",
+    "crane_efficiency",
+    "service_complexity"
+  ]
+}

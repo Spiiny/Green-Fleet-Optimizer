@@ -1,0 +1,5 @@
+port,max_stock_mt,daily_handling_rate_mt,handling_cost_inr_per_mt,storage_cost_inr_per_mt_day,max_vessel_calls,delay_factor,sequential_rule
+Haldia,350000,25000,180,4,2,1.35,Haldia_second
+Paradip,600000,30000,150,3,4,1.20,
+Vizag,650000,32000,140,3,4,1.10,
+Dhamra,550000,30000,135,2.5,3,1.15,

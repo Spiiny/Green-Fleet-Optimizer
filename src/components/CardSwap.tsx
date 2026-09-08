@@ -10,7 +10,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({ customClass, ...res
   <div
     ref={ref}
     {...rest}
-    className={`absolute top-1/2 left-1/2 rounded-2xl border border-[#E6E2D8] bg-white [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] shadow-xl overflow-hidden ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
+    className={`absolute top-1/2 left-1/2 rounded-2xl border border-[#182350] bg-white [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] shadow-xl overflow-hidden ${customClass ?? ''} ${rest.className ?? ''}`.trim()}
   />
 ));
 Card.displayName = 'Card';

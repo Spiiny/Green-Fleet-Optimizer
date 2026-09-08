@@ -24,7 +24,8 @@ export type ControllerTab =
   | "routes"
   | "whatif"
   | "orders"
-  | "captains";
+  | "captains"
+  | "schedule";
 
 interface Props {
   activeTab: ControllerTab;
@@ -167,10 +168,9 @@ export default function TerminalHeader({
             </div>
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-black tracking-tight text-white font-sans flex items-center gap-1 leading-none">
-                <span>Terminal</span>
-                <span className="text-[#AFD2FA] font-mono text-xs">OS</span>
+                <span>Green Fleet</span>
               </span>
-              <span className="text-[9px] font-mono tracking-wider uppercase text-[#B9915E] font-bold">
+              <span className="text-[9px] font-mono tracking-wider uppercase text-[#AFD2FA] font-bold">
                 Controller Hub
               </span>
             </div>
@@ -183,7 +183,7 @@ export default function TerminalHeader({
               <button
                 onClick={(e) => toggleDropdown("system", e)}
                 className={`flex items-center gap-1.5 transition-colors cursor-pointer ${
-                  openDropdown === "system" || ["overview", "vessel", "manage", "orders"].includes(activeTab)
+                  openDropdown === "system" || ["overview", "vessel", "manage", "orders", "schedule"].includes(activeTab)
                     ? "text-[#AFD2FA] font-bold"
                     : "text-white/80 hover:text-white"
                 }`}
@@ -196,7 +196,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "system" && (
-                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#E6E2D8] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Core Operational Modules
                   </div>
@@ -236,6 +236,15 @@ export default function TerminalHeader({
                     <span>📋</span>
                     <span>Orders Flow & Logistics</span>
                   </button>
+                  <button
+                    onClick={() => handleSelectNav("schedule")}
+                    className={`w-full px-3.5 py-2 text-left text-xs font-semibold hover:bg-[#EAF4FE] transition-colors flex items-center gap-2.5 cursor-pointer ${
+                      activeTab === "schedule" ? "bg-[#EAF4FE] text-[#182350] font-bold" : ""
+                    }`}
+                  >
+                    <span>📅</span>
+                    <span>Fleet Schedule</span>
+                  </button>
                 </div>
               )}
             </div>
@@ -258,7 +267,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "ai" && (
-                <div className="absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-[#E6E2D8] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Optimization Engines
                   </div>
@@ -320,7 +329,7 @@ export default function TerminalHeader({
               </button>
 
               {openDropdown === "ops" && (
-                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#E6E2D8] py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-0 mt-3 w-60 bg-white rounded-xl shadow-2xl border border-[#182350]/20 py-2 text-left z-50 text-[#182350] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-3 py-1 text-[10px] font-mono text-[#737985] uppercase font-bold tracking-wider">
                     Logistics & Bridge
                   </div>
@@ -357,106 +366,6 @@ export default function TerminalHeader({
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* Live Telemetry Beacon (Desktop) */}
-            <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono text-white/90">
-              <span className="w-2 h-2 rounded-full bg-[#2E9B68] animate-pulse" />
-              <span>5/5 ONLINE</span>
-            </div>
-
-            {/* Real-time Notifications Bell */}
-            <div className="relative">
-              <button
-                onClick={() => {
-                  setOpenDropdown(null);
-                  setShowNotifications(!showNotifications);
-                }}
-                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-all cursor-pointer relative shadow-xs"
-                title="Fleet Telemetry Advisories"
-              >
-                <Bell size={15} />
-                {unreadCount > 0 && (
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-[#C94B4B] rounded-full border border-white" />
-                )}
-              </button>
-
-              {/* Notification Dropdown Panel */}
-              {showNotifications && (
-                <div className="absolute top-full right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-[#E6E2D8] overflow-hidden text-left z-50 animate-in fade-in zoom-in-95 duration-150">
-                  <div className="p-3.5 border-b border-[#ECE8DF] flex justify-between items-center bg-[#FAFAF5]">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#2E9B68] animate-pulse" />
-                      <h4 className="font-mono font-bold text-xs uppercase tracking-wider text-[#182350]">
-                        Fleet Advisories
-                      </h4>
-                    </div>
-                    <span className="text-[10px] font-mono font-bold text-[#182350] bg-[#EAF4FE] border border-[#AFD2FA] px-2 py-0.5 rounded-full">
-                      {unreadCount} Active
-                    </span>
-                  </div>
-
-                  <div className="max-h-60 overflow-y-auto divide-y divide-[#ECE8DF]">
-                    {notifications.map((n) => (
-                      <div
-                        key={n.id}
-                        onClick={() => {
-                          if (n.tab) handleSelectNav(n.tab);
-                          setShowNotifications(false);
-                        }}
-                        className="p-3 hover:bg-[#FAFAF5] transition-colors cursor-pointer flex items-start gap-2.5"
-                      >
-                        <div
-                          className={`mt-1 h-2.5 w-2.5 rounded-full shrink-0 ${
-                            n.type === "alert"
-                              ? "bg-[#C94B4B]"
-                              : n.type === "success"
-                              ? "bg-[#2E9B68]"
-                              : "bg-[#182350]"
-                          }`}
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex justify-between items-start mb-0.5">
-                            <span className="font-bold text-xs text-[#182350] truncate">{n.title}</span>
-                            <span className="text-[10px] text-[#737985] font-mono whitespace-nowrap ml-1.5">{n.time}</span>
-                          </div>
-                          <p className="text-[11px] text-[#3F4654] font-sans leading-relaxed">{n.msg}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="p-2 border-t border-[#ECE8DF] bg-[#FAFAF5] text-center">
-                    <button
-                      onClick={() => {
-                        setUnreadCount(0);
-                        setShowNotifications(false);
-                      }}
-                      className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#182350] hover:text-[#233372] p-1 cursor-pointer"
-                    >
-                      Acknowledge All
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Phone Icon Button: Operational Hotline */}
-            <button
-              onClick={() => setShowContactModal(true)}
-              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-all cursor-pointer shadow-xs"
-              title="VHF / Satcom Maritime Hotline"
-            >
-              <Phone size={15} />
-            </button>
-
-            {/* Route AI Quick Launch Pill Button */}
-            <button
-              onClick={() => handleSelectNav("routes")}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-[#AFD2FA] hover:bg-[#C2DEFC] text-[#182350] transition-all cursor-pointer shadow-md flex items-center gap-1.5"
-            >
-              <Zap size={13} />
-              <span>Route AI</span>
-            </button>
-
             {/* Logout Pill Button */}
             <button
               onClick={onLogout}
@@ -596,8 +505,8 @@ export default function TerminalHeader({
       {/* ── Contact / Operational Communications Modal ── */}
       {showContactModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#E6E2D8] space-y-4 text-[#182350]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-[#2E9B68]" />
                 <h3 className="text-base font-extrabold text-[#182350]">
@@ -630,8 +539,8 @@ export default function TerminalHeader({
       {/* ── About Modal ── */}
       {showAboutModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#E6E2D8] space-y-4 text-[#182350]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#ECE8DF]">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#182350]/20 space-y-4 text-[#182350]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#182350]/20">
               <div className="flex items-center gap-2">
                 <Hexagon size={18} className="text-[#182350]" />
                 <h3 className="text-base font-extrabold text-[#182350]">
@@ -648,7 +557,7 @@ export default function TerminalHeader({
             <p className="text-xs text-[#3F4654] font-sans leading-relaxed">
               Developed for the Smart India Hackathon (SIH 2026) under the Ministry of Ports, Shipping & Waterways. GreenFleet OS provides end-to-end multi-objective route pathfinding, 2D hold stability, and dual-fuel decarbonization under IMO 2030 CII mandates.
             </p>
-            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#E6E2D8] text-[11px] font-mono">
+            <div className="p-2.5 rounded-xl bg-[#FAFAF5] border border-[#182350]/20 text-[11px] font-mono">
               Version: <strong>2.6.4 Flagship Release</strong> · Status: <span className="text-[#2E9B68]">Verified</span>
             </div>
             <button

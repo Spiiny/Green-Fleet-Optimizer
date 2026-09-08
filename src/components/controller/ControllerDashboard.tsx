@@ -11,6 +11,7 @@ import WhatIfAnalysis from "./WhatIfAnalysis";
 import OrdersFlow from "./OrdersFlow";
 import CaptainAssignment from "./CaptainAssignment";
 import TerminalHeader, { ControllerTab } from "./TerminalHeader";
+import FleetSchedule from "./FleetSchedule";
 
 interface Props {
   username: string;
@@ -62,18 +63,34 @@ export default function ControllerDashboard({ username, onLogout }: Props) {
         {/* Floating Sidebar Toggle Handle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="absolute top-1/2 -translate-y-1/2 z-20 w-4 h-10 rounded-r-md flex items-center justify-center text-xs transition-all cursor-pointer shadow-md bg-white border border-l-0 border-[#E6E2D8] text-[#182350] hover:bg-[#FAFAF5]"
+          className={`absolute top-1/2 -translate-y-1/2 z-20 rounded-r-md flex flex-col items-center justify-center text-xs transition-all cursor-pointer shadow-md bg-white border border-l-0 border-[#182350]/20 text-[#182350] hover:bg-[#FAFAF5] ${
+            sidebarOpen ? "w-6 h-32" : "w-6 h-32 py-2"
+          }`}
           style={{ left: sidebarOpen ? 256 : 0 }}
           title={sidebarOpen ? "Collapse Fleet Sidebar" : "Expand Fleet Sidebar"}
         >
-          {sidebarOpen ? "‹" : "›"}
+          {sidebarOpen ? (
+            <>
+              <span className="mb-2 text-sm font-bold">‹</span>
+              <span className="text-[10px] font-bold tracking-widest text-[#182350] rotate-180" style={{ writingMode: "vertical-rl" }}>
+                MY FLEETS
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="text-[10px] font-bold tracking-widest text-[#182350] rotate-180" style={{ writingMode: "vertical-rl" }}>
+                MY FLEETS
+              </span>
+              <span className="mt-2 text-sm font-bold">›</span>
+            </>
+          )}
         </button>
 
         {/* Center Main Stage Content */}
         <main className="flex-1 overflow-y-auto flex flex-col" style={{ background: "#FEFAEF" }}>
           {/* Glassmorphic Vessel Context HUD Bar for contextual tabs */}
           {activeTab !== "overview" && activeTab !== "manage" && activeTab !== "orders" && activeTab !== "captains" && (
-            <div className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 px-6 py-2.5 bg-white/95 backdrop-blur-md border-b border-[#E6E2D8] shadow-xs">
+            <div className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 px-6 py-2.5 bg-white/95 backdrop-blur-md border-b border-[#182350]/20 shadow-xs">
               <div className="flex items-center gap-3">
                 <div
                   className="w-3 h-3 rounded-full flex-shrink-0 animate-ping"
@@ -106,7 +123,7 @@ export default function ControllerDashboard({ username, onLogout }: Props) {
                   className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === "routes"
                       ? "bg-[#182350] text-white"
-                      : "bg-[#FAFAF5] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA]"
+                      : "bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 hover:border-[#AFD2FA]"
                   }`}
                 >
                   ⚡ Pathfinding
@@ -116,7 +133,7 @@ export default function ControllerDashboard({ username, onLogout }: Props) {
                   className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === "layout"
                       ? "bg-[#182350] text-white"
-                      : "bg-[#FAFAF5] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA]"
+                      : "bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 hover:border-[#AFD2FA]"
                   }`}
                 >
                   ▦ 2D Trim
@@ -126,7 +143,7 @@ export default function ControllerDashboard({ username, onLogout }: Props) {
                   className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === "whatif"
                       ? "bg-[#182350] text-white"
-                      : "bg-[#FAFAF5] text-[#182350] border border-[#E6E2D8] hover:border-[#AFD2FA]"
+                      : "bg-[#FAFAF5] text-[#182350] border border-[#182350]/20 hover:border-[#AFD2FA]"
                   }`}
                 >
                   ⚗ Simulation
@@ -168,7 +185,8 @@ export default function ControllerDashboard({ username, onLogout }: Props) {
                 onUpdate={handleVesselUpdate}
               />
             )}
-            {activeTab === "orders" && <OrdersFlow />}
+                        {activeTab === "orders" && <OrdersFlow />}
+            {activeTab === "schedule" && <FleetSchedule vessels={vesselData} />}
             {activeTab === "captains" && (
               <CaptainAssignment
                 vessels={vesselData}
