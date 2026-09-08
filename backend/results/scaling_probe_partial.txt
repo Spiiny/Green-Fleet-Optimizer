@@ -1,0 +1,12 @@
+==============================================================================
+SCALING PROBE
+==============================================================================
+  sizes [24, 48, 96] | 30 s per method per size | 2 seeds
+  Hypothesis: our method's standing improves with instance size, because
+  dSB needs a search space large enough to justify its per-call cost.
+
+  n= 24 parcels |  11 vessels |   851 options | built in 1.1 s
+       MOEA/D-AWA 0.6351  SMS-EMOA 0.6985  NSGA-III 0.6732
+  n= 48 parcels |  22 vessels |  3299 options | built in 2.5 s
+       MOEA/D-AWA 0.3958  SMS-EMOA 0.8168  NSGA-III 0.6614
+  n= 96 parcels |  44 vessels | 13196 options | built in 9.8 s

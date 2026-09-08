@@ -1,0 +1,12 @@
+vessel_id,vessel_name,vessel_type,capacity,capacity_unit,gross_tonnage,design_draft_m,min_speed_kn,max_speed_kn,design_speed_kn,fuel_a,fuel_b,aux_sea_t_per_day,aux_port_t_per_day,aux_anchor_t_per_day,fuel_tank_capacity_t,ballast_draft_m,lightship_t,ballast_capacity_t,min_fuel_reserve_t,min_load_factor,max_load_factor,min_trim_m,max_trim_m,shore_power_capable,can_switch_fuel_at_sea,current_cii_rating,eexi_gco2_per_tnm,charter_rate_usd_per_day,available_from,start_port,drydock_from,drydock_to
+V01,MV Konkan Pioneer,HANDYSIZE_BULKER,35000,MT,22000,9.8,8.0,15.0,13.5,0.00813,3.0,1.8,3.2,1.2,1400,5.68,7040.0,11550.0,168.0,0.35,0.98,-0.5,2.0,0,1,C,8.9,9800,2026-09-15,INNSA,,
+V02,MV Deccan Trader,SUPRAMAX_BULKER,58000,MT,32500,12.8,8.0,15.5,14.0,0.0102,3.0,2.1,3.8,1.4,1900,7.42,10400.0,19140.0,228.0,0.35,0.98,-0.5,2.5,0,1,C,6.4,14200,2026-09-15,INMUN,,
+V03,MV Ganga Spirit,KAMSARMAX_BULKER,82000,MT,44000,14.4,9.0,15.0,14.0,0.01166,3.0,2.4,4.2,1.6,2400,8.35,14080.0,27060.0,288.0,0.4,0.98,-0.5,2.8,1,1,B,5.1,17500,2026-09-18,INPRT,,
+V04,MT Saurashtra,MR_PRODUCT_TANKER,50000,MT,29800,12.6,8.5,15.0,14.0,0.00948,3.0,2.6,5.5,1.9,1800,7.31,9536.0,16500.0,216.0,0.3,0.98,-0.5,2.0,0,1,D,7.8,16800,2026-09-15,INKAN,,
+V05,MT Coromandel,AFRAMAX_TANKER,110000,MT,62000,14.9,9.0,15.0,13.8,0.0164,3.0,3.4,7.8,2.4,3200,8.64,19840.0,36300.0,384.0,0.3,0.98,-0.5,2.5,0,1,C,4.6,26500,2026-09-21,INMUN,2026-11-02,2026-11-19
+V06,MT Bharat Endeavour,VLCC,300000,MT,160000,20.8,10.0,16.5,15.0,0.0207,3.0,5.2,11.5,3.6,6800,12.06,51200.0,99000.0,816.0,0.4,0.98,-0.5,3.5,0,1,C,2.9,42000,2026-09-15,OMSOH,,
+V07,MV Malabar Express,FEEDER_1700TEU,1700,TEU,18500,10.2,10.0,20.0,17.5,0.00772,3.0,3.8,4.6,2.2,1600,5.92,5920.0,7854.0,192.0,0.25,0.98,-0.5,1.8,1,1,B,18.5,11500,2026-09-16,INCOK,,
+V08,MV Bay Navigator,PANAMAX_4500TEU,4500,TEU,52000,13.5,11.0,22.5,20.5,0.01134,3.0,6.5,8.2,3.8,4200,7.83,16640.0,20790.0,504.0,0.25,0.98,-0.5,2.2,1,1,C,12.2,24000,2026-09-15,INMAA,,
+V09,MV Aurora Lakshmi,LNGDF_8000TEU,8000,TEU,98000,14.5,11.0,23.0,21.0,0.0162,3.0,9.2,11.0,5.1,6000,8.41,31360.0,36960.0,720.0,0.25,0.98,-0.5,2.4,1,1,A,9.8,38000,2026-09-19,SGSIN,,
+V10,MV Green Vindhya,MEOHDF_BULKER,64000,MT,36000,13.2,8.5,15.5,14.0,0.0108,3.0,2.3,4.0,1.5,2600,7.66,11520.0,21120.0,312.0,0.35,0.98,-0.5,2.6,1,1,B,5.9,16200,2026-09-15,INVTZ,,
+V11,MV Hooghly Coaster,COASTER,12000,MT,7900,6.4,7.0,13.0,11.5,0.0041,3.0,0.9,1.6,0.6,520,3.71,2528.0,3960.0,62.0,0.3,0.98,-0.5,1.4,0,0,D,21.4,5400,2026-09-15,INHAL,,

@@ -1,0 +1,165 @@
+============================================================================================
+STANDARD-BENCHMARK COMPARISON
+============================================================================================
+  6 algorithms x 5 problems x 7 seeds x 15000 evaluations
+  SCOPE: this measures the L3 SEARCH LAYER only. ZDT/DTLZ have no hard
+  constraints and no non-linear physics, so L0 (repair decoder) and L1
+  (exact convex speed solve) -- the architecture's actual differentiators
+  -- cannot be exercised here. Read alongside the maritime table.
+  All algorithms are pymoo's own implementations; only the QPSO variation
+  operator is ours, so this compares strategies, not code quality.
+
+    zdt1   Ours (SMS-EMOA+QPSO)   IGD+ 0.00408    0.8 s
+    zdt1   NSGA-II                IGD+ 0.00666    0.7 s
+    zdt1   NSGA-III               IGD+ 0.00706    0.7 s
+    zdt1   MOEA/D                 IGD+ 0.00851    7.9 s
+    zdt1   SMS-EMOA (SBX)         IGD+ 0.00473    0.9 s
+    zdt1   random search          IGD+ 1.78064    0.0 s
+    zdt2   Ours (SMS-EMOA+QPSO)   IGD+ 0.00451    0.8 s
+    zdt2   NSGA-II                IGD+ 0.00755    0.7 s
+    zdt2   NSGA-III               IGD+ 0.01393    0.7 s
+    zdt2   MOEA/D                 IGD+ 0.05118    7.5 s
+    zdt2   SMS-EMOA (SBX)         IGD+ 0.07727    0.8 s
+    zdt2   random search          IGD+ 2.86396    0.0 s
+    zdt3   Ours (SMS-EMOA+QPSO)   IGD+ 0.00344    0.8 s
+    zdt3   NSGA-II                IGD+ 0.00321    0.7 s
+    zdt3   NSGA-III               IGD+ 0.00451    0.8 s
+    zdt3   MOEA/D                 IGD+ 0.02729    8.0 s
+    zdt3   SMS-EMOA (SBX)         IGD+ 0.00271    0.9 s
+    zdt3   random search          IGD+ 1.00488    0.0 s
+    dtlz1  Ours (SMS-EMOA+QPSO)   IGD+ 1.16146    1.0 s
+    dtlz1  NSGA-II                IGD+ 1.49281    0.6 s
+    dtlz1  NSGA-III               IGD+ 0.06299    0.7 s
+    dtlz1  MOEA/D                 IGD+ 0.08432    8.7 s
+    dtlz1  SMS-EMOA (SBX)         IGD+ 0.04332    0.8 s
+    dtlz1  random search          IGD+ 35.32401    0.0 s
+    dtlz2  Ours (SMS-EMOA+QPSO)   IGD+ 0.01771    1.1 s
+    dtlz2  NSGA-II                IGD+ 0.03969    0.7 s
+    dtlz2  NSGA-III               IGD+ 0.00180    0.8 s
+    dtlz2  MOEA/D                 IGD+ 0.00228    9.2 s
+    dtlz2  SMS-EMOA (SBX)         IGD+ 0.01808    1.0 s
+    dtlz2  random search          IGD+ 0.16279    0.0 s
+
+  elapsed 518 s
+
+============================================================================================
+INDICATOR SUITE   median over seeds.   v = lower is better, ^ = higher
+============================================================================================
+  GD      v  convergence only -- a single perfect point scores 0
+  IGD     v  convergence + coverage, not Pareto compliant
+  IGD+    v  Pareto-compliant IGD -- the one to lead with
+  HV      ^  Pareto compliant, shared reference point per problem
+  Spacing v  gap uniformity only -- ignores extent
+  Spread  v  Delta: uniformity AND reach to the extremes
+
+  ----------------------------------------------------------------------------------------
+  ZDT1   (reference point [np.float64(1.1), np.float64(1.1)])
+  ----------------------------------------------------------------------------------------
+  algorithm                      GD v      IGD v     IGD+ v       HV ^  Spacing v   Spread v   pts      s
+  Ours (SMS-EMOA+QPSO)        0.00074    0.00453    0.00408    0.71723    0.00419    0.19939   100    0.8
+  NSGA-II                     0.00098    0.00694    0.00666    0.71369    0.00485    0.36059   100    0.7
+  NSGA-III                    0.00078    0.00738    0.00706    0.71234    0.00991    0.35955    98    0.7
+  MOEA/D                      0.00112    0.01046    0.00851    0.70922    0.01508    0.63794    99    7.9
+  SMS-EMOA (SBX)              0.00083    0.00523    0.00473    0.71628    0.00383    0.21199   100    0.9
+  random search               0.52838    1.78067    1.78064    0.00000    0.03836    0.82494    25    0.0
+
+  ----------------------------------------------------------------------------------------
+  ZDT2   (reference point [np.float64(1.1), np.float64(1.1)])
+  ----------------------------------------------------------------------------------------
+  algorithm                      GD v      IGD v     IGD+ v       HV ^  Spacing v   Spread v   pts      s
+  Ours (SMS-EMOA+QPSO)        0.00056    0.00587    0.00451    0.44093    0.00557    0.23550   100    0.8
+  NSGA-II                     0.00078    0.00810    0.00755    0.43563    0.00501    0.37525   100    0.7
+  NSGA-III                    0.00101    0.01501    0.01393    0.42604    0.00622    0.27921    84    0.7
+  MOEA/D                      0.00053    0.06003    0.05118    0.36778    0.00854    1.05247    95    7.5
+  SMS-EMOA (SBX)              0.00064    0.09023    0.07727    0.34203    0.00395    0.62121   100    0.8
+  random search               0.96040    2.90457    2.86396    0.00000    0.11279    0.95182    13    0.0
+
+  ----------------------------------------------------------------------------------------
+  ZDT3   (reference point [np.float64(1.1), np.float64(1.1)])
+  ----------------------------------------------------------------------------------------
+  algorithm                      GD v      IGD v     IGD+ v       HV ^  Spacing v   Spread v   pts      s
+  Ours (SMS-EMOA+QPSO)        0.00051    0.00464    0.00344    0.82761    0.00378    0.30822   100    0.8
+  NSGA-II                     0.00048    0.00414    0.00321    0.82812    0.00380    0.36938   100    0.7
+  NSGA-III                    0.00061    0.00574    0.00451    0.82481    0.00615    0.28472    71    0.8
+  MOEA/D                      0.00167    0.05527    0.02729    0.82630    0.01528    1.03359    95    8.0
+  SMS-EMOA (SBX)              0.00046    0.00398    0.00271    0.82918    0.00302    0.29680   100    0.9
+  random search               0.28314    1.00488    1.00488    0.00000    0.03033    0.88706    29    0.0
+
+  ----------------------------------------------------------------------------------------
+  DTLZ1   (reference point [np.float64(1.0), np.float64(1.0), np.float64(1.0)])
+  ----------------------------------------------------------------------------------------
+  algorithm                      GD v      IGD v     IGD+ v       HV ^  Spacing v   Spread v   pts      s
+  Ours (SMS-EMOA+QPSO)        0.13752    1.16146    1.16146    0.41418    0.01358    0.22133   100    1.0
+  NSGA-II                     0.49379    1.49316    1.49281    0.11790    0.05782    0.84524    92    0.6
+  NSGA-III                    0.03219    0.07428    0.06299    0.96384    0.09271    0.59532    73    0.7
+  MOEA/D                      0.00873    0.08472    0.08432    0.95427    0.03210    0.30266    88    8.7
+  SMS-EMOA (SBX)              0.01888    0.06050    0.04332    0.97091    0.05626    0.64008   100    0.8
+  random search              35.13477   35.32401   35.32401    0.00000    0.05231    0.69564    70    0.0
+
+  ----------------------------------------------------------------------------------------
+  DTLZ2   (reference point [np.float64(2.0), np.float64(2.0), np.float64(2.0)])
+  ----------------------------------------------------------------------------------------
+  algorithm                      GD v      IGD v     IGD+ v       HV ^  Spacing v   Spread v   pts      s
+  Ours (SMS-EMOA+QPSO)        0.00561    0.06527    0.01771    0.92875    0.02898    0.26769   100    1.1
+  NSGA-II                     0.00601    0.07282    0.03969    0.91696    0.04038    0.48928   100    0.7
+  NSGA-III                    0.00035    0.00234    0.00180    0.92707    0.02768    0.16784    91    0.8
+  MOEA/D                      0.00033    0.00242    0.00228    0.92679    0.02769    0.16885    91    9.2
+  SMS-EMOA (SBX)              0.00565    0.06523    0.01808    0.92856    0.02908    0.29158   100    1.0
+  random search               0.02511    0.17298    0.16279    0.88006    0.02918    0.46794   226    0.0
+
+============================================================================================
+BEST PER METRIC   (who wins what)
+============================================================================================
+  problem                 GD v             IGD v            IGD+ v              HV ^         Spacing v          Spread v
+  zdt1                   Ours*             Ours*             Ours*             Ours*    SMS-EMOA (SBX)             Ours*
+  zdt2                  MOEA/D             Ours*             Ours*             Ours*    SMS-EMOA (SBX)             Ours*
+  zdt3          SMS-EMOA (SBX)    SMS-EMOA (SBX)    SMS-EMOA (SBX)    SMS-EMOA (SBX)    SMS-EMOA (SBX)          NSGA-III
+  dtlz1                 MOEA/D    SMS-EMOA (SBX)    SMS-EMOA (SBX)    SMS-EMOA (SBX)             Ours*             Ours*
+  dtlz2                 MOEA/D          NSGA-III          NSGA-III             Ours*          NSGA-III          NSGA-III
+  * = ours
+
+============================================================================================
+CONVERGENCE SPEED   evaluations to reach IGD+ < 1e-3  (-- = never reached)
+============================================================================================
+  algorithm                                 zdt1                  zdt2                  zdt3                 dtlz1                 dtlz2
+  Ours (SMS-EMOA+QPSO)                        --                    --                    --                    --                    --
+  NSGA-II                                     --                    --                    --                    --                    --
+  NSGA-III                                    --                    --                    --                    --                    --
+  MOEA/D                                      --                    --                    --                    --                    --
+  SMS-EMOA (SBX)                              --                    --                    --                    --                    --
+  random search                               --                    --                    --                    --                    --
+
+============================================================================================
+SCALABILITY   ZDT1 with n = 10, 30, 100 decision variables
+============================================================================================
+  5 seeds per cell, 15000 evaluations
+  algorithm                                         n=10                          n=30                         n=100
+                                      HV      IGD+     s            HV      IGD+     s            HV      IGD+     s
+  Ours (SMS-EMOA+QPSO)      0.7201   0.0022     1.0     0.7169   0.0041     0.9     0.5661   0.1240     1.0   
+  NSGA-II                   0.7189   0.0031     0.7     0.7137   0.0067     0.8     0.5550   0.1336     0.9   
+  NSGA-III                  0.7197   0.0024     0.7     0.7123   0.0071     0.7     0.5546   0.1320     0.9   
+  MOEA/D                    0.7192   0.0025     7.9     0.7116   0.0073     7.9     0.0916   0.6499     7.7   
+  SMS-EMOA (SBX)            0.7201   0.0025     0.8     0.7158   0.0048     0.9     0.5722   0.1172     1.1   
+  random search             0.0049   0.9046     0.0     0.0000   1.7806     0.0     0.0000   2.2582     0.0   
+
+============================================================================================
+SCALABILITY DEGRADATION   HV retained at n=100 vs n=10
+============================================================================================
+  Ours (SMS-EMOA+QPSO)     HV   78.6% retained   runtime  1.03x
+  NSGA-II                  HV   77.2% retained   runtime  1.31x
+  NSGA-III                 HV   77.1% retained   runtime  1.29x
+  MOEA/D                   HV   12.7% retained   runtime  0.98x
+  SMS-EMOA (SBX)           HV   79.5% retained   runtime  1.33x
+  random search            HV    0.0% retained   runtime  3.87x
+
+============================================================================================
+SIGNIFICANCE   Wilcoxon rank-sum on IGD+, Holm-corrected
+============================================================================================
+  zdt1    NSGA-II+  NSGA-III+  MOEA/D+  random search+  SMS-EMOA (SBX)=
+  zdt2    NSGA-II+  NSGA-III+  random search+  SMS-EMOA (SBX)=  MOEA/D=
+  zdt3    random search+  MOEA/D=  NSGA-III=  SMS-EMOA (SBX)-  NSGA-II-
+  dtlz1   random search+  NSGA-II=  MOEA/D-  SMS-EMOA (SBX)-  NSGA-III-
+  dtlz2   random search+  NSGA-II-  NSGA-III-  MOEA/D-  SMS-EMOA (SBX)-
+  + we are significantly better   - significantly worse   = no difference
+
+  raw results -> benchmark_standard.json

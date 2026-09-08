@@ -1,0 +1,6 @@
+fuel_id,fuel_name,lcv_mj_per_kg,co2_ttw_t_per_t,co2e_wtw_g_per_mj,sulphur_pct_m,eca_compliant,density_t_per_m3,notes
+VLSFO,Very low sulphur fuel oil,40.2,3.114,91.7,0.5,0,0.991,IMO2020 global cap fuel
+MGO,Marine gas oil,42.7,3.206,90.6,0.1,1,0.86,ECA compliant distillate
+LNG,Liquefied natural gas,48.0,2.75,76.1,0.0,1,0.45,"Otto medium-speed, incl. methane slip"
+MEOH,Methanol (grey),19.9,1.375,96.0,0.0,1,0.792,Half the LCV of VLSFO - double the tonnage
+B24,B24 bio-blend (VLSFO+24% FAME),39.6,3.052,71.4,0.5,0,0.96,"Drop-in, Singapore standard"

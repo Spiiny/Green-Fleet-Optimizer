@@ -1,0 +1,32 @@
+============================================================================================
+STANDARD-BENCHMARK COMPARISON
+============================================================================================
+  6 algorithms x 5 problems x 31 seeds x 25000 evaluations
+  SCOPE: this measures the L3 SEARCH LAYER only. ZDT/DTLZ have no hard
+  constraints and no non-linear physics, so L0 (repair decoder) and L1
+  (exact convex speed solve) -- the architecture's actual differentiators
+  -- cannot be exercised here. Read alongside the maritime table.
+  All algorithms are pymoo's own implementations; only the QPSO variation
+  operator is ours, so this compares strategies, not code quality.
+
+    zdt1   Ours (SMS-EMOA+QPSO)   IGD+ 0.00244    1.5 s
+    zdt1   NSGA-II                IGD+ 0.00362    1.2 s
+    zdt1   NSGA-III               IGD+ 0.00291    1.3 s
+    zdt1   MOEA/D                 IGD+ 0.00349   13.7 s
+    zdt1   SMS-EMOA (SBX)         IGD+ 0.00255    1.5 s
+    zdt1   random search          IGD+ 1.64271    0.0 s
+    zdt2   Ours (SMS-EMOA+QPSO)   IGD+ 0.00237    1.5 s
+    zdt2   NSGA-II                IGD+ 0.00338    1.2 s
+    zdt2   NSGA-III               IGD+ 0.00307    1.3 s
+    zdt2   MOEA/D                 IGD+ 0.00260   13.6 s
+    zdt2   SMS-EMOA (SBX)         IGD+ 0.00248    1.5 s
+    zdt2   random search          IGD+ 2.81142    0.0 s
+    zdt3   Ours (SMS-EMOA+QPSO)   IGD+ 0.00136    1.4 s
+    zdt3   NSGA-II                IGD+ 0.00180    1.2 s
+    zdt3   NSGA-III               IGD+ 0.00220    1.3 s
+    zdt3   MOEA/D                 IGD+ 0.00274   13.9 s
+    zdt3   SMS-EMOA (SBX)         IGD+ 0.00125    1.5 s
+    zdt3   random search          IGD+ 1.42064    0.0 s
+    dtlz1  Ours (SMS-EMOA+QPSO)   IGD+ 0.58071    2.0 s
+    dtlz1  NSGA-II                IGD+ 0.03976    1.1 s
+    dtlz1  NSGA-III               IGD+ 0.00413    1.3 s

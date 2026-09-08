@@ -1,0 +1,15 @@
+parameter,value,unit,description
+horizon_start,2026-09-15,date,Planning horizon start
+horizon_days,60,days,Planning horizon length
+eu_ets_price_usd_per_tco2,94.50,USD/t,"EU ETS allowance, applies to EU voyages"
+ets_scope_intra_eu,1.00,fraction,100% of emissions on intra-EU legs
+ets_scope_extra_eu,0.50,fraction,50% of emissions on legs into/out of EU
+fueleu_ghg_target_gco2e_per_mj,85.69,g/MJ,FuelEU Maritime 2025-2029 limit (-2%)
+fueleu_penalty_eur_per_tvlsfoe,2400,EUR,Non-compliance penalty
+carbon_budget_tco2,185000,tCO2,Fleet cap for the horizon (scenario lever)
+eca_sulphur_limit_pct,0.10,% m/m,ECA SOx limit
+global_sulphur_limit_pct,0.50,% m/m,Global SOx cap
+nox_tier,III,tier,Applies to keels laid post-2016 in NOx ECAs
+usd_per_eur,1.08,rate,
+sfoc_g_per_kwh,192,g/kWh,Reference specific fuel oil consumption
+cii_required_reduction_2026,11.0,%,Reduction vs 2019 reference line

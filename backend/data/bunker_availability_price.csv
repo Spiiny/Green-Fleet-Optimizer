@@ -1,0 +1,96 @@
+port_code,fuel_id,available,price_usd_per_t,min_lot_t,bunkering_rate_t_per_h,note
+INMUN,VLSFO,1,596,200,4.0,OK
+INMUN,MGO,1,820,200,4.0,OK
+INMUN,LNG,1,653,200,4.0,OK
+INMUN,MEOH,0,,,,not supplied at this port
+INMUN,B24,0,,,,not supplied at this port
+INKAN,VLSFO,1,616,200,4.0,OK
+INKAN,MGO,1,840,200,4.0,OK
+INKAN,LNG,0,,,,not supplied at this port
+INKAN,MEOH,0,,,,not supplied at this port
+INKAN,B24,0,,,,not supplied at this port
+INNSA,VLSFO,1,604,200,4.0,OK
+INNSA,MGO,1,828,200,4.0,OK
+INNSA,LNG,0,,,,not supplied at this port
+INNSA,MEOH,0,,,,not supplied at this port
+INNSA,B24,0,,,,not supplied at this port
+INCOK,VLSFO,1,610,200,4.0,OK
+INCOK,MGO,1,834,200,4.0,OK
+INCOK,LNG,0,,,,not supplied at this port
+INCOK,MEOH,0,,,,not supplied at this port
+INCOK,B24,0,,,,not supplied at this port
+INTUT,VLSFO,0,,,,not supplied at this port
+INTUT,MGO,1,846,200,4.0,OK
+INTUT,LNG,0,,,,not supplied at this port
+INTUT,MEOH,0,,,,not supplied at this port
+INTUT,B24,0,,,,not supplied at this port
+INMAA,VLSFO,1,607,200,4.0,OK
+INMAA,MGO,1,831,200,4.0,OK
+INMAA,LNG,0,,,,not supplied at this port
+INMAA,MEOH,0,,,,not supplied at this port
+INMAA,B24,0,,,,not supplied at this port
+INKRI,VLSFO,1,629,200,4.0,OK
+INKRI,MGO,0,,,,not supplied at this port
+INKRI,LNG,0,,,,not supplied at this port
+INKRI,MEOH,0,,,,not supplied at this port
+INKRI,B24,0,,,,not supplied at this port
+INVTZ,VLSFO,1,613,200,4.0,OK
+INVTZ,MGO,1,837,200,4.0,OK
+INVTZ,LNG,0,,,,not supplied at this port
+INVTZ,MEOH,0,,,,not supplied at this port
+INVTZ,B24,0,,,,not supplied at this port
+INPRT,VLSFO,1,626,200,4.0,OK
+INPRT,MGO,0,,,,not supplied at this port
+INPRT,LNG,0,,,,not supplied at this port
+INPRT,MEOH,0,,,,not supplied at this port
+INPRT,B24,0,,,,not supplied at this port
+INHAL,VLSFO,0,,,,not supplied at this port
+INHAL,MGO,0,,,,not supplied at this port
+INHAL,LNG,0,,,,not supplied at this port
+INHAL,MEOH,0,,,,not supplied at this port
+INHAL,B24,0,,,,not supplied at this port
+LKCMB,VLSFO,1,589,200,4.0,OK
+LKCMB,MGO,1,813,200,4.0,OK
+LKCMB,LNG,0,,,,not supplied at this port
+LKCMB,MEOH,0,,,,not supplied at this port
+LKCMB,B24,1,743,200,4.0,OK
+SGSIN,VLSFO,1,558,200,4.0,OK
+SGSIN,MGO,1,782,200,4.0,OK
+SGSIN,LNG,1,615,200,4.0,OK
+SGSIN,MEOH,1,713,200,4.0,OK
+SGSIN,B24,1,712,200,4.0,OK
+AEJEA,VLSFO,1,572,200,4.0,OK
+AEJEA,MGO,1,796,200,4.0,OK
+AEJEA,LNG,1,629,200,4.0,OK
+AEJEA,MEOH,0,,,,not supplied at this port
+AEJEA,B24,0,,,,not supplied at this port
+OMSOH,VLSFO,1,580,200,4.0,OK
+OMSOH,MGO,1,804,200,4.0,OK
+OMSOH,LNG,0,,,,not supplied at this port
+OMSOH,MEOH,0,,,,not supplied at this port
+OMSOH,B24,0,,,,not supplied at this port
+EGPSD,VLSFO,1,600,200,4.0,OK
+EGPSD,MGO,1,824,200,4.0,OK
+EGPSD,LNG,0,,,,not supplied at this port
+EGPSD,MEOH,0,,,,not supplied at this port
+EGPSD,B24,0,,,,not supplied at this port
+ITGOA,VLSFO,1,622,200,4.0,OK
+ITGOA,MGO,1,846,200,4.0,OK
+ITGOA,LNG,0,,,,not supplied at this port
+ITGOA,MEOH,0,,,,not supplied at this port
+ITGOA,B24,0,,,,not supplied at this port
+ESALG,VLSFO,1,587,200,4.0,OK
+ESALG,MGO,1,811,200,4.0,OK
+ESALG,LNG,1,644,200,4.0,OK
+ESALG,MEOH,0,,,,not supplied at this port
+ESALG,B24,1,741,200,4.0,OK
+NLRTM,VLSFO,1,576,200,4.0,OK
+NLRTM,MGO,1,800,200,4.0,OK
+NLRTM,LNG,1,633,200,4.0,OK
+NLRTM,MEOH,1,731,200,4.0,OK
+NLRTM,B24,1,730,200,4.0,OK
+CNSHA,VLSFO,1,584,200,4.0,OK
+CNSHA,MGO,1,808,200,4.0,OK
+CNSHA,LNG,1,641,200,4.0,OK
+CNSHA,MEOH,0,,,,not supplied at this port
+CNSHA,B24,1,738,200,4.0,OK

@@ -1,0 +1,66 @@
+==============================================================================
+PROTOCOL
+==============================================================================
+  6 methods x 3 seeds x 20 s wall clock = 6 min
+  Budget is WALL CLOCK, not evaluations. One dSB call costs orders of
+  magnitude more than one SBX crossover, so an equal-evaluation
+  comparison would hand our method far more compute while looking fair.
+  Every method shares the same options, the same repair, the same
+  evaluator, and one hypervolume reference box.
+
+    MOEA/D-AWA (ours)    seed 1    30 pts    20.7 s
+    MOEA/D-AWA (ours)    seed 2    38 pts    20.0 s
+    MOEA/D-AWA (ours)    seed 3    19 pts    20.2 s
+    dSB weight sweep     seed 1     6 pts    20.3 s
+    dSB weight sweep     seed 2     6 pts    20.1 s
+    dSB weight sweep     seed 3     7 pts    20.6 s
+    NSGA-III             seed 1    10 pts    20.2 s
+    NSGA-III             seed 2     9 pts    20.1 s
+    NSGA-III             seed 3    11 pts    20.3 s
+    MOEA/D-DE            seed 1    50 pts    20.3 s
+    MOEA/D-DE            seed 2    49 pts    20.2 s
+    MOEA/D-DE            seed 3    26 pts    20.9 s
+    SMS-EMOA             seed 1    40 pts    20.1 s
+    SMS-EMOA             seed 2    40 pts    20.1 s
+    SMS-EMOA             seed 3    40 pts    20.1 s
+    random search        seed 1     7 pts    20.0 s
+    random search        seed 2     7 pts    20.0 s
+    random search        seed 3    10 pts    20.0 s
+
+  total 367 s
+
+==============================================================================
+RESULTS  median [IQR] over seeds
+==============================================================================
+  method                          hypervolume              IGD+   points    evals
+  MOEA/D-AWA (ours)      0.6738 [0.6336,0.6898]  0.0972 [0.080,0.133]       30      168
+  dSB weight sweep       0.6385 [0.6302,0.6625]  0.1498 [0.141,0.165]        6       34
+  NSGA-III               0.7428 [0.7419,0.7437]  0.0440 [0.043,0.057]       10     4884
+  MOEA/D-DE              0.2293 [0.1688,0.2476]  0.7260 [0.700,0.828]       49     2772
+  SMS-EMOA               0.7686 [0.7534,0.7728]  0.0232 [0.017,0.035]       40     6200
+  random search          0.4846 [0.4845,0.4888]  0.3248 [0.317,0.336]        7     2081
+  BAU (single point)     0.0570
+
+==============================================================================
+SIGNIFICANCE  Wilcoxon rank-sum, Holm-corrected
+==============================================================================
+  vs baseline             p (raw)   p (Holm)     A12  verdict
+  MOEA/D-DE                0.0248     0.1238    1.00  not significant
+  random search            0.0248     0.1238    1.00  not significant
+  dSB weight sweep         0.4136     1.0000    0.56  not significant
+  NSGA-III                 0.9752     1.0000    0.00  not significant
+  SMS-EMOA                 0.9752     1.0000    0.00  not significant
+
+  NOTE: 3 seeds cannot reach p<0.05 on a rank-sum test (min attainable p is ~0.100).
+  Read A12 instead -- it is the effect size and does not need a
+  large sample. Run --full for 31 seeds before claiming significance.
+
+==============================================================================
+CHARTS
+==============================================================================
+/home/claude/fleetopt/scripts/demo_m6.py:119: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = ax.boxplot(data, labels=[n.replace(" (ours)", "") for n in METHODS],
+  figures/pareto.png
+  figures/anytime.png
+  figures/hypervolume.png
+  figures/tradeoff.png
