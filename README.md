@@ -299,6 +299,7 @@ Subject to:
 - **Port draft limitations vs vessel displacement**
 - **Tidal arrival/departure time windows**
 - **Emission Control Area (ECA) sulfur cap limits**
+- **One Way Traffic and traffic regulation**
 
 ---
 
